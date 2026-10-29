@@ -1,9 +1,10 @@
 <!DOCTYPE html>
-<html lang="pt-BR" data-theme="light">
+
+<html data-theme="light" lang="pt-BR">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<meta name="color-scheme" content="light">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="only light" name="color-scheme"/>
 <title>PANDORA — Macroprojeto e Grupo de Pesquisa</title>
 <style>
 :root{
@@ -161,43 +162,123 @@ ul.l{max-width:760px;margin:0 auto;color:#4a5b75}
 .edit-footnote{border-top:1px solid #e4ebf1;padding-top:14px;margin:22px 0 0;color:#6a788b;font-size:11px;line-height:1.55}
 @media(max-width:600px){.news-meta{flex-direction:column}.news-meta span{font-size:12px}.edit-stats{gap:6px}.edit-stats>div{padding:11px 6px}.stat-num{font-size:26px}.stat-label{font-size:11px}.vacancy-list>div{padding:12px 10px}.vacancy-list small{font-size:11px}.edit-actions{flex-direction:column}.edit-button{width:100%}.edit-document{text-align:center;line-height:1.5}}
 
+
+/* Layout moderno com identidade cromática original PANDORA */
+:root{color-scheme:light!important;--bg:#fff;--bg2:#f2f8fb;--tx:#091d43;--mu:#4a5b75;--bd:#dce4eb;--bl:#12619a;--card:#fff}
+html,body{color-scheme:light!important;background:#fff!important;color:#091d43!important}
+body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
+.tabs{position:sticky!important;top:0!important;z-index:9999!important;display:flex!important;visibility:visible!important;opacity:1!important;background:rgba(255,255,255,.98)!important;border-bottom:1px solid #dce4eb;box-shadow:0 8px 30px rgba(9,29,67,.08);gap:12px;padding:15px 20px;backdrop-filter:blur(12px)}
+.tab{background:#fff!important;color:#263750!important;border:1px solid transparent;border-radius:12px;font-family:inherit;font-size:14px;font-weight:750;padding:12px 22px}
+.tab:hover{background:#eaf4fa!important;border-color:#bcd8e9!important;color:#12559c!important}
+.tab.active{background:#12619a!important;color:white!important;border-color:#12619a!important;box-shadow:0 6px 18px rgba(18,97,154,.23)}
+.cover{background:#f2f8fb!important}.cover img{max-height:470px;object-fit:cover}
+.tab-panel,.tab-panel.active{background:#fff!important;color:#091d43!important}
+.w{max-width:1120px;padding-left:26px;padding-right:26px}
+section{padding:76px 0;background:#fff!important}section.alt,#noticias{background:#f2f8fb!important}
+h2,#sobre .heading{font-size:clamp(28px,4vw,42px);font-weight:850;letter-spacing:-.035em;text-transform:none;color:#091d43!important;line-height:1.2}
+.u{height:5px;width:92px;margin:18px auto 36px;background:#12619a!important;border-radius:20px}
+.c,.news-card,.call-edit,.contact-item,.note,#sobre .definition{border:1px solid #dce4eb!important;border-radius:24px!important;background:#fff!important;box-shadow:0 12px 36px rgba(9,29,67,.055)}
+.c{padding:26px}.th{border-top:0!important;position:relative;overflow:hidden}.th:before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--c,#12619a)}
+.th:hover{box-shadow:0 20px 48px rgba(18,97,154,.14)}.th h3{letter-spacing:-.04em}
+.th small,.c h3,.sub,.news-card h3,.call-edit>h3{color:#091d43!important}
+.th p,.r,.news-card p,.edit-intro,.body-copy,.tx{color:#4a5b75!important}
+.news-label,.edit-kicker{color:#12619a!important}.news-label{background:#eaf4fa!important;border-radius:30px;padding:8px 14px}
+.news-card{border-top:0!important;padding:clamp(26px,5vw,48px)}
+.news-cta,.edit-button.primary{background:#12619a!important;color:#fff!important;border-radius:13px!important;box-shadow:0 8px 22px rgba(18,97,154,.22)}
+.edit-button.secondary{background:#17466f!important;border-radius:13px!important}
+.edit-document,.contact-item a,.lk{color:#12619a!important}
+.news-meta span,.edit-stats>div,.edit-notice,.timeline-icon,.contact-icon{background:#f2f8fb!important;border-color:#dce4eb!important}
+.edit-badge{background:#12619a!important}.stat-num{color:#12619a!important}
+#sobre .rainbow-rule{height:5px;border-radius:20px}#sobre .body-copy p{border-left-color:#12619a}
+#sobre .definition{padding:clamp(20px,4vw,38px)}
+.contact-item{padding:26px}.contact-icon{color:#12619a!important}
+.site-footer{background:#f2f8fb!important;color:#4a5b75!important;border-top-color:#dce4eb}
+th{background:#f2f8fb!important;color:#091d43!important}td,th{border-bottom-color:#dce4eb}
+@media(max-width:650px){.tabs{padding:10px 8px;gap:5px;flex-wrap:wrap}.tab{font-size:12px;padding:10px 11px}section{padding:48px 0}.w{padding:0 17px}.cover img{max-height:none}h2,#sobre .heading{font-size:29px}}
+@media(prefers-color-scheme:dark){:root{color-scheme:light!important}html,body,.tabs,.tab-panel,section,.c,.news-card,.call-edit,.contact-item{color-scheme:light!important}body,html{background:#fff!important;color:#091d43!important}.tabs{background:#fff!important}section.alt,#noticias{background:#f2f8fb!important}.tab.active{background:#12619a!important;color:#fff!important}}
+@media print{.tabs{display:flex!important;position:static!important}.tab-panel{display:block!important}}
+
+
+/* Identidade multicolorida PANDORA preservada nas divisórias */
+.u.rb{background:linear-gradient(90deg,#12559c 0 18%,#00a9a4 18% 36%,#65a73b 36% 50%,#f9bd19 50% 65%,#f05b2c 65% 82%,#8e207d 82%)!important;width:200px}
+.vacancy-dot.ext{background:#8e207d}
+
+/* Publicações demonstrativas e ajustes do edital */
+.pub-intro{text-align:center;color:#52627a;max-width:700px;margin:0 auto 24px}
+.pub-filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 16px}
+.pub-filters label{display:flex;flex-direction:column;gap:6px;font-weight:700;font-size:12px;color:#17385c}
+.pub-filters select,.pub-filters input{width:100%;border:1px solid #d6e0ea;background:#fff;color:#17385c;border-radius:12px;padding:12px;font:inherit;font-weight:400;min-width:0}
+.pub-filters :is(input,select):focus-visible{outline:3px solid #97c7e8;outline-offset:2px}
+.pub-count{color:#52627a;font-size:13px;margin:8px 0 16px}
+.pub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+.pub-card{background:#fff;border:1px solid #e0e7ef;border-radius:18px;padding:22px;box-shadow:0 9px 28px rgba(10,40,80,.045);border-top:4px solid var(--c,#12619a)}
+.pub-card .pub-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
+.pub-card .pub-meta span{font-size:11px;font-weight:800;background:#f0f5fa;border-radius:8px;padding:5px 8px;color:#31516d}
+.pub-card h3{font-size:17px;line-height:1.4;margin:0 0 12px;color:#102d4b}
+.pub-card p{font-size:13px;color:#52627a;margin:0 0 10px}
+.pub-demo{display:inline-block;color:#875500;background:#fff3d3;border-radius:8px;padding:5px 8px;font-size:11px;font-weight:800}
+.pub-empty{padding:28px;text-align:center;color:#52627a;background:#fff;border-radius:14px}
+.edit-actions{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
+.edit-actions .edit-button{min-width:240px}
+.edit-actions .edit-button.secondary{margin-top:10px}
+.edital-tooltip{position:relative;display:inline-flex;align-items:center;gap:9px;flex-wrap:wrap}
+.edital-bubble{background:#fff2c8;color:#654700;border:1px solid #f2d27a;border-radius:12px;padding:9px 13px;font-size:12px;font-weight:700;box-shadow:0 5px 14px rgba(80,50,0,.07)}
+@media(max-width:780px){.pub-filters{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.pub-filters{grid-template-columns:1fr}.edit-actions,.edit-actions .edit-button,.edit-actions .edit-document{width:100%}.edital-tooltip{width:100%}}
 </style>
-</head>
+<style>
+/* Identidade PANDORA, navegação fixa e modo exclusivamente claro */
+:root,html{color-scheme:light!important}html,body{background:#fff!important}
+.tabs{position:sticky!important;top:0!important;z-index:999!important;display:flex!important;background:#fff!important}
+.tab-panel[hidden]{display:none!important}
+.research-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:18px;margin:25px 0}
+.research-card{background:#fff;border:1px solid #e2e8f0;border-top:5px solid var(--c,#12619a);border-radius:20px;padding:24px;box-shadow:0 8px 28px #112c4b0b}
+.research-card h3{font-size:18px;line-height:1.4;margin:13px 0;color:#091d43}
+.research-card p{font-size:14px;color:#4a5b75;margin:8px 0}
+.research-pill{display:inline-block;border-radius:30px;padding:5px 11px;background:#f1f5f9;font-weight:700;font-size:12px;color:#091d43;margin:0 5px 5px 0}
+.research-card .tag{margin-bottom:8px}
+.pub-year-title{grid-column:1/-1;margin:16px 0 0;font-size:23px;color:#091d43;border-bottom:2px solid #e2e8f0;padding-bottom:8px}
+@media(prefers-color-scheme:dark){html,body,.tabs,.tab-panel,.research-card{background:#fff!important;color:#091d43!important}}
+</style></head>
 <body>
-<nav class="tabs" role="tablist" aria-label="Navegação principal">
-<button type="button" class="tab active" role="tab" id="tab-inicio" aria-controls="painel-inicio" aria-selected="true" data-tab="inicio">Início</button>
-<button type="button" class="tab" role="tab" id="tab-producao" aria-controls="painel-producao" aria-selected="false" data-tab="producao">Produção e equipe</button>
-<button type="button" class="tab" role="tab" id="tab-editais" aria-controls="painel-editais" aria-selected="false" data-tab="editais">Editais</button>
-</nav><header class="cover"><img src="https://i.ibb.co/1tLDhmHQ/capa-site.png" alt="Capa do site PANDORA"></header>
+<nav aria-label="Navegação principal" class="tabs" role="tablist">
+<button aria-controls="painel-inicio" aria-selected="true" class="tab active" data-tab="inicio" id="tab-inicio" role="tab" type="button">Início</button>
+<button aria-controls="painel-producao" aria-selected="false" class="tab" data-tab="producao" id="tab-producao" role="tab" type="button">Pesquisa e extensão</button><button aria-controls="painel-publicacoes" aria-selected="false" class="tab" data-tab="publicacoes" id="tab-publicacoes" role="tab" type="button">Publicações</button>
+<button aria-controls="painel-editais" aria-selected="false" class="tab" data-tab="editais" id="tab-editais" role="tab" type="button">Editais</button>
+</nav><header class="cover"><img alt="Capa do site PANDORA" src="https://i.ibb.co/1tLDhmHQ/capa-site.png"/></header>
 <main>
-<div class="tab-panel active" id="painel-inicio" role="tabpanel" aria-labelledby="tab-inicio">
+<div aria-labelledby="tab-inicio" class="tab-panel active" id="painel-inicio" role="tabpanel">
 <section id="noticias"><div class="w"><h2>Notícias e eventos</h2><div class="u rb"></div>
-<article class="news-card"><div class="news-label">NOVO EDITAL · INSCRIÇÕES EM 30/10</div><h3>Seleção de participantes para o Macroprojeto PANDORA</h3><p>O PANDORA divulga seu processo seletivo para novos participantes do Grupo de Pesquisa. São <strong>7 vagas</strong>, sendo 6 para discentes da Licenciatura em Ciências Biológicas da UFCG, distribuídas entre as linhas TED, GIO e CTS, e 1 para pesquisador(a) externo(a).</p><div class="news-meta"><span>Inscrições: 30/10 a 10/11/2026</span><span>Entrevistas: 13/11/2026</span></div><button type="button" class="news-cta" onclick="document.getElementById('tab-editais').click()">Ver edital e formas de inscrição <span aria-hidden="true">→</span></button></article>
-</div></section><section id="sobre"><div class="w"><div class="sheet"><h2 class="heading">O que é o PANDORA?</h2><div class="rainbow-rule"></div><div class="definition"><div class="definition-art"><img alt="Caixa aberta com circuitos coloridos, símbolo do PANDORA" decoding="async" loading="lazy" src="https://i.ibb.co/MkbrsbYx/Caixa-de-ideias-tecnol-gicas-arco-ris.png"/></div><div aria-label="Significado da sigla PANDORA" class="acronym"><div class="acronym-row" style="--c:#1263a0"><b>P</b><i></i><span>Práticas</span></div><div class="acronym-row" style="--c:#17a5a5"><b>A</b><i></i><span>Analíticas e</span></div><div class="acronym-row" style="--c:#6da941"><b>N</b><i></i><span>Narrativas de</span></div><div class="acronym-row" style="--c:#e7b11d"><b>D</b><i></i><span>Democratização</span></div><div class="acronym-row" style="--c:#ee6b26"><b>O</b><i></i><span>Ontologia e</span></div><div class="acronym-row" style="--c:#d62950"><b>R</b><i></i><span>Resistência</span></div><div class="acronym-row" style="--c:#8b2a9e"><b>A</b><i></i><span>Ativa</span></div></div></div><div class="body-copy"><p>O PANDORA é um macroprojeto e grupo de pesquisa voltado ao Ensino de Ciências e Tecnologias. Inspirado no gesto de abrir caixas-pretas da ciência e da tecnologia, propõe uma reestruturação teórico-metodológica da iniciação à pesquisa, articulando formação investigativa, criticidade e compromisso social.</p><p>Suas ações valorizam narrativas historicamente silenciadas, problematizam as relações entre ciência, tecnologia, sociedade e ambiente, e promovem práticas de democratização do conhecimento, resistência ativa e formação de professoras(es)-pesquisadoras(es).</p></div></div></div></section><section id="linhas" class="alt"><div class="w"><h2>Linhas temáticas</h2><div class="u rb"></div><div class="g">
-<div class="c th" style="--c:#1764a0"><div class="theme-pic"><img alt="Símbolo da linha GIO" loading="lazy" decoding="async" src="https://i.ibb.co/ynd8gDgF/Logotipo-Mulher-Ci-ncia-e-Educa-o.png"></div><h3>GIO</h3><div class="theme-bar"></div><small>Gênero, Interseccionalidade e Ontologia</small><p>Investiga desigualdades, silenciamentos, sujeitos da ciência e saberes situados, em diálogo com Haraway, Schiebinger e Crenshaw.</p></div>
-<div class="c th" style="--c:#138d50"><div class="theme-pic"><img alt="Símbolo da linha TED" loading="lazy" decoding="async" src="https://i.ibb.co/S7Bxn3dW/Engrenagem-da-inova-o-e-tecnologia.png"></div><h3>TED</h3><div class="theme-bar"></div><small>Tecnologias Emergentes e Democratização</small><p>Analisa IA, tecnologias emergentes, letramento ético-digital e democratização do acesso à educação científica.</p></div>
-<div class="c th" style="--c:#ed7128"><div class="theme-pic"><img alt="Símbolo da linha CTS" loading="lazy" decoding="async" src="https://i.ibb.co/kVLDyMQv/Emblema-Circular-de-Ci-ncia-e-Sustentabilidade.png"></div><h3>CTS</h3><div class="theme-bar"></div><small>Ciência, Tecnologia, Sociedade e Ambiente</small><p>Problematiza relações CTSA, divulgação científica, materiais didáticos e letramento científico crítico.</p></div></div></div></section><section id="contato"><div class="w"><h2>Contato</h2><div class="u rb"></div>
+<article class="news-card"><div class="news-label">NOVO EDITAL · INSCRIÇÕES EM 30/10</div><h3>Seleção de participantes para o Macroprojeto PANDORA</h3><p>O PANDORA divulga seu processo seletivo para novos participantes do Grupo de Pesquisa. São <strong>7 vagas</strong>, sendo 6 para discentes, distribuídas entre as linhas TED, GIO e CTS, e 1 para pesquisador(a) externo(a).</p><div class="news-meta"><span>Inscrições: 30/10 a 10/11/2026</span><span>Entrevistas: 13/11/2026</span></div><button class="news-cta" onclick="document.getElementById('tab-editais').click()" type="button">Ver edital e formas de inscrição <span aria-hidden="true">→</span></button></article>
+</div></section><section id="sobre"><div class="w"><div class="sheet"><h2 class="heading">O que é o PANDORA?</h2><div class="rainbow-rule"></div><div class="definition"><div class="definition-art"><img alt="Caixa aberta com circuitos coloridos, símbolo do PANDORA" decoding="async" loading="lazy" src="https://i.ibb.co/MkbrsbYx/Caixa-de-ideias-tecnol-gicas-arco-ris.png"/></div><div aria-label="Significado da sigla PANDORA" class="acronym"><div class="acronym-row" style="--c:#1263a0"><b>P</b><i></i><span>Práticas</span></div><div class="acronym-row" style="--c:#17a5a5"><b>A</b><i></i><span>Analíticas e</span></div><div class="acronym-row" style="--c:#6da941"><b>N</b><i></i><span>Narrativas de</span></div><div class="acronym-row" style="--c:#e7b11d"><b>D</b><i></i><span>Democratização</span></div><div class="acronym-row" style="--c:#ee6b26"><b>O</b><i></i><span>Ontologia e</span></div><div class="acronym-row" style="--c:#d62950"><b>R</b><i></i><span>Resistência</span></div><div class="acronym-row" style="--c:#8b2a9e"><b>A</b><i></i><span>Ativa</span></div></div></div><div class="body-copy"><p>O PANDORA é um macroprojeto e grupo de pesquisa voltado ao Ensino de Ciências e Tecnologias. Inspirado no gesto de abrir caixas-pretas da ciência e da tecnologia, propõe uma reestruturação teórico-metodológica da iniciação à pesquisa, articulando formação investigativa, criticidade e compromisso social.</p><p>Suas ações valorizam narrativas historicamente silenciadas, problematizam as relações entre ciência, tecnologia, sociedade e ambiente, e promovem práticas de democratização do conhecimento, resistência ativa e formação de professoras(es)-pesquisadoras(es).</p></div></div></div></section><section class="alt" id="linhas"><div class="w"><h2>Linhas temáticas</h2><div class="u rb"></div><div class="g">
+<div class="c th" style="--c:#1764a0"><div class="theme-pic"><img alt="Símbolo da linha GIO" decoding="async" loading="lazy" src="https://i.ibb.co/ynd8gDgF/Logotipo-Mulher-Ci-ncia-e-Educa-o.png"/></div><h3>GIO</h3><div class="theme-bar"></div><small>Gênero, Interseccionalidade e Ontologia</small><p>Investiga desigualdades, silenciamentos, sujeitos da ciência e saberes situados, em diálogo com Haraway, Schiebinger e Crenshaw.</p></div>
+<div class="c th" style="--c:#138d50"><div class="theme-pic"><img alt="Símbolo da linha TED" decoding="async" loading="lazy" src="https://i.ibb.co/S7Bxn3dW/Engrenagem-da-inova-o-e-tecnologia.png"/></div><h3>TED</h3><div class="theme-bar"></div><small>Tecnologias Emergentes e Democratização</small><p>Analisa IA, tecnologias emergentes, letramento ético-digital e democratização do acesso à educação científica.</p></div>
+<div class="c th" style="--c:#ed7128"><div class="theme-pic"><img alt="Símbolo da linha CTS" decoding="async" loading="lazy" src="https://i.ibb.co/kVLDyMQv/Emblema-Circular-de-Ci-ncia-e-Sustentabilidade.png"/></div><h3>CTS</h3><div class="theme-bar"></div><small>Ciência, Tecnologia, Sociedade e Ambiente</small><p>Problematiza relações CTSA, divulgação científica, materiais didáticos e letramento científico crítico.</p></div></div></div></section><section id="contato"><div class="w"><h2>Contato</h2><div class="u rb"></div>
 <div class="contact-grid">
-<div class="contact-item"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span><br><b>Instagram</b><br><a href="https://www.instagram.com/pandora.grupodepesquisa/" target="_blank" rel="noopener noreferrer">@pandora.grupodepesquisa</a></div>
-<div class="contact-item"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><br><b>E-mail</b><br><a href="mailto:pandora.ufcg@gmail.com">pandora.ufcg@gmail.com</a></div>
+<div class="contact-item"><span aria-hidden="true" class="contact-icon"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" fill="currentColor" r="1" stroke="none"></circle></svg></span><br/><b>Instagram</b><br/><a href="https://www.instagram.com/pandora.grupodepesquisa/" rel="noopener noreferrer" target="_blank">@pandora.grupodepesquisa</a></div>
+<div class="contact-item"><span aria-hidden="true" class="contact-icon"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewbox="0 0 24 24" width="22"><rect height="14" rx="2" width="18" x="3" y="5"></rect><path d="m3 7 9 6 9-6"></path></svg></span><br/><b>E-mail</b><br/><a href="mailto:pandora.ufcg@gmail.com">pandora.ufcg@gmail.com</a></div>
 </div></div></section>
 <div class="site-footer"><div class="rb"></div>© 2026 Grupo de Pesquisa PANDORA</div>
 </div>
-<div class="tab-panel" id="painel-producao" role="tabpanel" aria-labelledby="tab-producao" hidden>
-<section id="publicacoes" class="alt"><div class="w"><h2>Publicações</h2><div class="u rb"></div><p class="note">Em breve: TCCs defendidos, artigos, capítulos e produções técnicas, com filtro por ano, autor e linha.</p></div></section><section id="projetos"><div class="w"><h2>Projetos de pesquisa</h2><div class="u rb"></div>
-<div class="tb"><table><thead><tr><th>Linha</th><th>Projeto</th><th>Discente(s)</th><th>Defesa</th></tr></thead><tbody id="proj"></tbody></table></div></div></section><section id="membros" class="alt"><div class="w"><h2>Membros</h2><div class="u rb"></div>
+<div aria-labelledby="tab-producao" class="tab-panel" hidden="" id="painel-producao" role="tabpanel">
+<section id="projetos"><div class="w"><h2>Pesquisa com bolsa e extensão</h2><div class="u rb"></div><p class="pub-intro">Projetos com bolsas de iniciação científica e extensão.</p><div class="research-grid"><article class="research-card" style="--c:#138d50"><span class="tag" style="--c:#138d50">TED</span> <span class="research-pill">Bolsista PIBIC</span><h3>Letramento ético-digital no ensino superior: uso de ferramentas de IAG por licenciandos em ciências biológicas</h3><p><strong>Bolsista:</strong> José Anselmo Filho Barbosa Moura</p></article><article class="research-card" style="--c:#1764a0"><span class="tag" style="--c:#1764a0">GIO</span> <span class="research-pill">Bolsista PROBEX · Extensão</span><h3>Mulheres e meninas na ciência no sertão paraibano: mentoria e divulgação científica como estratégias de equidade em STEM</h3><p><strong>Bolsista:</strong> Maria Eduarda Carreiro dos Santos</p></article></div></div></section><section class="alt" id="demais-pesquisas"><div class="w"><h2>Demais projetos de pesquisa</h2><div class="u rb"></div><p class="pub-intro">Relação de projetos no formato da lista anterior.</p><div class="tb"><table><thead><tr><th>Linha</th><th>Projeto</th><th>Discente(s)</th><th>Defesa</th></tr></thead><tbody id="proj"></tbody></table></div></div></section><section class="alt" id="membros"><div class="w"><h2>Membros</h2><div class="u rb"></div>
 <h3 class="sub">Coordenação</h3><div class="g" id="coord"></div>
-<h3 class="sub">Discentes (Licenciatura em Ciências Biológicas)</h3><div class="g" id="disc"></div>
+<h3 class="sub">Discentes</h3><div class="g" id="disc"></div>
 <h3 class="sub">Pesquisadores externos e egressa</h3><div class="g" id="ext"></div></div></section>
-</div>
-<div class="tab-panel" id="painel-editais" role="tabpanel" aria-labelledby="tab-editais" hidden>
-<section id="editais" class="alt"><div class="w"><h2>Editais e seleção</h2><div class="u rb"></div>
+</div><div aria-labelledby="tab-publicacoes" class="tab-panel" hidden="" id="painel-publicacoes" role="tabpanel"><section class="alt" id="publicacoes"><div class="w"><h2>Publicações</h2><div class="u rb"></div><p class="pub-intro">Publicações demonstrativas organizadas por ano. Os registros são exemplos para visualizar a biblioteca e testar os filtros.</p><div aria-label="Filtros de publicações" class="pub-filters">
+<label>Pesquisar título ou autor<input id="pub-search" placeholder="Buscar publicações..." type="search"/></label>
+<label>Ano<select id="pub-year"><option value="">Todos os anos</option></select></label>
+<label>Participante / autor<select id="pub-author"><option value="">Todos os participantes</option></select></label>
+<label>Linha<select id="pub-line"><option value="">Todas as linhas</option><option>TED</option><option>GIO</option><option>CTS</option></select></label>
+</div><p id="pub-count" class="pub-intro" aria-live="polite">10 publicações de exemplo</p><div class="pub-grid" id="pub-grid"></div></div></section></div>
+<div aria-labelledby="tab-editais" class="tab-panel" hidden="" id="painel-editais" role="tabpanel">
+<section class="alt" id="editais"><div class="w"><h2>Editais e seleção</h2><div class="u rb"></div>
 <article class="call-edit"><div class="edit-top"><span class="edit-badge">EDITAL Nº 2026.01</span><span class="edit-status"><i></i> Processo seletivo</span></div><p class="edit-kicker">UACB · CSTR · UFCG · Campus Patos</p><h3>Seleção de participantes para o Macroprojeto PANDORA</h3><p class="edit-intro">Seleção de novos integrantes para o grupo de pesquisa em Ensino de Ciências e Tecnologias, coordenado pela Profa. Dra. Maria Kamylla e Silva Xavier.</p>
 <div class="edit-stats"><div><span class="stat-num">7</span><span class="stat-label">vagas no total</span></div><div><span class="stat-num">6</span><span class="stat-label">vagas para discentes</span></div><div><span class="stat-num">1</span><span class="stat-label">vaga para pesquisador(a) externo(a)</span></div></div>
-<h4>Vagas para discentes por linha temática</h4><div class="vacancy-list"><div><span class="vacancy-dot ted"></span><span><b>TED</b><small>Tecnologias Emergentes e Democratização</small></span><strong>2 vagas</strong></div><div><span class="vacancy-dot gio"></span><span><b>GIO</b><small>Gênero, Interseccionalidade e Ontologia</small></span><strong>2 vagas</strong></div><div><span class="vacancy-dot cts"></span><span><b>CTS</b><small>Ciência, Tecnologia e Sociedade</small></span><strong>2 vagas</strong></div></div>
+<h4>Distribuição das vagas</h4><div class="vacancy-list"><div><span class="vacancy-dot ted"></span><span><b>TED</b><small>Tecnologias Emergentes e Democratização</small></span><strong>2 vagas</strong></div><div><span class="vacancy-dot gio"></span><span><b>GIO</b><small>Gênero, Interseccionalidade e Ontologia</small></span><strong>2 vagas</strong></div><div><span class="vacancy-dot cts"></span><span><b>CTS</b><small>Ciência, Tecnologia e Sociedade</small></span><strong>2 vagas</strong></div><div><span class="vacancy-dot ext"></span><span><b>Pesquisador(a) externo(a)</b><small>Participação externa no Macroprojeto PANDORA</small></span><strong>1 vaga</strong></div></div>
 <h4>Datas importantes</h4><div class="timeline"><div><span class="timeline-icon">01</span><div><b>Abertura das inscrições</b><span>30 de outubro de 2026</span></div></div><div><span class="timeline-icon">02</span><div><b>Encerramento das inscrições</b><span>10 de novembro de 2026</span></div></div><div><span class="timeline-icon">03</span><div><b>Entrevistas</b><span>13 de novembro de 2026. O horário individual será divulgado após o encerramento das inscrições.</span></div></div></div>
-<div class="edit-notice"><b>Quem pode se inscrever?</b><p><strong>Discentes:</strong> estudantes regularmente matriculados(as) na Licenciatura em Ciências Biológicas da UFCG, Campus Patos, com disponibilidade para reuniões semanais de orientação.</p><p><strong>Pesquisador(a) externo(a):</strong> deve manter o Currículo Lattes atualizado e ter disponibilidade para colaborar com o grupo.</p><p>A seleção será realizada por entrevista, considerando conhecimento do Macroprojeto PANDORA, afinidade com a linha temática, disponibilidade e compromisso, comunicação e argumentação. A leitura integral do Macroprojeto é obrigatória e será cobrada na entrevista.</p></div>
-<div class="edit-actions"><a class="edit-button primary" href="https://docs.google.com/document/d/124YEexRi38JIZHE5FhY4saXb6Bz5C2DB/edit?usp=drive_link&amp;ouid=110039321391960729553&amp;rtpof=true&amp;sd=true" target="_blank" rel="noopener noreferrer">Ler edital completo <span aria-hidden="true">↗</span></a><a class="edit-button secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSeomd2uojuiSblv8KsFhv-D_0-rhE2c8qvYsXdvbzys71TMyg/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">Fazer inscrição <span aria-hidden="true">↗</span></a><a class="edit-document" href="https://drive.google.com/file/d/1INhkXfREca4hVlvobzIwYXNz7f2KZi-n/view?usp=drive_link" target="_blank" rel="noopener noreferrer">Acessar documento de apoio ↗</a></div>
+<div class="edit-notice"><b>Quem pode se inscrever?</b><p><strong>Discentes:</strong> estudantes regularmente matriculados(as), com disponibilidade para reuniões semanais de orientação.</p><p><strong>Pesquisador(a) externo(a):</strong> deve manter o Currículo Lattes atualizado e ter disponibilidade para colaborar com o grupo.</p><p>A seleção será realizada por entrevista, considerando conhecimento do Macroprojeto PANDORA, afinidade com a linha temática, disponibilidade e compromisso, comunicação e argumentação. A leitura integral do Macroprojeto é obrigatória e será cobrada na entrevista.</p></div>
+<div class="edit-actions"><a class="edit-button primary" href="https://docs.google.com/document/d/124YEexRi38JIZHE5FhY4saXb6Bz5C2DB/edit?usp=drive_link&amp;ouid=110039321391960729553&amp;rtpof=true&amp;sd=true" rel="noopener noreferrer" target="_blank">Ler edital completo <span aria-hidden="true">↗</span></a><a class="edit-button primary" href="https://drive.google.com/file/d/1INhkXfREca4hVlvobzIwYXNz7f2KZi-n/view?usp=drive_link" rel="noopener noreferrer" target="_blank">Acessar macroprojeto ↗</a><a class="edit-button secondary" href="https://docs.google.com/forms/d/e/1FAIpQLSeomd2uojuiSblv8KsFhv-D_0-rhE2c8qvYsXdvbzys71TMyg/viewform?usp=dialog" rel="noopener noreferrer" target="_blank">Fazer inscrição <span aria-hidden="true">↗</span></a></div>
 <p class="edit-footnote">Confira o edital completo antes de se inscrever. A versão do documento recebida contém campos de cronograma ainda não preenchidos; por isso, apenas as datas confirmadas foram destacadas aqui.</p>
 </article></div></section>
 </div>
@@ -218,6 +299,7 @@ document.getElementById("proj").innerHTML=P.map(function(p){return '<tr><td><spa
  const panels = {
    inicio: document.getElementById('painel-inicio'),
    producao: document.getElementById('painel-producao'),
+   publicacoes: document.getElementById('painel-publicacoes'),
    editais: document.getElementById('painel-editais')
  };
  function activate(name, moveFocus){
@@ -251,5 +333,32 @@ document.getElementById("proj").innerHTML=P.map(function(p){return '<tr><td><spa
  activate('inicio', false);
 })();
 </script>
-</body>
+<script>
+(function(){
+ const examples=[
+ {title:'Inteligência artificial e formação docente: possibilidades para a educação científica',author:'Ana Celina Lucena',year:2026,line:'TED',type:'Artigo'},
+ {title:'Letramento ético-digital no ensino superior: desafios e perspectivas',author:'José Anselmo Filho',year:2026,line:'TED',type:'TCC'},
+ {title:'Tecnologias emergentes e democratização do conhecimento',author:'Mayra Roque Cabral',year:2025,line:'TED',type:'Capítulo'},
+ {title:'Telas digitais e leitura científica na universidade',author:'Penélope Paiva da Silva',year:2024,line:'TED',type:'Artigo'},
+ {title:'Mulheres na ciência: trajetórias e desafios acadêmicos',author:'Maria Eduarda Galdino',year:2026,line:'GIO',type:'TCC'},
+ {title:'Gênero e interseccionalidade na educação científica',author:'Adriana Alves Caetano',year:2025,line:'GIO',type:'Artigo'},
+ {title:'Meninas e mulheres em STEM: ações de divulgação científica',author:'Maria Eduarda Carreiro',year:2024,line:'GIO',type:'Resumo expandido'},
+ {title:'Divulgação científica e relações entre ciência e sociedade',author:'Hugo Gabriel Melo',year:2026,line:'CTS',type:'Artigo'},
+ {title:'Educação ambiental crítica e abordagens CTSA',author:'Vitor Adauto Oliveira',year:2025,line:'CTS',type:'Capítulo'},
+ {title:'Arteterapia: da sala de espera ao cuidado',author:'Maria Raphaelly de Lucena Marcelino',year:2024,line:'CTS',type:'Artigo'}
+ ];
+ const grid=document.getElementById('pub-grid'); if(!grid)return;
+ const search=document.getElementById('pub-search'),year=document.getElementById('pub-year'),author=document.getElementById('pub-author'),line=document.getElementById('pub-line'),count=document.getElementById('pub-count');
+ [...new Set(examples.map(x=>x.year))].sort((a,b)=>b-a).forEach(y=>year.add(new Option(y,y)));
+ const participantes=['Profa. Dra. Maria Kamylla e Silva Xavier','Ana Celina Lucena Medeiros de Azevêdo','José Anselmo Filho Barbosa Moura','Mayra Roque Cabral','Penélope Paiva da Silva','Adriana Alves Caetano','Maria Eduarda Galdino Nunes','Maria Eduarda Carreiro dos Santos','Hugo Gabriel Melo','Vitor Adauto Gonçalves de Oliveira','Maria Raphaelly de Lucena Marcelino','Profa. Dra. Eliângela Paulino Bento','Profa. Dra. Karla Danieli de Souza Vieira','Prof. Dr. Filipe Lucena Medeiros de Andrade','Profa. Msa. Laycia Cristina de Almeida Silva','Luciene Thaynara Melo Marques'];
+ participantes.sort((a,b)=>a.localeCompare(b,'pt-BR')).forEach(a=>author.add(new Option(a,a)));
+ function render(){const q=search.value.trim().toLocaleLowerCase('pt-BR');const matches=examples.filter(x=>(!q||(x.title+' '+x.author).toLocaleLowerCase('pt-BR').includes(q))&&(!year.value||String(x.year)===year.value)&&(!author.value||(x.author+' '+(x.fullAuthor||'')).toLocaleLowerCase('pt-BR').includes(author.value.toLocaleLowerCase('pt-BR'))||author.value.toLocaleLowerCase('pt-BR').includes(x.author.toLocaleLowerCase('pt-BR'))) &&(!line.value||x.line===line.value));
+ count.textContent=matches.length+' publicação(ões) de exemplo encontrada(s)';
+ grid.replaceChildren(); if(!matches.length){const empty=document.createElement('p');empty.className='pub-empty';empty.textContent='Nenhuma publicação encontrada com estes filtros.';grid.append(empty);return;}
+ let lastYear=null;matches.sort((a,b)=>b.year-a.year).forEach(x=>{if(x.year!==lastYear){const heading=document.createElement('h3');heading.className='pub-year-title';heading.textContent=String(x.year);grid.append(heading);lastYear=x.year;}const card=document.createElement('article');card.className='pub-card';card.style.setProperty('--c',({TED:'#138d50',GIO:'#1764a0',CTS:'#ed7128'})[x.line]);
+ const meta=document.createElement('div');meta.className='pub-meta';[x.type,x.line,String(x.year)].forEach(t=>{const s=document.createElement('span');s.textContent=t;meta.append(s)});
+ const h=document.createElement('h3');h.textContent=x.title;const p=document.createElement('p');p.textContent='Autoria: '+x.author;const demo=document.createElement('span');demo.className='pub-demo';demo.textContent='Exemplo fictício';card.append(meta,h,p,demo);grid.append(card);}); }
+ [search,year,author,line].forEach(el=>el.addEventListener(el===search?'input':'change',render));render();
+})();
+</script></body>
 </html>
