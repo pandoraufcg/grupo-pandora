@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="pt-BR" data-theme="light">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light">
+<title>PANDORA — Macroprojeto e Grupo de Pesquisa</title>
+<style>
+:root{
+ color-scheme:light!important;
+ --bg:#ffffff;--bg2:#f5f8fb;--tx:#091d43;--mu:#4a5b75;
+ --bd:#dce4eb;--bl:#12619a;--card:#ffffff;
+ background:#ffffff;color:#091d43;
+}
+*{box-sizing:border-box}
+html{background:#fff!important;color-scheme:light!important;scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:#fff!important;color:#091d43!important;font-family:Arial,Helvetica,sans-serif;line-height:1.6;min-height:100vh}
+.rb{background:linear-gradient(90deg,#12559c 0 18%,#00a9a4 18% 36%,#65a73b 36% 50%,#f9bd19 50% 65%,#f05b2c 65% 82%,#8e207d 82%)}
+.cover{padding:0;margin:0;background:#fff;text-align:center;line-height:0}
+.cover img{display:block;width:100%;height:auto;max-height:520px;object-fit:cover;object-position:center}
+.tabs{position:sticky;top:0;z-index:10;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:12px 16px;background:#fff!important;border-bottom:1px solid #dce4eb;box-shadow:0 3px 14px rgba(9,29,67,.06)}
+.tab{appearance:none;border:1px solid #dce4eb;background:#fff;color:#091d43;font:700 14px Arial,Helvetica,sans-serif;padding:10px 20px;border-radius:24px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.tab:hover{border-color:#12619a;background:#f2f7fb}
+.tab.active{background:#12619a;color:#fff;border-color:#12619a}
+.tab:focus-visible{outline:3px solid #e7b11d;outline-offset:3px}
+.tab-panel{display:none;background:#fff!important;color:#091d43}
+.tab-panel.active{display:block}
+.w{max-width:1000px;margin:0 auto;padding:0 20px}
+section{padding:44px 0;background:#fff}
+section.alt{background:#f5f8fb!important}
+h2{text-align:center;text-transform:uppercase;letter-spacing:.04em;margin:0;color:#091d43;font-size:clamp(22px,4vw,32px)}
+.u{height:4px;width:200px;margin:12px auto 28px;border-radius:3px}
+.tx{max-width:760px;margin:0 auto 14px;border-left:3px solid #12619a;padding-left:16px;color:#263750}
+.ac{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:0 0 28px}
+.ac div{border:1px solid #dce4eb;background:#fff;border-top:4px solid var(--c);border-radius:12px;padding:10px 12px;font-size:14px;color:#263750}
+.ac b{font-size:26px;color:var(--c);display:block;line-height:1.1}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
+.c{background:#fff;border:1px solid #dce4eb;border-radius:16px;padding:20px;color:#091d43}
+.th{border-top:5px solid var(--c);text-align:center;padding:26px 20px 24px;transition:transform .3s,box-shadow .3s}
+.th:hover{transform:translateY(-7px);box-shadow:0 20px 42px rgba(18,60,110,.14)}
+.th .theme-pic{width:130px;height:130px;margin:0 auto 16px;background:transparent;display:grid;place-items:center}
+.th .theme-pic img{max-width:78%;max-height:78%;object-fit:contain}
+.th h3{font-size:46px;line-height:1;margin:0;color:var(--c);letter-spacing:.06em}
+.th .theme-bar{width:60px;height:3px;border-radius:3px;margin:14px auto;background:var(--c)}
+.th small{display:block;font-weight:700;font-size:16px;line-height:1.4;margin:0 0 12px;color:#091d43}
+.th p{color:#4a5b75;font-size:15.5px;line-height:1.55;margin:0}
+.c h3{margin:0 0 4px;font-size:17px}
+.r{font-size:13px;color:#4a5b75}
+.tag{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--c);border-radius:20px;padding:2px 10px;margin:6px 6px 0 0}
+.lk{display:inline-block;margin-top:8px;margin-right:10px;font-size:13px;font-weight:700;color:#12619a}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
+.steps div{text-align:center;background:#fff;border:1px solid #dce4eb;border-radius:12px;padding:12px 6px;font-size:13px;color:#263750}
+.steps b{display:block;font-size:26px;color:var(--c)}
+.sub{margin:32px 0 12px;font-size:18px;color:#091d43}
+.tb{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px;background:#fff;color:#263750}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #dce4eb;vertical-align:top}
+th{background:#f5f8fb;color:#091d43}
+ul.l{max-width:760px;margin:0 auto;color:#4a5b75}
+.note{max-width:760px;margin:0 auto;text-align:center;color:#4a5b75;border:1px dashed #dce4eb;border-radius:14px;padding:18px;background:#fff}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.contact-item{border:1px solid #dce4eb;border-radius:14px;padding:18px;background:#fff;color:#263750}
+.contact-item a{color:#12619a;font-weight:700;text-decoration:none}
+.contact-icon{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:10px;background:#edf5fb;color:#12619a;font-size:19px;margin-bottom:8px}
+.site-footer{text-align:center;padding:24px 20px 32px;font-size:13px;color:#4a5b75;background:#fff;border-top:1px solid #dce4eb}
+.site-footer .rb{height:4px;max-width:1000px;margin:0 auto 20px}
+@media(max-width:650px){
+ .cover img{max-height:none;object-fit:contain}
+ .tabs{gap:6px;padding:9px 8px}
+ .tab{font-size:13px;padding:9px 13px}
+ .w{padding:0 16px}
+ section{padding:34px 0}
+ .th h3{font-size:38px}
+ .th .theme-pic{width:112px;height:112px}
+}
+@media(prefers-color-scheme:dark){
+ :root{color-scheme:light!important;--bg:#fff;--bg2:#f5f8fb;--tx:#091d43;--mu:#4a5b75;--bd:#dce4eb;--bl:#12619a;--card:#fff;background:#fff;color:#091d43}
+ html,body,.cover,.tabs,.tab-panel,section,.site-footer{background-color:#fff!important;color:#091d43!important}
+ section.alt{background:#f5f8fb!important}
+ .tab{background:#fff;color:#091d43}
+ .tab.active{background:#12619a;color:#fff}
+ .c,.note,.contact-item,.ac div,.steps div,table{background:#fff!important;color:#091d43!important}
+ .tx,.th p,.r,.note,footer,ul.l{color:#4a5b75}
+}
+@media print{
+ .tabs{display:none}
+ .tab-panel{display:block!important}
+ .cover img{max-height:300px}
+ section,.c,.note{break-inside:avoid;box-shadow:none}
+}
+
+/* Apresentação do PANDORA */
+#sobre .sheet{max-width:1000px;margin:0 auto;background:#fff;padding:0 0 4px;box-shadow:none}
+#sobre .heading{text-align:center;font-size:clamp(25px,4vw,37px);font-weight:800;letter-spacing:.035em;margin:0;text-transform:uppercase;color:#091d43}
+#sobre .rainbow-rule{height:4px;width:235px;margin:14px auto 29px;background:linear-gradient(90deg,#12559c 0 18%,#00a9a4 18% 36%,#65a73b 36% 50%,#f9bd19 50% 65%,#f05b2c 65% 82%,#8e207d 82%)}
+#sobre .definition{border:1.5px solid #b7c4d2;border-radius:23px;display:grid;grid-template-columns:43% 57%;align-items:center;padding:25px 28px;margin-bottom:28px}
+#sobre .definition-art{padding:5px 22px 5px 4px;border-right:1px solid #cbd5e1;display:flex;justify-content:center;align-items:center}
+#sobre .definition-art img{width:100%;max-width:270px;height:auto;display:block}
+#sobre .acronym{padding-left:35px}
+#sobre .acronym-row{display:grid;grid-template-columns:30px 31px 1fr;gap:10px;align-items:baseline;margin:4px 0;font-size:18px}
+#sobre .acronym-row b{font-size:27px;line-height:1.15}
+#sobre .acronym-row i{height:3px;border-radius:3px;background:var(--c);align-self:center}
+#sobre .acronym-row span{font-size:17px}
+#sobre .body-copy{font-size:17px;text-align:justify;color:#263750}
+#sobre .body-copy p{margin:0 0 18px;padding-left:20px;border-left:3px solid #2477b5}
+#sobre .body-copy p:nth-child(2){border-image:linear-gradient(#16a4a7,#ffbd17,#d92355) 1}
+#sobre .section2{margin-top:24px}
+#sobre .edge{height:4px;background:linear-gradient(90deg,#1b5798,#19a0a0,#e2b52b,#f05c2c,#9d248f);margin:0 0 42px}
+#noticias{background:#f5f8fb!important}
+#noticias .note{background:#f5f8fb}
+@media(max-width:650px){
+ #sobre .sheet{padding:0;margin:0}
+ #sobre .definition{grid-template-columns:1fr;padding:18px}
+ #sobre .definition-art{border-right:0;border-bottom:1px solid #cbd5e1;padding:0 0 14px}
+ #sobre .definition-art img{max-width:210px}
+ #sobre .acronym{padding:16px 0 0}
+ #sobre .acronym-row{grid-template-columns:26px 23px 1fr;gap:6px}
+ #sobre .acronym-row span{font-size:15px}
+ #sobre .acronym-row b{font-size:22px}
+ #sobre .body-copy{font-size:15px}
+}
+
+</style>
+</head>
+<body>
+<nav class="tabs" role="tablist" aria-label="Navegação principal">
+<button type="button" class="tab active" role="tab" id="tab-inicio" aria-controls="painel-inicio" aria-selected="true" data-tab="inicio">Início</button>
+<button type="button" class="tab" role="tab" id="tab-producao" aria-controls="painel-producao" aria-selected="false" data-tab="producao">Produção e equipe</button>
+<button type="button" class="tab" role="tab" id="tab-editais" aria-controls="painel-editais" aria-selected="false" data-tab="editais">Editais</button>
+</nav><header class="cover"><img src="https://i.ibb.co/1tLDhmHQ/capa-site.png" alt="Capa do site PANDORA"></header>
+<main>
+<div class="tab-panel active" id="painel-inicio" role="tabpanel" aria-labelledby="tab-inicio">
+<section id="noticias"><div class="w"><h2>Notícias e eventos</h2><div class="u rb"></div><p class="note">Em breve: atualizações, seminários, oficinas e agenda do grupo.</p></div></section><section id="sobre"><div class="w"><div class="sheet"><h2 class="heading">O que é o PANDORA?</h2><div class="rainbow-rule"></div><div class="definition"><div class="definition-art"><img alt="Caixa aberta com circuitos coloridos, símbolo do PANDORA" decoding="async" loading="lazy" src="https://i.ibb.co/MkbrsbYx/Caixa-de-ideias-tecnol-gicas-arco-ris.png"/></div><div aria-label="Significado da sigla PANDORA" class="acronym"><div class="acronym-row" style="--c:#1263a0"><b>P</b><i></i><span>Práticas</span></div><div class="acronym-row" style="--c:#17a5a5"><b>A</b><i></i><span>Analíticas e</span></div><div class="acronym-row" style="--c:#6da941"><b>N</b><i></i><span>Narrativas de</span></div><div class="acronym-row" style="--c:#e7b11d"><b>D</b><i></i><span>Democratização</span></div><div class="acronym-row" style="--c:#ee6b26"><b>O</b><i></i><span>Ontologia e</span></div><div class="acronym-row" style="--c:#d62950"><b>R</b><i></i><span>Resistência</span></div><div class="acronym-row" style="--c:#8b2a9e"><b>A</b><i></i><span>Ativa</span></div></div></div><div class="body-copy"><p>O PANDORA é um macroprojeto e grupo de pesquisa voltado ao Ensino de Ciências e Tecnologias. Inspirado no gesto de abrir caixas-pretas da ciência e da tecnologia, propõe uma reestruturação teórico-metodológica da iniciação à pesquisa, articulando formação investigativa, criticidade e compromisso social.</p><p>Suas ações valorizam narrativas historicamente silenciadas, problematizam as relações entre ciência, tecnologia, sociedade e ambiente, e promovem práticas de democratização do conhecimento, resistência ativa e formação de professoras(es)-pesquisadoras(es).</p></div></div></div></section><section id="linhas" class="alt"><div class="w"><h2>Linhas temáticas</h2><div class="u rb"></div><div class="g">
+<div class="c th" style="--c:#1764a0"><div class="theme-pic"><img alt="Símbolo da linha GIO" loading="lazy" decoding="async" src="https://i.ibb.co/ynd8gDgF/Logotipo-Mulher-Ci-ncia-e-Educa-o.png"></div><h3>GIO</h3><div class="theme-bar"></div><small>Gênero, Interseccionalidade e Ontologia</small><p>Investiga desigualdades, silenciamentos, sujeitos da ciência e saberes situados, em diálogo com Haraway, Schiebinger e Crenshaw.</p></div>
+<div class="c th" style="--c:#138d50"><div class="theme-pic"><img alt="Símbolo da linha TED" loading="lazy" decoding="async" src="https://i.ibb.co/S7Bxn3dW/Engrenagem-da-inova-o-e-tecnologia.png"></div><h3>TED</h3><div class="theme-bar"></div><small>Tecnologias Emergentes e Democratização</small><p>Analisa IA, tecnologias emergentes, letramento ético-digital e democratização do acesso à educação científica.</p></div>
+<div class="c th" style="--c:#ed7128"><div class="theme-pic"><img alt="Símbolo da linha CTS" loading="lazy" decoding="async" src="https://i.ibb.co/kVLDyMQv/Emblema-Circular-de-Ci-ncia-e-Sustentabilidade.png"></div><h3>CTS</h3><div class="theme-bar"></div><small>Ciência, Tecnologia, Sociedade e Ambiente</small><p>Problematiza relações CTSA, divulgação científica, materiais didáticos e letramento científico crítico.</p></div></div></div></section><section id="contato"><div class="w"><h2>Contato</h2><div class="u rb"></div>
+<div class="contact-grid">
+<div class="contact-item"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span><br><b>Instagram</b><br><a href="https://www.instagram.com/pandora.grupodepesquisa/" target="_blank" rel="noopener noreferrer">@pandora.grupodepesquisa</a></div>
+<div class="contact-item"><span class="contact-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span><br><b>E-mail</b><br><a href="mailto:pandora.ufcg@gmail.com">pandora.ufcg@gmail.com</a></div>
+</div></div></section>
+<div class="site-footer"><div class="rb"></div>© 2026 Grupo de Pesquisa PANDORA</div>
+</div>
+<div class="tab-panel" id="painel-producao" role="tabpanel" aria-labelledby="tab-producao" hidden>
+<section id="publicacoes" class="alt"><div class="w"><h2>Publicações</h2><div class="u rb"></div><p class="note">Em breve: TCCs defendidos, artigos, capítulos e produções técnicas, com filtro por ano, autor e linha.</p></div></section><section id="projetos"><div class="w"><h2>Projetos de pesquisa</h2><div class="u rb"></div>
+<div class="tb"><table><thead><tr><th>Linha</th><th>Projeto</th><th>Discente(s)</th><th>Defesa</th></tr></thead><tbody id="proj"></tbody></table></div></div></section><section id="membros" class="alt"><div class="w"><h2>Membros</h2><div class="u rb"></div>
+<h3 class="sub">Coordenação</h3><div class="g" id="coord"></div>
+<h3 class="sub">Discentes (Licenciatura em Ciências Biológicas)</h3><div class="g" id="disc"></div>
+<h3 class="sub">Pesquisadores externos e egressa</h3><div class="g" id="ext"></div></div></section>
+</div>
+<div class="tab-panel" id="painel-editais" role="tabpanel" aria-labelledby="tab-editais" hidden>
+<section id="editais" class="alt"><div class="w"><h2>Editais e seleção</h2><div class="u rb"></div>
+<p class="note"><b>Nenhum edital aberto no momento.</b><br>Os editais e resultados serão publicados aqui.</p><br>
+<h3 class="sub" style="text-align:center">Regras de ingresso</h3>
+<ul class="l"><li>Assinar termo de compromisso e elaborar o projeto com a coordenadora, vinculado a uma das três linhas.</li><li>Submeter ao Comitê de Ética quando houver pesquisa com seres humanos.</li><li>Entregar relatórios parciais semestrais e relatório final.</li><li>Não há ingresso no semestre de defesa do TCC; quem entra com mais de 8 meses para a defesa tem cronograma adaptado.</li></ul></div></section>
+</div>
+</main>
+<script>
+var L={TED:"#138d50",GIO:"#1764a0",CTS:"#ed7128"};
+function card(n,r,l,x){return '<div class="c"><h3>'+n+'</h3><div class="r">'+r+'</div>'+(l?'<span class="tag" style="--c:'+L[l]+'">'+l+'</span>':'')+(x?'<div class="r" style="margin-top:8px">'+x+'</div>':'')+'</div>'}
+function put(id,a){document.getElementById(id).innerHTML=a.map(function(m){return card.apply(null,m)}).join('')}
+put("coord",[["Profa. Dra. Maria Kamylla e Silva Xavier","Coordenadora e proponente · Vice-líder do GEPECMAT · UACB/CSTR/UFCG","",""]]);
+put("disc",[["Ana Celina Lucena Medeiros de Azevêdo","Discente","TED"],["José Anselmo Filho Barbosa Moura","Coordenador da linha TED","TED"],["Mayra Roque Cabral","Discente","TED"],["Penélope Paiva da Silva","Discente","TED"],["Adriana Alves Caetano","Discente","GIO"],["Maria Eduarda Galdino Nunes","Discente","GIO"],["Maria Eduarda Carreiro dos Santos","Coordenadora da linha GIO","GIO"],["Hugo Gabriel Melo","Coordenador da linha CTS","CTS"],["Vitor Adauto Gonçalves de Oliveira","Vice-líder","CTS"],["Maria Raphaelly de Lucena Marcelino","Discente","CTS"]]);
+put("ext",[["Profa. Dra. Eliângela Paulino Bento","UAF/UFCG · Coorientadora","GIO"],["Profa. Dra. Karla Danieli de Souza Vieira","Centro Educacional Millennium · Colaboradora externa","GIO"],["Prof. Dr. Filipe Lucena Medeiros de Andrade","IFPB – Campus Patos · Coorientador","TED"],["Profa. Msa. Laycia Cristina de Almeida Silva","SEE-PB / 9ª GRE · Coorientadora","CTS"],["Luciene Thaynara Melo Marques","Egressa · defesa em 2025.2","TED"]]);
+var P=[["TED","Inteligência artificial na formação de professores: o que licenciandos precisam saber a partir do referencial do MEC (2026)","Ana Celina Lucena","2026.1"],["TED","Letramento ético-digital no ensino superior: uso de ferramentas de IAG por licenciandos em ciências biológicas","José Anselmo Filho; Luciene Marques (egressa)","2026.2 / defendido em 2025.2"],["TED","O impacto da exposição contínua às telas na motivação para a leitura científica em universitários","Penélope Paiva","2026.1"],["TED","Projeto a definir","Mayra Roque","2027.1"],["GIO","Análise das desigualdades de gênero entre docentes dos cursos de ciências biológicas da UFCG","Adriana Alves","2027.1"],["GIO","Trajetórias acadêmicas e produção científica de mulheres em STEM: docentes de IES públicas de Patos-PB via Lattes","Maria Eduarda Galdino","2026.1"],["GIO","Mulheres e meninas na ciência no sertão paraibano: mentoria e divulgação científica como estratégias de equidade em STEM","Maria Eduarda Carreiro","2026.2"],["CTS","O Brasil explicado pela biologia: conceitos científicos e dimensões CTSA em vídeos de divulgação científica no Instagram","Hugo Gabriel Melo; Vitor Adauto","2027.1"],["CTS","Arte e educação científica como tecnologia leve em saúde","Maria Raphaelly Marcelino","2026.2"]];
+document.getElementById("proj").innerHTML=P.map(function(p){return '<tr><td><span class="tag" style="--c:'+L[p[0]]+'">'+p[0]+'</span></td><td>'+p[1]+'</td><td>'+p[2]+'</td><td>'+p[3]+'</td></tr>'}).join('');
+</script>
+<script>
+(function(){
+ const tabs = Array.from(document.querySelectorAll('.tab[data-tab]'));
+ const panels = {
+   inicio: document.getElementById('painel-inicio'),
+   producao: document.getElementById('painel-producao'),
+   editais: document.getElementById('painel-editais')
+ };
+ function activate(name, moveFocus){
+   tabs.forEach(function(tab){
+     const selected = tab.dataset.tab === name;
+     tab.classList.toggle('active', selected);
+     tab.setAttribute('aria-selected', selected ? 'true' : 'false');
+     tab.tabIndex = selected ? 0 : -1;
+     if(selected && moveFocus) tab.focus();
+   });
+   Object.keys(panels).forEach(function(key){
+     const selected = key === name;
+     panels[key].classList.toggle('active', selected);
+     panels[key].hidden = !selected;
+   });
+   window.scrollTo({top:0, behavior:'auto'});
+ }
+ tabs.forEach(function(tab, index){
+   tab.addEventListener('click', function(){ activate(tab.dataset.tab, false); });
+   tab.addEventListener('keydown', function(event){
+     let next = index;
+     if(event.key === 'ArrowRight') next = (index + 1) % tabs.length;
+     else if(event.key === 'ArrowLeft') next = (index + tabs.length - 1) % tabs.length;
+     else if(event.key === 'Home') next = 0;
+     else if(event.key === 'End') next = tabs.length - 1;
+     else return;
+     event.preventDefault();
+     activate(tabs[next].dataset.tab, true);
+   });
+ });
+ activate('inicio', false);
+})();
+</script>
+</body>
+</html>
