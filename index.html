@@ -1,585 +1,608 @@
 <!DOCTYPE html>
-<html data-theme="light" lang="pt-BR"><head>
+<html data-theme="light" lang="pt-BR" class="rv-on"><head>
 <meta charset="utf-8">
 <meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport">
+<meta content="#eaf3fb" name="theme-color">
 <meta content="only light" name="color-scheme">
 <title>PANDORA — Grupo de Pesquisa</title>
 <style>
+/* ============================================================
+   PANDORA · Liquid Glass v3 — CSS unificado
+   1 bloco só, sem guerra de especificidade. Tokens no topo.
+   ============================================================ */
 :root{
- color-scheme:light!important;
- --bg:#ffffff;--bg2:#f5f8fb;--tx:#091d43;--mu:#4a5b75;
- --bd:#dce4eb;--bl:#12619a;--card:#ffffff;
- background:#ffffff;color:#091d43;
+  color-scheme:light;
+  /* Tinta / texto */
+  --ink:#0e2340;--ink2:#2f4560;--mut:#54677d;
+  --blue:#12619a;--blue2:#2f80c2;--navy:#0d3a66;
+  --ted:#138d50;--gio:#1764a0;--cts:#ed7128;--ext:#8e207d;
+  /* Arco-íris institucional */
+  --rainbow:linear-gradient(90deg,#12559c 0 18%,#00a9a4 18% 36%,#65a73b 36% 50%,#f9bd19 50% 65%,#f05b2c 65% 82%,#8e207d 82%);
+  /* Vidro */
+  --glass-bg:linear-gradient(165deg,rgba(255,255,255,.74),rgba(255,255,255,.5));
+  --glass-brd:rgba(255,255,255,.82);
+  --card-bg:linear-gradient(170deg,rgba(255,255,255,.94),rgba(255,255,255,.86));
+  /* Formas e sombras */
+  --r-xl:26px;--r-lg:20px;--r-md:14px;
+  --sh-sm:0 4px 14px rgba(16,48,90,.07);
+  --sh-md:0 12px 34px rgba(16,48,90,.10);
+  --sh-lg:0 24px 64px rgba(12,38,74,.20);
+  /* Movimento */
+  --ease:cubic-bezier(.22,1,.36,1);
+  --spring:cubic-bezier(.3,1.3,.45,1);
 }
-*{box-sizing:border-box}
-html{background:#fff!important;color-scheme:light!important;scroll-behavior:smooth;scroll-padding-top:76px}
-body{margin:0;background:#fff!important;color:#091d43!important;font-family:Arial,Helvetica,sans-serif;line-height:1.6;min-height:100vh}
-.rb{background:linear-gradient(90deg,#12559c 0 18%,#00a9a4 18% 36%,#65a73b 36% 50%,#f9bd19 50% 65%,#f05b2c 65% 82%,#8e207d 82%)}
-.cover{padding:0;margin:0;background:#fff;text-align:center;line-height:0}
-.cover img{display:block;width:100%;height:auto;max-height:520px;object-fit:cover;object-position:center}
-.tabs{position:sticky;top:0;z-index:10;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;padding:12px 16px;background:#fff!important;border-bottom:1px solid #dce4eb;box-shadow:0 3px 14px rgba(9,29,67,.06)}
-.tab{appearance:none;border:1px solid #dce4eb;background:#fff;color:#091d43;font:700 14px Arial,Helvetica,sans-serif;padding:10px 20px;border-radius:24px;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
-.tab:hover{border-color:#12619a;background:#f2f7fb}
-.tab.active{background:#12619a;color:#fff;border-color:#12619a}
-.tab:focus-visible{outline:3px solid #e7b11d;outline-offset:3px}
-.tab-panel{display:none;background:#fff!important;color:#091d43}
-.tab-panel.active{display:block}
-.w{max-width:1000px;margin:0 auto;padding:0 20px}
-section{padding:44px 0;background:#fff}
-section.alt{background:#f5f8fb!important}
-h2{text-align:center;text-transform:uppercase;letter-spacing:.04em;margin:0;color:#091d43;font-size:clamp(22px,4vw,32px)}
-.u{height:4px;width:200px;margin:12px auto 28px;border-radius:3px}
-.tx{max-width:760px;margin:0 auto 14px;border-left:3px solid #12619a;padding-left:16px;color:#263750}
-.ac{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:0 0 28px}
-.ac div{border:1px solid #dce4eb;background:#fff;border-top:4px solid var(--c);border-radius:12px;padding:10px 12px;font-size:14px;color:#263750}
-.ac b{font-size:26px;color:var(--c);display:block;line-height:1.1}
-.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
-.c{background:#fff;border:1px solid #dce4eb;border-radius:16px;padding:20px;color:#091d43}
-.th{border-top:5px solid var(--c);text-align:center;padding:26px 20px 24px;transition:transform .3s,box-shadow .3s}
-.th:hover{transform:translateY(-7px);box-shadow:0 20px 42px rgba(18,60,110,.14)}
-.th .theme-pic{width:130px;height:130px;margin:0 auto 16px;background:transparent;display:grid;place-items:center}
-.th .theme-pic img{max-width:78%;max-height:78%;object-fit:contain}
-.th h3{font-size:46px;line-height:1;margin:0;color:var(--c);letter-spacing:.06em}
-.th .theme-bar{width:60px;height:3px;border-radius:3px;margin:14px auto;background:var(--c)}
-.th small{display:block;font-weight:700;font-size:16px;line-height:1.4;margin:0 0 12px;color:#091d43}
-.th p{color:#4a5b75;font-size:15.5px;line-height:1.55;margin:0}
-.c h3{margin:0 0 4px;font-size:17px}
-.r{font-size:13px;color:#4a5b75}
-.tag{display:inline-block;font-size:12px;font-weight:700;color:#fff;background:var(--c);border-radius:20px;padding:2px 10px;margin:6px 6px 0 0}
-.lk{display:inline-block;margin-top:8px;margin-right:10px;font-size:13px;font-weight:700;color:#12619a}
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px}
-.steps div{text-align:center;background:#fff;border:1px solid #dce4eb;border-radius:12px;padding:12px 6px;font-size:13px;color:#263750}
-.steps b{display:block;font-size:26px;color:var(--c)}
-.sub{margin:32px 0 12px;font-size:18px;color:#091d43}
-.tb{overflow-x:auto}
-table{border-collapse:collapse;width:100%;font-size:14px;background:#fff;color:#263750}
-th,td{text-align:left;padding:10px 12px;border-bottom:1px solid #dce4eb;vertical-align:top}
-th{background:#f5f8fb;color:#091d43}
-ul.l{max-width:760px;margin:0 auto;color:#4a5b75}
-.note{max-width:760px;margin:0 auto;text-align:center;color:#4a5b75;border:1px dashed #dce4eb;border-radius:14px;padding:18px;background:#fff}
-.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
-.contact-item{border:1px solid #dce4eb;border-radius:14px;padding:18px;background:#fff;color:#263750}
-.contact-item a{color:#12619a;font-weight:700;text-decoration:none}
-.contact-icon{display:inline-grid;place-items:center;width:36px;height:36px;border-radius:10px;background:#edf5fb;color:#12619a;font-size:19px;margin-bottom:8px}
-.site-footer{text-align:center;padding:24px 20px 32px;font-size:13px;color:#4a5b75;background:#fff;border-top:1px solid #dce4eb}
-.site-footer .rb{height:4px;max-width:1000px;margin:0 auto 20px}
-@media(max-width:650px){
- .cover img{max-height:none;object-fit:contain}
- .tabs{gap:6px;padding:9px 8px}
- .tab{font-size:13px;padding:9px 13px}
- .w{padding:0 16px}
- section{padding:34px 0}
- .th h3{font-size:38px}
- .th .theme-pic{width:112px;height:112px}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:96px}
+body{
+  margin:0;min-height:100vh;color:var(--ink);background:#f2f7fc;
+  font-family:ui-sans-serif,system-ui,-apple-system,"Segoe UI",Roboto,Arial,Helvetica,sans-serif;
+  line-height:1.65;-webkit-font-smoothing:antialiased;
 }
-@media(prefers-color-scheme:dark){
- :root{color-scheme:light!important;--bg:#fff;--bg2:#f5f8fb;--tx:#091d43;--mu:#4a5b75;--bd:#dce4eb;--bl:#12619a;--card:#fff;background:#fff;color:#091d43}
- html,body,.cover,.tabs,.tab-panel,section,.site-footer{background-color:#fff!important;color:#091d43!important}
- section.alt{background:#f5f8fb!important}
- .tab{background:#fff;color:#091d43}
- .tab.active{background:#12619a;color:#fff}
- .c,.note,.contact-item,.ac div,.steps div,table{background:#fff!important;color:#091d43!important}
- .tx,.th p,.r,.note,footer,ul.l{color:#4a5b75}
-}
-@media print{
- .tabs{display:none}
- .tab-panel{display:block!important}
- .cover img{max-height:300px}
- section,.c,.note{break-inside:avoid;box-shadow:none}
-}
-
-/* Apresentação do PANDORA */
-#sobre .sheet{max-width:1000px;margin:0 auto;background:#fff;padding:0 0 4px;box-shadow:none}
-#sobre .heading{text-align:center;font-size:clamp(25px,4vw,37px);font-weight:800;letter-spacing:.035em;margin:0;text-transform:uppercase;color:#091d43}
-#sobre .rainbow-rule{height:4px;width:235px;margin:14px auto 29px;background:linear-gradient(90deg,#12559c 0 18%,#00a9a4 18% 36%,#65a73b 36% 50%,#f9bd19 50% 65%,#f05b2c 65% 82%,#8e207d 82%)}
-#sobre .definition{border:1.5px solid #b7c4d2;border-radius:23px;display:grid;grid-template-columns:43% 57%;align-items:center;padding:25px 28px;margin-bottom:28px}
-#sobre .definition-art{padding:5px 22px 5px 4px;border-right:1px solid #cbd5e1;display:flex;justify-content:center;align-items:center}
-#sobre .definition-art img{width:100%;max-width:270px;height:auto;display:block}
-#sobre .acronym{padding-left:35px}
-#sobre .acronym-row{display:grid;grid-template-columns:30px 31px 1fr;gap:10px;align-items:baseline;margin:4px 0;font-size:18px}
-#sobre .acronym-row b{font-size:27px;line-height:1.15}
-#sobre .acronym-row i{height:3px;border-radius:3px;background:var(--c);align-self:center}
-#sobre .acronym-row span{font-size:17px}
-#sobre .body-copy{font-size:17px;text-align:justify;color:#263750}
-#sobre .body-copy p{margin:0 0 18px;padding-left:20px;border-left:3px solid #2477b5}
-#sobre .body-copy p:nth-child(2){border-image:linear-gradient(#16a4a7,#ffbd17,#d92355) 1}
-#sobre .section2{margin-top:24px}
-#sobre .edge{height:4px;background:linear-gradient(90deg,#1b5798,#19a0a0,#e2b52b,#f05c2c,#9d248f);margin:0 0 42px}
-#noticias{background:#f5f8fb!important}
-#noticias .note{background:#f5f8fb}
-@media(max-width:650px){
- #sobre .sheet{padding:0;margin:0}
- #sobre .definition{grid-template-columns:1fr;padding:18px}
- #sobre .definition-art{border-right:0;border-bottom:1px solid #cbd5e1;padding:0 0 14px}
- #sobre .definition-art img{max-width:210px}
- #sobre .acronym{padding:16px 0 0}
- #sobre .acronym-row{grid-template-columns:26px 23px 1fr;gap:6px}
- #sobre .acronym-row span{font-size:15px}
- #sobre .acronym-row b{font-size:22px}
- #sobre .body-copy{font-size:15px}
-}
-
-
-/* Edital e notícia */
-.news-card{max-width:820px;margin:0 auto;background:#fff;border:1px solid #dce4eb;border-radius:20px;padding:clamp(22px,4vw,34px);box-shadow:0 12px 34px rgba(9,29,67,.07);border-top:5px solid #12619a}
-.news-label{display:inline-block;background:#eaf3fa;color:#12619a;font-size:11px;font-weight:800;letter-spacing:.09em;padding:6px 10px;border-radius:6px}
-.news-card h3{font-size:clamp(22px,3vw,29px);line-height:1.25;margin:15px 0 10px;color:#091d43}
-.news-card p{color:#4a5b75;margin:0;line-height:1.65}
-.news-meta{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
-.news-meta span{background:#f5f8fb;border:1px solid #e3eaf0;border-radius:9px;padding:9px 12px;color:#263750;font-size:13px;font-weight:700}
-.news-cta,.edit-button{display:inline-flex;align-items:center;justify-content:center;gap:10px;border:0;border-radius:10px;padding:13px 18px;font:700 14px Arial,Helvetica,sans-serif;text-decoration:none;cursor:pointer;transition:transform .2s,box-shadow .2s}
-.news-cta{background:#12619a;color:#fff}
-.news-cta:hover,.edit-button:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(9,29,67,.13)}
-.call-edit{max-width:900px;margin:0 auto;background:#fff;border:1px solid #dce4eb;border-radius:22px;padding:clamp(20px,4vw,38px);box-shadow:0 12px 36px rgba(9,29,67,.06)}
-.edit-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
-.edit-badge{background:#091d43;color:#fff;font-size:11px;letter-spacing:.09em;font-weight:800;border-radius:6px;padding:8px 11px}
-.edit-status{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:700;color:#246b45;background:#eaf6ef;padding:7px 10px;border-radius:20px}
-.edit-status i{width:7px;height:7px;background:#2e9a5f;border-radius:50%}
-.edit-kicker{margin:19px 0 5px!important;color:#12619a!important;font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
-.call-edit>h3{font-size:clamp(25px,4vw,35px);line-height:1.2;color:#091d43;margin:8px 0 12px}
-.edit-intro{font-size:16px;color:#4a5b75;max-width:730px;margin:0 0 24px}
-.edit-stats{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin:22px 0 28px}
-.edit-stats>div{background:#f5f8fb;border:1px solid #e4ebf1;border-radius:12px;padding:15px;text-align:center;display:flex;flex-direction:column;gap:4px}
-.stat-num{font-size:31px;font-weight:800;color:#12619a;line-height:1.1}
-.stat-label{font-size:12px;color:#4a5b75;line-height:1.4}
-.call-edit h4{margin:25px 0 12px;color:#091d43;font-size:16px}
-.vacancy-list{border:1px solid #e1e8ef;border-radius:12px;overflow:hidden}
-.vacancy-list>div{display:flex;align-items:center;gap:12px;padding:13px 15px;border-bottom:1px solid #e8edf2}
-.vacancy-list>div:last-child{border-bottom:0}
-.vacancy-list>div>span:nth-child(2){display:flex;flex-direction:column;gap:3px;flex:1}
-.vacancy-list b{font-size:14px;color:#091d43}.vacancy-list small{font-size:12px;color:#4a5b75}.vacancy-list strong{font-size:13px;white-space:nowrap;color:#091d43}
-.vacancy-dot{width:10px;height:38px;border-radius:8px;flex:0 0 10px}.vacancy-dot.ted{background:#138d50}.vacancy-dot.gio{background:#1764a0}.vacancy-dot.cts{background:#ed7128}
-.timeline{display:grid;gap:0;margin:8px 0 24px}
-.timeline>div{display:flex;gap:13px;align-items:flex-start;padding:10px 0}
-.timeline-icon{display:grid;place-items:center;flex:0 0 34px;height:34px;border-radius:10px;background:#eaf3fa;color:#12619a;font-size:12px;font-weight:800}
-.timeline>div>div{display:flex;flex-direction:column;gap:3px;padding-top:1px}.timeline b{font-size:14px;color:#091d43}.timeline span:not(.timeline-icon){font-size:13px;line-height:1.5;color:#4a5b75}
-.edit-notice{background:#f5f8fb;border:1px solid #e4ebf1;border-radius:14px;padding:18px 20px;margin:20px 0;color:#263750}
-.edit-notice>b{color:#091d43;font-size:15px}.edit-notice p{font-size:13px;line-height:1.65;margin:10px 0 0}
-.edit-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
-.edit-button.primary{background:#12619a;color:#fff}.edit-button.secondary{background:#091d43;color:#fff}.edit-document{align-self:center;color:#12619a;font-size:13px;font-weight:700;text-decoration:none;padding:8px 2px}
-.edit-footnote{border-top:1px solid #e4ebf1;padding-top:14px;margin:22px 0 0;color:#6a788b;font-size:11px;line-height:1.55}
-@media(max-width:600px){.news-meta{flex-direction:column}.news-meta span{font-size:12px}.edit-stats{gap:6px}.edit-stats>div{padding:11px 6px}.stat-num{font-size:26px}.stat-label{font-size:11px}.vacancy-list>div{padding:12px 10px}.vacancy-list small{font-size:11px}.edit-actions{flex-direction:column}.edit-button{width:100%}.edit-document{text-align:center;line-height:1.5}}
-
-
-/* Layout moderno com identidade cromática original PANDORA */
-:root{color-scheme:light!important;--bg:#fff;--bg2:#f2f8fb;--tx:#091d43;--mu:#4a5b75;--bd:#dce4eb;--bl:#12619a;--card:#fff}
-html,body{color-scheme:light!important;background:#fff!important;color:#091d43!important}
-body{font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.65}
-.tabs{position:sticky!important;top:0!important;z-index:9999!important;display:flex!important;visibility:visible!important;opacity:1!important;background:rgba(255,255,255,.98)!important;border-bottom:1px solid #dce4eb;box-shadow:0 8px 30px rgba(9,29,67,.08);gap:12px;padding:15px 20px;backdrop-filter:blur(12px)}
-.tab{background:#fff!important;color:#263750!important;border:1px solid transparent;border-radius:12px;font-family:inherit;font-size:14px;font-weight:750;padding:12px 22px}
-.tab:hover{background:#eaf4fa!important;border-color:#bcd8e9!important;color:#12559c!important}
-.tab.active{background:#12619a!important;color:white!important;border-color:#12619a!important;box-shadow:0 6px 18px rgba(18,97,154,.23)}
-.cover{background:#f2f8fb!important}.cover img{max-height:470px;object-fit:cover}
-.tab-panel,.tab-panel.active{background:#fff!important;color:#091d43!important}
-.w{max-width:1120px;padding-left:26px;padding-right:26px}
-section{padding:76px 0;background:#fff!important}section.alt,#noticias{background:#f2f8fb!important}
-h2,#sobre .heading{font-size:clamp(28px,4vw,42px);font-weight:850;letter-spacing:-.035em;text-transform:none;color:#091d43!important;line-height:1.2}
-.u{height:5px;width:92px;margin:18px auto 36px;background:#12619a!important;border-radius:20px}
-.c,.news-card,.call-edit,.contact-item,.note,#sobre .definition{border:1px solid #dce4eb!important;border-radius:24px!important;background:#fff!important;box-shadow:0 12px 36px rgba(9,29,67,.055)}
-.c{padding:26px}.th{border-top:0!important;position:relative;overflow:hidden}.th:before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--c,#12619a)}
-.th:hover{box-shadow:0 20px 48px rgba(18,97,154,.14)}.th h3{letter-spacing:-.04em}
-.th small,.c h3,.sub,.news-card h3,.call-edit>h3{color:#091d43!important}
-.th p,.r,.news-card p,.edit-intro,.body-copy,.tx{color:#4a5b75!important}
-.news-label,.edit-kicker{color:#12619a!important}.news-label{background:#eaf4fa!important;border-radius:30px;padding:8px 14px}
-.news-card{border-top:0!important;padding:clamp(26px,5vw,48px)}
-.news-cta,.edit-button.primary{background:#12619a!important;color:#fff!important;border-radius:13px!important;box-shadow:0 8px 22px rgba(18,97,154,.22)}
-.edit-button.secondary{background:#17466f!important;border-radius:13px!important}
-.edit-document,.contact-item a,.lk{color:#12619a!important}
-.news-meta span,.edit-stats>div,.edit-notice,.timeline-icon,.contact-icon{background:#f2f8fb!important;border-color:#dce4eb!important}
-.edit-badge{background:#12619a!important}.stat-num{color:#12619a!important}
-#sobre .rainbow-rule{height:5px;border-radius:20px}#sobre .body-copy p{border-left-color:#12619a}
-#sobre .definition{padding:clamp(20px,4vw,38px)}
-.contact-item{padding:26px}.contact-icon{color:#12619a!important}
-.site-footer{background:#f2f8fb!important;color:#4a5b75!important;border-top-color:#dce4eb}
-th{background:#f2f8fb!important;color:#091d43!important}td,th{border-bottom-color:#dce4eb}
-@media(max-width:650px){.tabs{padding:10px 8px;gap:5px;flex-wrap:wrap}.tab{font-size:12px;padding:10px 11px}section{padding:48px 0}.w{padding:0 17px}.cover img{max-height:none}h2,#sobre .heading{font-size:29px}}
-@media(prefers-color-scheme:dark){:root{color-scheme:light!important}html,body,.tabs,.tab-panel,section,.c,.news-card,.call-edit,.contact-item{color-scheme:light!important}body,html{background:#fff!important;color:#091d43!important}.tabs{background:#fff!important}section.alt,#noticias{background:#f2f8fb!important}.tab.active{background:#12619a!important;color:#fff!important}}
-@media print{.tabs{display:flex!important;position:static!important}.tab-panel{display:block!important}}
-
-
-/* Identidade multicolorida PANDORA preservada nas divisórias */
-.u.rb{background:linear-gradient(90deg,#12559c 0 18%,#00a9a4 18% 36%,#65a73b 36% 50%,#f9bd19 50% 65%,#f05b2c 65% 82%,#8e207d 82%)!important;width:200px}
-.vacancy-dot.ext{background:#8e207d}
-
-/* Publicações demonstrativas e ajustes do edital */
-.pub-intro{text-align:center;color:#52627a;max-width:700px;margin:0 auto 24px}
-.pub-filters{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin:0 0 16px}
-.pub-filters label{display:flex;flex-direction:column;gap:6px;font-weight:700;font-size:12px;color:#17385c}
-.pub-filters select,.pub-filters input{width:100%;border:1px solid #d6e0ea;background:#fff;color:#17385c;border-radius:12px;padding:12px;font:inherit;font-weight:400;min-width:0}
-.pub-filters :is(input,select):focus-visible{outline:3px solid #97c7e8;outline-offset:2px}
-.pub-count{color:#52627a;font-size:13px;margin:8px 0 16px}
-.pub-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:16px}
-.pub-card{background:#fff;border:1px solid #e0e7ef;border-radius:18px;padding:22px;box-shadow:0 9px 28px rgba(10,40,80,.045);border-top:4px solid var(--c,#12619a)}
-.pub-card .pub-meta{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px}
-.pub-card .pub-meta span{font-size:11px;font-weight:800;background:#f0f5fa;border-radius:8px;padding:5px 8px;color:#31516d}
-.pub-card h3{font-size:17px;line-height:1.4;margin:0 0 12px;color:#102d4b}
-.pub-card p{font-size:13px;color:#52627a;margin:0 0 10px}
-.pub-demo{display:inline-block;color:#875500;background:#fff3d3;border-radius:8px;padding:5px 8px;font-size:11px;font-weight:800}
-.pub-empty{padding:28px;text-align:center;color:#52627a;background:#fff;border-radius:14px}
-.edit-actions{display:flex;flex-direction:column;align-items:flex-start;gap:12px}
-.edit-actions .edit-button{min-width:240px}
-.edit-actions .edit-button.secondary{margin-top:10px}
-.edital-tooltip{position:relative;display:inline-flex;align-items:center;gap:9px;flex-wrap:wrap}
-.edital-bubble{background:#fff2c8;color:#654700;border:1px solid #f2d27a;border-radius:12px;padding:9px 13px;font-size:12px;font-weight:700;box-shadow:0 5px 14px rgba(80,50,0,.07)}
-@media(max-width:780px){.pub-filters{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:480px){.pub-filters{grid-template-columns:1fr}.edit-actions,.edit-actions .edit-button,.edit-actions .edit-document{width:100%}.edital-tooltip{width:100%}}
-
-/* Listas padronizadas e atalhos internos */
-.data-list{min-width:760px;border-collapse:separate;border-spacing:0;background:#fff}
-.data-list thead th{background:#f0f5fa;font-size:13px;font-weight:800}
-.data-list tbody tr:not([hidden]):hover{background:#f8fafc}
-.data-list td{font-size:13px;line-height:1.55}
-.table-action,.section-shortcuts a{display:inline-block;color:#12619a;background:#edf5fc;border:1px solid #c8deef;border-radius:9px;padding:8px 11px;font:700 12px Arial,sans-serif;text-decoration:none;cursor:pointer;white-space:nowrap}
-.table-action:hover,.section-shortcuts a:hover{background:#dcecf9}
-.section-shortcuts{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 20px}
-.publication-detail{background:#f5f8fb;color:#43536a;padding:16px!important}
+img{max-width:100%}
 [hidden]{display:none!important}
+::selection{background:rgba(47,128,194,.24)}
+:focus-visible{outline:3px solid #e7b11d;outline-offset:3px}
+input,select,textarea,button{font-family:inherit}
 
+/* ---------- Aurora: cor ambiente para o vidro refratar ---------- */
+.aurora{position:fixed;inset:-24vmax;z-index:-2;overflow:hidden;pointer-events:none}
+.aurora i{position:absolute;display:block;border-radius:50%;transform:translate3d(0,0,0);will-change:transform}
+.aurora .b1{width:62vmax;height:62vmax;left:-14vmax;top:-16vmax;background:radial-gradient(closest-side,rgba(47,128,194,.38),rgba(47,128,194,0) 74%);animation:driftA 44s var(--ease) infinite alternate}
+.aurora .b2{width:54vmax;height:54vmax;right:-16vmax;top:-8vmax;background:radial-gradient(closest-side,rgba(0,169,164,.32),rgba(0,169,164,0) 74%);animation:driftB 52s var(--ease) infinite alternate}
+.aurora .b3{width:58vmax;height:58vmax;left:-8vmax;bottom:-20vmax;background:radial-gradient(closest-side,rgba(142,32,125,.20),rgba(142,32,125,0) 74%);animation:driftC 48s var(--ease) infinite alternate}
+.aurora .b4{width:44vmax;height:44vmax;right:-8vmax;bottom:-14vmax;background:radial-gradient(closest-side,rgba(249,189,25,.20),rgba(249,189,25,0) 74%);animation:driftD 40s var(--ease) infinite alternate}
+@keyframes driftA{to{transform:translate3d(10vmax,8vmax,0) scale(1.16)}}
+@keyframes driftB{to{transform:translate3d(-9vmax,10vmax,0) scale(1.1)}}
+@keyframes driftC{to{transform:translate3d(12vmax,-9vmax,0) scale(1.18)}}
+@keyframes driftD{to{transform:translate3d(-10vmax,-8vmax,0) scale(1.12)}}
+body.aurora-paused .aurora i{animation-play-state:paused}
 
-/* PAINEL VISUAL PANDORA */
-#studio-dock{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:99990;display:flex;align-items:center;gap:7px;max-width:calc(100vw - 20px);overflow-x:auto;padding:9px;background:#fff;border:1px solid #dbe5f0;border-radius:19px;box-shadow:0 16px 60px #142b4b35;scrollbar-width:thin}
-#studio-dock button,.studio-add,.studio-tools button{white-space:nowrap;border:0;border-radius:11px;padding:10px 13px;background:#eef4fb;color:#123b68;font:700 12px system-ui;cursor:pointer}
-#studio-dock .main-action,.studio-add{background:#12559c!important;color:#fff!important}#studio-dock button:hover,.studio-tools button:hover{filter:brightness(.94)}
-#studio-dock .studio-logo{font:800 13px system-ui;color:#12559c;padding:0 10px;white-space:nowrap}
-#studio-modal{position:fixed;inset:0;background:#081b39a8;z-index:100001;display:none;align-items:center;justify-content:center;padding:15px;backdrop-filter:blur(5px)}#studio-modal.open{display:flex}
-.studio-dialog{background:#fff;width:min(790px,100%);max-height:min(90vh,950px);overflow:auto;border-radius:24px;box-shadow:0 24px 100px #0004;color:#132a48;font:14px system-ui;position:relative}
-.studio-dialog-head{position:sticky;top:0;z-index:2;background:#fff;border-bottom:1px solid #e4eaf1;padding:21px 25px;display:flex;justify-content:space-between;align-items:center;gap:15px}.studio-dialog-head h2{font:800 21px system-ui;margin:0;text-align:left;text-transform:none;letter-spacing:0}.studio-x{border:0;background:#edf2f7;border-radius:10px;padding:9px 12px;cursor:pointer;font-size:19px}
-.studio-dialog-body{padding:23px 25px 27px}.studio-dialog-body p{color:#526780}.studio-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:15px}.studio-field{display:flex;flex-direction:column;gap:6px;min-width:0}.studio-field.full{grid-column:1/-1}.studio-field label{font-weight:750;font-size:12px;color:#324963}.studio-field input,.studio-field textarea,.studio-field select{width:100%;font:14px system-ui;border:1px solid #cdd9e6;border-radius:11px;padding:11px 12px;background:white;color:#122c4b}.studio-field textarea{min-height:105px;resize:vertical}.studio-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:22px}.studio-actions button,.studio-row-actions button{border:1px solid #d4e0ed;border-radius:10px;padding:11px 15px;background:#f1f5fa;color:#1a4169;cursor:pointer;font:700 13px system-ui}.studio-actions .primary{background:#12559c;color:#fff}.studio-actions .danger{background:#fff1f1;color:#ae2341}.studio-tip{padding:12px 15px;border-radius:12px;background:#eef6ff;color:#2d547a;font-size:12px;margin-bottom:18px}.studio-manager-list{display:grid;gap:10px;margin:16px 0}.studio-manager-item{border:1px solid #dce5f0;border-radius:13px;padding:14px;display:flex;gap:12px;align-items:center;justify-content:space-between}.studio-manager-item strong{display:block;font-size:14px}.studio-manager-item small{display:block;color:#667991;margin-top:4px}.studio-row-actions{display:flex;gap:5px;flex-wrap:wrap}.studio-row-actions button{padding:8px 10px;font-size:12px}.studio-pill{font-size:11px;background:#e8f2ff;color:#185c9a;border-radius:30px;padding:4px 9px;font-weight:750}
-body.studio-editing [data-studio-editable]:hover{outline:2px dashed #1a83bf;outline-offset:3px;cursor:text}body.studio-editing [contenteditable=true]:focus{outline:3px solid #f6bb37!important;outline-offset:3px;background:#fffdf2}body.studio-editing{padding-bottom:85px}body.studio-editing .tabs{z-index:100}
-.studio-quick{display:flex;justify-content:center;flex-wrap:wrap;gap:8px;margin:12px auto 0}.studio-add{display:inline-flex;align-items:center;gap:5px;text-decoration:none}.studio-hidden{display:none!important}.studio-ended{opacity:.72}.studio-ended .edit-status{background:#f0f1f3;color:#5a6678}.studio-ended .edit-status i{background:#8995a6}
-.studio-toast{position:fixed;bottom:95px;left:50%;transform:translateX(-50%);background:#173c65;color:#fff;border-radius:12px;padding:12px 19px;z-index:100003;box-shadow:0 10px 25px #0003;font:700 13px system-ui}
-@media(max-width:650px){#studio-dock{left:8px;right:8px;transform:none;bottom:8px;border-radius:14px}.studio-grid{grid-template-columns:1fr}.studio-field.full{grid-column:1}.studio-dialog-head,.studio-dialog-body{padding:17px}.studio-manager-item{align-items:flex-start;flex-direction:column}}
-@media print{#studio-dock,#studio-modal,.studio-quick,.studio-toast{display:none!important}}
+/* ---------- Estrutura ---------- */
+.tab-panel{display:none}
+.tab-panel.active{display:block}
+section{position:relative;padding:64px 0}
+section.alt{background:linear-gradient(180deg,rgba(255,255,255,.44),rgba(255,255,255,.08))}
+.w{max-width:1120px;margin:0 auto;padding:0 26px}
+h2{margin:0;text-align:center;font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-.03em;line-height:1.18;color:var(--ink)}
+h3,h4{color:var(--ink)}
+.u{height:5px;width:110px;margin:16px auto 32px;border-radius:99px;background:var(--rainbow)}
+.rb{height:4px;border-radius:99px;background:var(--rainbow)}
+.g{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.sub{margin:30px 0 12px;font-size:18px;color:var(--ink)}
+.r{font-size:13px;color:var(--mut)}
+.lk{display:inline-block;margin-top:10px;margin-right:10px;font-size:13px;font-weight:750;color:var(--blue);text-decoration:none}
+.lk:hover{text-decoration:underline}
 
-</style>
-<style>
-/* Identidade PANDORA, navegação fixa e modo exclusivamente claro */
-:root,html{color-scheme:light!important}html,body{background:#fff!important}
-.tabs{position:sticky!important;top:0!important;z-index:999!important;display:flex!important;background:#fff!important}
-.tab-panel[hidden]{display:none!important}
-.research-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,310px),1fr));gap:18px;margin:25px 0}
-.research-card{background:#fff;border:1px solid #e2e8f0;border-top:5px solid var(--c,#12619a);border-radius:20px;padding:24px;box-shadow:0 8px 28px #112c4b0b}
-.research-card h3{font-size:18px;line-height:1.4;margin:13px 0;color:#091d43}
-.research-card p{font-size:14px;color:#4a5b75;margin:8px 0}
-.research-pill{display:inline-block;border-radius:30px;padding:5px 11px;background:#f1f5f9;font-weight:700;font-size:12px;color:#091d43;margin:0 5px 5px 0}
-.research-card .tag{margin-bottom:8px}
-.pub-year-title{grid-column:1/-1;margin:16px 0 0;font-size:23px;color:#091d43;border-bottom:2px solid #e2e8f0;padding-bottom:8px}
-@media(prefers-color-scheme:dark){html,body,.tabs,.tab-panel,.research-card{background:#fff!important;color:#091d43!important}}
-</style>
-<style id="pandora-enhancements">
-/* Editais completos e arquivos recolhidos */
-#editais article.call-edit{margin-bottom:22px}
-#editais article.call-edit[data-status="Encerrado"]{padding:0;overflow:hidden;border-top:4px solid #9ba7b7}
-.edital-closed-head{padding:20px 24px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.edital-closed-head h3{font-size:19px;margin:7px 0 0}
-.edital-closed-head .edit-badge{background:#64748b}
-.edital-closed-head button{border:1px solid #cad5e2;background:#fff;border-radius:12px;padding:11px 16px;color:#12559c;font-weight:750;cursor:pointer}
-.edital-closed-body{padding:0 24px 24px;border-top:1px solid #e5eaf1}
-.edital-closed-body[hidden]{display:none!important}
-.studio-vacancy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:18px 0}
-.studio-vacancy-grid>div{padding:14px;background:#f4f8fc;border:1px solid #e0e8f0;border-radius:12px}
-.studio-vacancy-grid strong{display:block;font-size:26px;color:#12619a}
-.studio-vacancy-grid small{font-weight:700;color:#52627a}
-#noticias .news-carousel{position:relative;max-width:860px;margin:0 auto}
+/* ---------- Navegação em vidro ---------- */
+.tabs{
+  position:sticky;top:0;z-index:900;display:flex;justify-content:center;gap:8px;flex-wrap:wrap;
+  padding:12px 18px;background:var(--glass-bg);
+  -webkit-backdrop-filter:blur(24px) saturate(175%);backdrop-filter:blur(24px) saturate(175%);
+  border-bottom:1px solid rgba(255,255,255,.78);
+  box-shadow:0 10px 32px rgba(16,48,90,.10),inset 0 1px 0 rgba(255,255,255,.92);
+}
+.tab{
+  appearance:none;-webkit-appearance:none;border:1px solid transparent;background:transparent;color:var(--ink2);
+  font-size:14px;font-weight:650;line-height:1.2;padding:11px 20px;border-radius:999px;cursor:pointer;
+  transition:background .22s var(--ease),color .2s,box-shadow .25s var(--ease),transform .25s var(--spring);
+  -webkit-tap-highlight-color:transparent;
+}
+.tab:hover{background:rgba(255,255,255,.55);box-shadow:var(--sh-sm)}
+.tab:active{transform:scale(.96)}
+.tab.active{
+  background:linear-gradient(160deg,rgba(255,255,255,.96),rgba(222,240,252,.86));
+  border-color:rgba(255,255,255,.95);color:var(--blue);
+  box-shadow:0 6px 18px rgba(18,97,154,.18),inset 0 1px 0 #fff;
+}
+
+/* ---------- Capa ---------- */
+.cover{margin:0;line-height:0}
+.cover img{display:block;width:100%;height:clamp(210px,34vw,470px);object-fit:cover;object-position:center;background:#e4eef7}
+
+/* ---------- Cartões ---------- */
+.c,.news-card,.call-edit,.contact-item,.th{
+  background:var(--card-bg);
+  border:1px solid rgba(255,255,255,.88);border-radius:var(--r-xl);
+  box-shadow:var(--sh-md),inset 0 1px 0 rgba(255,255,255,.95);
+}
+.c{padding:26px}
+.c h3{margin:0 0 4px;font-size:17px;line-height:1.4}
+.studio-bio{margin:10px 0 0;color:var(--mut);font-size:14px}
+
+/* Cartões de linha temática */
+.th{position:relative;overflow:hidden;text-align:center;padding:30px 22px 26px;transition:transform .3s var(--ease),box-shadow .3s var(--ease)}
+.th::before{content:"";position:absolute;top:0;left:0;right:0;height:5px;background:var(--c,#12619a)}
+.th:hover{transform:translateY(-5px);box-shadow:var(--sh-lg),inset 0 1px 0 rgba(255,255,255,.95)}
+.th .theme-pic{width:130px;height:130px;margin:0 auto 14px;display:grid;place-items:center}
+.th .theme-pic img{max-width:80%;max-height:80%;object-fit:contain}
+.th h3{margin:0;font-size:44px;line-height:1;color:var(--c);letter-spacing:-.02em}
+.th .theme-bar{width:56px;height:3px;border-radius:99px;margin:13px auto;background:var(--c)}
+.th small{display:block;font-weight:750;font-size:15.5px;line-height:1.4;color:var(--ink);margin-bottom:10px}
+.th p{margin:0;color:var(--mut);font-size:15px;line-height:1.6}
+
+/* Selos de linha */
+.tag{
+  display:inline-flex;align-items:center;justify-content:center;margin:6px 6px 0 0;
+  padding:5px 12px;border-radius:999px;font-size:12px;font-weight:750;
+  background:#e8f2fa;color:var(--blue);border:1px solid #c6dcf0;
+}
+@supports (color:color-mix(in srgb,red 10%,blue)){
+  .tag{
+    background:color-mix(in srgb,var(--c,#12619a) 10%,#fff);
+    color:var(--c,#12619a);
+    border-color:color-mix(in srgb,var(--c,#12619a) 28%,#fff);
+  }
+}
+
+/* ---------- Sobre ---------- */
+#sobre .sheet{max-width:1000px;margin:0 auto}
+#sobre .heading{text-align:center;font-size:clamp(26px,4vw,40px);font-weight:800;letter-spacing:-.03em;text-transform:none;margin:0}
+#sobre .rainbow-rule{height:5px;width:235px;margin:14px auto 28px;border-radius:99px;background:var(--rainbow)}
+#sobre .definition{
+  display:grid;grid-template-columns:43% 57%;align-items:center;padding:clamp(20px,4vw,36px);margin-bottom:26px;
+  background:var(--card-bg);border:1px solid rgba(255,255,255,.88);border-radius:28px;
+  box-shadow:var(--sh-md),inset 0 1px 0 rgba(255,255,255,.95);
+}
+#sobre .definition-art{padding:6px 24px 6px 4px;border-right:1px solid rgba(151,180,208,.55);display:flex;justify-content:center;align-items:center}
+#sobre .definition-art img{width:100%;max-width:270px;height:auto;display:block}
+#sobre .acronym{padding-left:34px}
+#sobre .acronym-row{display:grid;grid-template-columns:30px 31px 1fr;gap:10px;align-items:baseline;margin:4px 0;font-size:18px}
+#sobre .acronym-row b{font-size:26px;line-height:1.2;color:var(--ink)}
+#sobre .acronym-row i{height:3px;border-radius:99px;background:var(--c);align-self:center}
+#sobre .acronym-row span{font-size:16.5px;color:var(--ink2)}
+#sobre .body-copy{
+  margin-top:22px;font-size:16.5px;color:var(--ink2);
+  background:rgba(255,255,255,.68);border:1px solid rgba(255,255,255,.82);border-radius:var(--r-lg);
+  padding:20px 24px;box-shadow:var(--sh-sm),inset 0 1px 0 rgba(255,255,255,.9);
+}
+#sobre .body-copy p{margin:0 0 16px;padding-left:18px;border-left:3px solid var(--blue)}
+#sobre .body-copy p:nth-child(2){border-image:linear-gradient(#16a4a7,#ffbd17,#d92355) 1}
+#sobre .body-copy p:last-child{margin-bottom:0}
+
+/* ---------- Notícias ---------- */
+#noticias .news-carousel{position:relative;max-width:920px;margin:20px auto 0}
 #noticias .news-carousel .news-card{display:none}
-#noticias .news-carousel .news-card.news-current{display:block;animation:pandoraFade .85s cubic-bezier(.22,1,.36,1) both}
-@keyframes pandoraFade{from{opacity:0;transform:translate3d(0,14px,0) scale(.985);filter:blur(5px)}to{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0)}}
-.news-carousel-controls{display:flex;align-items:center;justify-content:center;gap:12px;margin:16px 0 0}
-.news-carousel-controls button{border:1px solid #d4dfeb;background:#fff;border-radius:50%;width:38px;height:38px;font-size:20px;color:#12559c;cursor:pointer}
-.news-carousel-controls .news-dots{display:flex;gap:7px;align-items:center}
-.news-carousel-controls .news-dots button{width:10px;height:10px;border-radius:50%;background:#d0d9e4;border:0;padding:0}
-.news-carousel-controls .news-dots button[aria-current="true"]{background:#12559c;transform:scale(1.3)}
-@media(prefers-reduced-motion:reduce){#noticias .news-carousel .news-card.news-current{animation:none}}
-</style>
-<style id="studio-polish">
-#studio-dock{background:rgba(255,255,255,.97)!important;box-shadow:0 14px 55px #092b5260!important;border:1px solid #dbe5f0!important;backdrop-filter:blur(18px);border-radius:19px!important}
-#studio-dock button{display:inline-flex;align-items:center;gap:7px;border-radius:10px!important;font-weight:650!important}
-#studio-dock .studio-icon{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
-#studio-dock .studio-logo{letter-spacing:.12em;font-size:12px;font-weight:900}
-.studio-appeal-slot:not(:empty){margin-top:22px;padding:18px;border-radius:14px;background:#f0f7ff;border:1px solid #cbdff3}
-.studio-appeal-button{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:linear-gradient(145deg,#347dd6 0%,#145d9b 72%,#0b467b 100%);color:white!important;padding:13px 20px;border-radius:999px;font-weight:800;text-decoration:none;border:1px solid rgba(255,255,255,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 8px 22px rgba(13,71,130,.19);transition:transform .2s,box-shadow .2s}.studio-appeal-button:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 12px 26px rgba(13,71,130,.25)}
-.studio-appeal-hint{font-size:12px;color:#52667e;margin:10px 0 0}
-#studio-modal .studio-dialog{border-radius:22px!important;box-shadow:0 22px 80px #0b294e42!important}
-</style><style id="studio-copy-styles">#studio-copy-overlay{position:fixed;inset:0;z-index:999999;background:#101c36b8;display:grid;place-items:center;padding:18px}#studio-copy-overlay .studio-copy-dialog{width:min(850px,100%);max-height:90vh;display:flex;flex-direction:column;gap:12px;background:#fff;color:#182b45;border-radius:20px;padding:24px;box-shadow:0 20px 80px #0004}#studio-copy-overlay h2{margin:0;font-size:22px}#studio-copy-overlay p{margin:0;color:#52627a}#studio-copy-overlay textarea{min-height:280px;height:52vh;width:100%;resize:vertical;padding:14px;border:1px solid #cbd5e1;border-radius:10px;font:12px/1.5 monospace}#studio-copy-overlay .studio-copy-actions{display:flex;justify-content:flex-end;gap:10px}#studio-copy-overlay button{border:1px solid #cbd5e1;border-radius:10px;padding:10px 15px;background:#f7f9fc;cursor:pointer}#studio-copy-overlay button:first-child{background:#135ca0;color:#fff;border-color:#135ca0}</style><style id="pandora-liquid-glass">
-/* PANDORA / Optical Glass — vidro apenas na camada funcional */
-:root{--bg:#f8fafc;--bg2:#f2f6fa;--tx:#132a46;--mu:#52657b;--bd:#e1e8f0}
-html{scroll-behavior:smooth}body{background:radial-gradient(ellipse 70% 34% at 2% 0%,rgba(60,158,225,.11),transparent 75%),radial-gradient(ellipse 60% 28% at 95% 8%,rgba(164,102,219,.09),transparent 75%),radial-gradient(ellipse 70% 38% at 52% 75%,rgba(53,181,155,.055),transparent 75%),#f8fafc!important;color:#132a46}
-/* Glass is reserved for floating navigation and editor chrome. */
-header,.topbar,.site-header,nav,.tabs,#studio-dock{background:rgba(250,253,255,.78)!important;-webkit-backdrop-filter:blur(22px) saturate(165%);backdrop-filter:blur(22px) saturate(165%);border:1px solid rgba(255,255,255,.86)!important;box-shadow:0 12px 38px rgba(29,61,102,.10),inset 0 1px rgba(255,255,255,.98),inset 0 -1px rgba(108,151,196,.12)!important}
-#studio-dock{border-radius:24px!important;padding:9px 12px!important;box-shadow:0 18px 56px rgba(16,45,86,.18),inset 0 1px 0 #fff!important;max-width:calc(100vw - 24px)}
-#studio-dock button{border-radius:14px!important;transition:transform .2s ease,background .2s ease,box-shadow .2s ease!important}
-#studio-dock button:hover{transform:translateY(-2px);background:rgba(222,236,250,.9)!important;box-shadow:0 6px 15px rgba(34,81,129,.11)}
-.tab{border-radius:999px!important;background:transparent!important;border-color:transparent!important;transition:background .22s ease,box-shadow .22s ease,transform .22s ease!important}
-.tab:hover{background:rgba(228,240,252,.88)!important}
-.tab.active,.tab[aria-selected=true]{background:linear-gradient(140deg,rgba(255,255,255,.97),rgba(227,241,254,.89))!important;border:1px solid rgba(255,255,255,.95)!important;box-shadow:0 5px 16px rgba(45,97,151,.12),inset 0 1px #fff!important;color:#135a9a!important}
-/* Information stays on readable, opaque surfaces. */
-.card,.c,.news-card,.call-edit,article,.pub-table-wrap,.table-wrap,.edit-notice,.studio-vacancy-grid>div{background:#fff!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;border:1px solid #e4eaf1!important;box-shadow:0 5px 22px rgba(27,62,105,.055)!important;border-radius:20px!important}
-.card:hover,.c:hover,.news-card:hover,.call-edit:hover{box-shadow:0 14px 34px rgba(25,61,106,.085)!important}
-/* Editorial rhythm */
-h1,h2,h3{letter-spacing:-.035em}h1{line-height:1.1}h2{line-height:1.18}p{line-height:1.7}
-section{scroll-margin-top:110px}section .w{position:relative}
-.btn,.edit-button,.news-carousel-controls button{border-radius:999px!important;transition:transform .2s ease,box-shadow .2s ease!important}
-.btn:hover,.edit-button:hover{transform:translateY(-1px)}
-/* Light-catching edge only on actual interactive overlays */
-#studio-modal .modal-content,#studio-modal .studio-modal-content,.studio-modal,.studio-dialog{background:rgba(251,253,255,.96)!important;box-shadow:0 30px 85px rgba(12,35,69,.23),inset 0 1px #fff!important;border:1px solid rgba(255,255,255,.96)!important;border-radius:24px!important}
-input,select,textarea{border-radius:12px!important}input:focus,select:focus,textarea:focus{outline:2px solid rgba(33,119,199,.28);outline-offset:1px}
-table{border-collapse:separate!important;border-spacing:0!important}th{background:#f2f6fb!important}td{border-bottom:1px solid #e9eef4!important}
-@media(max-width:720px){#studio-dock{bottom:8px!important;border-radius:18px!important;padding:7px!important}header,.topbar,nav{backdrop-filter:blur(14px) saturate(130%);-webkit-backdrop-filter:blur(14px) saturate(130%)}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
-@media(prefers-reduced-transparency:reduce){header,.topbar,.site-header,nav,.tabs,#studio-dock{background:#f9fcff!important;backdrop-filter:none!important;-webkit-backdrop-filter:none!important}}
-</style><style id="pandora-news-optical-v2">
-/* Notícias: um painel editorial claro, com controles ópticos e detalhes cromáticos */
-#noticias{position:relative;isolation:isolate;overflow:hidden}
-#noticias::before{content:"";position:absolute;z-index:-1;inset:0;background:radial-gradient(ellipse 55% 50% at 8% 32%,rgba(30,151,211,.085),transparent 80%),radial-gradient(ellipse 45% 65% at 93% 72%,rgba(178,104,212,.075),transparent 82%);pointer-events:none}
-#noticias .news-carousel{max-width:920px;margin:22px auto 0;isolation:isolate}
-#noticias .news-carousel .news-card{position:relative;overflow:hidden;max-width:none;min-height:320px;border:1px solid rgba(255,255,255,.94)!important;border-radius:30px!important;padding:clamp(26px,5vw,54px)!important;background:linear-gradient(135deg,rgba(255,255,255,.98) 0%,rgba(251,253,255,.97) 58%,rgba(239,247,255,.94) 100%)!important;box-shadow:0 22px 65px rgba(24,62,103,.10),0 5px 14px rgba(24,62,103,.04),inset 0 1px 0 #fff!important;backdrop-filter:none!important}
-#noticias .news-carousel .news-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#1766a4 0%,#16a6a3 28%,#7cb64d 49%,#f0bd55 67%,#df7d9c 84%,#9263c8 100%)}
-#noticias .news-carousel .news-card::after{content:"";position:absolute;z-index:0;right:-120px;top:-140px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(66,157,217,.10),rgba(142,119,212,.035) 50%,transparent 70%);pointer-events:none}
-#noticias .news-card>*{position:relative;z-index:1}
-#noticias .news-label{display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(33,119,171,.13);border-radius:999px!important;padding:8px 14px!important;background:rgba(226,242,253,.78)!important;color:#175d91!important;font-size:11px;letter-spacing:.075em;box-shadow:inset 0 1px 0 rgba(255,255,255,.9)}
-#noticias .news-label::before{content:"";width:7px;height:7px;border-radius:50%;background:#19a89e;box-shadow:0 0 0 3px rgba(25,168,158,.13)}
-#noticias .news-card h3{max-width:730px;font-size:clamp(24px,3.1vw,35px)!important;letter-spacing:-.035em!important;line-height:1.18!important;margin:22px 0 14px!important;color:#112c4a!important;font-weight:800!important}
-#noticias .news-card p{max-width:740px;font-size:15px;line-height:1.85;color:#4b6178}
-#noticias .news-meta{margin:23px 0 25px;gap:9px}
-#noticias .news-meta span{border:1px solid #dfe9f3!important;border-radius:999px!important;padding:9px 13px!important;background:rgba(246,250,254,.9)!important;color:#425a72!important;font-size:12px!important;box-shadow:inset 0 1px 0 white}
-/* Botões de notícias: acabamento premium, foco visível e resposta tátil */
-#noticias .news-cta{display:inline-flex;align-items:center;gap:14px;min-height:46px;padding:12px 20px!important;border:1px solid rgba(14,73,125,.7)!important;border-radius:999px!important;background:linear-gradient(145deg,#2676b3,#12588f 68%,#104d80)!important;color:white!important;box-shadow:0 7px 18px rgba(22,94,151,.20),inset 0 1px 0 rgba(255,255,255,.3)!important;font-weight:750!important;letter-spacing:-.01em;transition:transform .2s,box-shadow .2s,filter .2s!important;text-decoration:none!important}
-#noticias .news-cta:hover{transform:translateY(-2px)!important;filter:brightness(1.06);box-shadow:0 12px 26px rgba(22,94,151,.24),inset 0 1px 0 rgba(255,255,255,.36)!important}
-#noticias .news-cta:active{transform:translateY(0)!important}
-#noticias .news-cta span[aria-hidden]{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.15)}
-#noticias .news-carousel-controls{max-width:920px;margin:19px auto 0!important;padding:9px 12px;width:max-content;max-width:100%;border:1px solid rgba(221,232,243,.92);border-radius:999px;background:rgba(255,255,255,.78);box-shadow:0 7px 25px rgba(29,66,106,.065),inset 0 1px 0 #fff;backdrop-filter:blur(18px) saturate(1.25);-webkit-backdrop-filter:blur(18px) saturate(1.25);gap:17px}
-#noticias .news-carousel-controls>button{width:38px!important;height:38px!important;display:grid;place-items:center;border:1px solid rgba(212,225,237,.92)!important;border-radius:50%!important;background:linear-gradient(155deg,#fff,#f1f6fb)!important;box-shadow:0 2px 6px rgba(23,65,110,.06),inset 0 1px 0 #fff;color:#205e90!important;font-size:23px!important;line-height:1;transition:transform .2s,background .2s,box-shadow .2s}
-#noticias .news-carousel-controls>button:hover{transform:scale(1.07);background:#e8f3fc!important;box-shadow:0 4px 12px rgba(23,65,110,.13)}
-#noticias .news-carousel-controls .news-dots{gap:9px}
-#noticias .news-carousel-controls .news-dots button{width:8px!important;height:8px!important;border-radius:999px!important;background:#cbd9e5!important;transition:width .2s,background .2s,transform .2s}
-#noticias .news-carousel-controls .news-dots button[aria-current="true"]{width:23px!important;transform:none!important;background:linear-gradient(90deg,#1977b4,#22b1a2)!important}
-#noticias button:focus-visible,#noticias a:focus-visible{outline:3px solid #52a4df!important;outline-offset:3px!important}
-/* Botões gerais: coesão com a linguagem óptica sem embaçar o conteúdo */
-.edit-button,.studio-modal button,.studio-form button{border-radius:999px!important;transition:transform .18s,box-shadow .18s,filter .18s!important}
-.edit-button:hover,.studio-modal button:hover,.studio-form button:hover{filter:brightness(1.035)}
-@media(max-width:640px){#noticias .news-carousel .news-card{border-radius:23px!important;min-height:300px;padding:25px!important}#noticias .news-card h3{font-size:25px!important}#noticias .news-meta{margin:18px 0}#noticias .news-carousel-controls{margin-top:14px!important}}
-@media(prefers-reduced-motion:reduce){#noticias .news-cta,#noticias .news-carousel-controls button,#noticias .news-carousel-controls .news-dots button{transition:none!important}}
-</style>
-<style id="pandora-unified-polish">
-:root{--glass-line:rgba(167,191,216,.56);--glass-shadow:0 14px 38px rgba(23,57,95,.075)}
-/* Alternância suave entre seções brancas e fundos azulados */
-.tab-panel section{position:relative;background:#fff}
-.tab-panel section:nth-of-type(even){background:linear-gradient(145deg,#eef4fa 0%,#e8f0f8 58%,#f4f8fc 100%)}
-.tab-panel section:nth-of-type(odd){background:linear-gradient(180deg,#fff,#fafcff)}
-.tab-panel section .w{position:relative}
-/* Superfícies com o mesmo acabamento das notícias */
-.tab-panel .c,.tab-panel .card,.tab-panel article:not(.news-card),.tab-panel .tb,.tab-panel .data-list{border:1px solid var(--glass-line);border-radius:19px;box-shadow:var(--glass-shadow);background:rgba(255,255,255,.97)}
-.tab-panel .tb{overflow-x:auto;overflow-y:hidden;padding:0;border-radius:19px}
-.tab-panel table{width:100%;border-collapse:separate!important;border-spacing:0!important;overflow:hidden;background:transparent;box-shadow:none!important;border:0!important;border-radius:0!important}
-.tab-panel table thead{background:linear-gradient(105deg,#173c6b,#195b91)!important}
-.tab-panel table thead tr{background:transparent!important}
-.tab-panel table thead th{background:transparent!important;color:#fff!important;font-weight:750!important;letter-spacing:.025em;border-top:1px solid #173c6b!important;border-bottom:1px solid #2d6899!important;border-right:1px solid rgba(255,255,255,.14)!important;padding:17px 19px!important;vertical-align:middle}
-.tab-panel table thead th:first-child{border-top-left-radius:17px!important}
-.tab-panel table thead th:last-child{border-top-right-radius:17px!important;border-right:0!important}
-.tab-panel table tbody tr{background:#fff}
-.tab-panel table tbody tr:nth-child(even){background:#f5f9fd}
-.tab-panel table tbody td{border-bottom:1px solid #e5edf5!important;padding:16px 19px!important;vertical-align:middle}
-.tab-panel table tbody tr:last-child td{border-bottom:0!important}
-.tab-panel table tbody tr:hover{background:#edf6fd!important}
-.tab-panel .tag{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:5px 12px;border:1px solid color-mix(in srgb,var(--c,#14689a) 25%,white);background:color-mix(in srgb,var(--c,#14689a) 10%,white);color:var(--c,#14689a);font-weight:750}
-.tab-panel a.table-action,.tab-panel .edit-button,.tab-panel a.btn,.tab-panel button:not(.studio-btn):not(.news-dots button){border-radius:999px;transition:transform .18s,box-shadow .18s}
-.tab-panel a.table-action:hover,.tab-panel .edit-button:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(22,76,122,.14)}
-#projetos .tb{margin-top:22px}
-@media(max-width:700px){.tab-panel table thead th,.tab-panel table tbody td{padding:12px 14px!important}.tab-panel .tb{border-radius:15px}}
-</style><style id="pandora-unified-glass-v3">
-/* Visual compartilhado entre Publicações, Editais e Notícias */
-#publicacoes,#editais{position:relative;isolation:isolate;overflow:hidden}
-#publicacoes::before,#editais::before{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(ellipse 50% 50% at 4% 20%,rgba(34,146,207,.085),transparent 75%),radial-gradient(ellipse 45% 65% at 98% 78%,rgba(145,101,202,.075),transparent 80%)}
-#publicacoes .pub-filters{padding:clamp(16px,2.8vw,26px);margin:20px 0 19px;gap:14px;border-radius:26px;border:1px solid rgba(255,255,255,.96);background:linear-gradient(125deg,rgba(255,255,255,.89),rgba(239,247,254,.75));box-shadow:0 18px 48px rgba(26,66,108,.075),inset 0 1px 0 #fff;-webkit-backdrop-filter:blur(18px) saturate(145%);backdrop-filter:blur(18px) saturate(145%)}
-#publicacoes .pub-filters label{color:#244664;font-weight:750;font-size:12px;letter-spacing:.015em;gap:9px}
-#publicacoes .pub-filters :is(input,select){appearance:none;-webkit-appearance:none;background:linear-gradient(180deg,#fff,#f8fbff)!important;border:1px solid #d5e2ef!important;min-height:49px;border-radius:15px!important;box-shadow:0 2px 5px rgba(22,62,104,.025),inset 0 1px 0 #fff!important;padding:12px 16px;color:#1c3b5c;transition:border-color .2s,box-shadow .2s,transform .2s}
-#publicacoes .pub-filters select{padding-right:36px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%234b7195' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"),linear-gradient(180deg,#fff,#f8fbff)!important;background-repeat:no-repeat!important;background-position:right 14px center,center!important}
-#publicacoes .pub-filters :is(input,select):hover{border-color:#a6c8e7!important}
-#publicacoes .pub-filters :is(input,select):focus-visible{outline:none!important;border-color:#529cda!important;box-shadow:0 0 0 4px rgba(46,138,211,.12),inset 0 1px #fff!important}
-#publicacoes #pub-count{margin:4px 0 18px;color:#53728f;font-weight:650}
-#editais .call-edit{max-width:950px;margin:22px auto 28px;padding:clamp(23px,4.5vw,45px)!important;border-radius:30px!important;border:1px solid rgba(255,255,255,.98)!important;background:linear-gradient(135deg,#fff 0%,#fcfdff 62%,#f1f8ff 100%)!important;box-shadow:0 22px 62px rgba(24,62,103,.09),0 4px 12px rgba(24,62,103,.025),inset 0 1px #fff!important;overflow:hidden;position:relative}
-#editais .call-edit:not([data-status="Encerrado"])::before{content:"";position:absolute;left:0;right:0;top:0;height:4px;background:linear-gradient(90deg,#1766a4,#16a6a3,#7cb64d,#f0bd55,#df7d9c,#9263c8)}
-#editais .edit-badge,#editais .edit-status{display:inline-flex;align-items:center;gap:8px;padding:8px 13px;border:1px solid #d4e5f3;border-radius:999px;background:#eaf5fe;color:#185f91;font-size:11px;font-weight:800;letter-spacing:.03em}
-#editais .edit-status{background:#e9f7f0;color:#16724c;border-color:#cdebdc}
-#editais .call-edit h3{font-size:clamp(25px,3.5vw,37px);letter-spacing:-.035em;line-height:1.18;color:#142f4d!important}
-#editais .edit-stats{gap:12px}
-#editais .edit-stats>div,#editais .vacancy-list>div,#editais .studio-vacancy-grid>div{background:linear-gradient(145deg,#fff,#f2f8fd)!important;border:1px solid #e0eaf3!important;border-radius:17px!important;box-shadow:inset 0 1px #fff,0 3px 12px rgba(24,65,105,.035)!important}
-#editais .timeline>div{border-color:#dce7f0}
-#editais .edit-notice{background:#f3f8fd!important;border:1px solid #e1eaf4!important;border-radius:18px!important;padding:18px 20px}
-#editais .edit-actions{flex-direction:row;gap:12px;align-items:center}
-#editais .edit-button,#editais .edital-expand{display:inline-flex;align-items:center;justify-content:center;min-height:47px;padding:12px 20px;border-radius:999px!important;font-weight:750;letter-spacing:.005em;transition:transform .2s,box-shadow .2s,background .2s}
-#editais .edit-button.primary{background:linear-gradient(135deg,#1766a4,#237dbb)!important;color:#fff!important;border:1px solid #1e70ad!important;box-shadow:0 9px 23px rgba(26,102,162,.16),inset 0 1px rgba(255,255,255,.3)}
-#editais .edit-button.secondary,#editais .edital-expand{background:linear-gradient(145deg,#fff,#f0f7ff)!important;color:#175b91!important;border:1px solid #d5e4f1!important;box-shadow:0 5px 15px rgba(29,75,116,.06),inset 0 1px #fff}
-#editais .edit-button:hover,#editais .edital-expand:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(26,102,162,.16)!important}
-#editais .edit-actions .edit-button.secondary{margin-top:0}
-#editais .call-edit[data-status="Encerrado"]{padding:0!important;border-top:1px solid #dce6ef!important;background:#fff!important}
-#editais .edital-closed-head{padding:24px clamp(22px,4vw,38px)}
-#editais .edital-closed-head .edit-status{background:#f0f3f7;color:#677b8c;border-color:#e0e7ed}
-#editais .edital-closed-body{padding:22px clamp(22px,4vw,38px) 30px}
-#editais .edital-closed-body[hidden]{display:none!important}
-@media(max-width:700px){#publicacoes .pub-filters{padding:16px;border-radius:20px}#editais .edit-actions{flex-direction:column;align-items:stretch}#editais .edit-actions .edit-button{width:100%;min-width:0}}
-@media(prefers-reduced-transparency:reduce){#publicacoes .pub-filters{background:#f8fbff!important;backdrop-filter:none;-webkit-backdrop-filter:none}}
-</style>
-<style id="pandora-edital-polish">
-/* One coherent surface for the entire distribution; no double nested balloons. */
-#editais .edit-stats{display:none!important}
-#editais .edit-badge,#editais .edital-closed-head .edit-badge{background:#1457a4!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border:1px solid rgba(255,255,255,.35)!important;box-shadow:0 4px 12px rgba(20,87,164,.16)!important;font-weight:800!important;text-shadow:none!important}
-#editais .vacancy-list,#editais .studio-edital-vacancies{display:grid!important;grid-template-columns:repeat(auto-fit,minmax(210px,1fr))!important;gap:12px!important;background:transparent!important;border:0!important;box-shadow:none!important;padding:0!important;margin:16px 0 26px!important;overflow:visible!important}
-#editais .vacancy-list>div,#editais .studio-edital-vacancies>div{display:flex!important;align-items:center!important;gap:12px!important;min-width:0!important;border:1px solid #d9e5f2!important;border-radius:16px!important;background:linear-gradient(150deg,#fff 0%,#f2f7fc 100%)!important;padding:16px!important;box-shadow:0 5px 16px rgba(24,57,97,.055)!important;margin:0!important}
-#editais .vacancy-list>div>span:nth-child(2),#editais .studio-edital-vacancies>div>span:nth-child(2){flex:1;min-width:0}
-#editais .vacancy-list b,#editais .studio-edital-vacancies b{color:#193a62!important}
-#editais .vacancy-list small,#editais .studio-edital-vacancies small{color:#64758b!important;display:block}
-#editais .vacancy-list strong,#editais .studio-edital-vacancies strong{color:#164e87!important;white-space:nowrap;font-weight:850}
-#editais .edit-actions{display:flex;flex-wrap:wrap;gap:12px;background:transparent!important;box-shadow:none!important;border:0!important;padding:0!important}
-#editais .edit-actions .edit-button,#editais .edit-actions a{border-radius:13px!important;font-weight:750!important;text-decoration:none!important;box-shadow:0 5px 14px rgba(20,50,90,.12)!important;transition:transform .2s ease,box-shadow .2s ease!important;color:#fff!important;-webkit-text-fill-color:#fff!important;border:1px solid rgba(255,255,255,.22)!important}
-#editais .edit-actions a:nth-child(1),#editais .edit-actions [data-edital-link]{background:linear-gradient(135deg,#2775c7,#12529a)!important}
-#editais .edit-actions a:nth-child(2),#editais .edit-actions [data-macro-link]{background:linear-gradient(135deg,#26a67d,#137754)!important}
-#editais .edit-actions a:nth-child(3),#editais .edit-actions [data-insc-link]{background:linear-gradient(135deg,#dc5661,#b72e46)!important}
-#editais .edit-actions a:hover{transform:translateY(-2px)!important;box-shadow:0 9px 20px rgba(20,50,90,.18)!important}
-#editais .edit-actions a:focus-visible{outline:3px solid #e9ac41!important;outline-offset:3px}
-@media(max-width:600px){#editais .vacancy-list,#editais .studio-edital-vacancies{grid-template-columns:1fr!important}}
-</style>
-<style id="pandora-glass-home-buttons-v2">
-/* Vidro óptico controlado: superfícies de leitura continuam opacas. */
-#painel-inicio #sobre,#painel-inicio #contato{background:linear-gradient(150deg,#fff 5%,#f4f9ff 65%,#edf5fc 100%)!important}
-#painel-inicio #linhas{background:linear-gradient(135deg,#eaf3fc 0%,#f5f9fd 46%,#e8f1f9 100%)!important}
-#painel-inicio #sobre .sheet{background:transparent!important;box-shadow:none!important}
-#painel-inicio #sobre .definition{background:linear-gradient(135deg,rgba(255,255,255,.96),rgba(248,252,255,.91))!important;border:1px solid rgba(255,255,255,.96)!important;box-shadow:0 18px 52px rgba(22,65,106,.09),inset 0 1px 0 #fff!important;border-radius:28px!important}
-#painel-inicio #sobre .body-copy{background:rgba(255,255,255,.9);border:1px solid rgba(200,220,239,.72);border-radius:22px;padding:18px 24px;box-shadow:0 10px 32px rgba(25,72,114,.045)}
-#painel-inicio #linhas .th{border:1px solid rgba(255,255,255,.98)!important;border-radius:28px!important;background:linear-gradient(150deg,#fff 0%,#f9fcff 100%)!important;box-shadow:0 16px 38px rgba(23,62,105,.09),inset 0 1px 0 #fff!important;transition:transform .25s,box-shadow .25s!important}
-#painel-inicio #linhas .th::before{height:5px!important;border-radius:28px 28px 0 0}
-#painel-inicio #linhas .th:hover{transform:translateY(-4px)!important;box-shadow:0 22px 50px rgba(23,62,105,.14),inset 0 1px 0 #fff!important}
-#painel-inicio #contato .contact-item{background:linear-gradient(135deg,#fff,#f8fbff)!important;border:1px solid #e2ebf5!important;border-radius:24px!important;box-shadow:0 12px 34px rgba(25,65,105,.08),inset 0 1px 0 #fff!important;transition:transform .2s,box-shadow .2s}
-#painel-inicio #contato .contact-item:hover{transform:translateY(-3px);box-shadow:0 18px 40px rgba(25,65,105,.12)!important}
-#painel-inicio #contato .contact-icon{background:linear-gradient(140deg,rgba(255,255,255,.94),rgba(226,241,253,.84))!important;border:1px solid rgba(255,255,255,.96)!important;box-shadow:0 5px 18px rgba(30,83,135,.12),inset 0 1px 0 #fff!important;border-radius:16px!important}
-/* Botões em vidro tingido: cada ação preserva seu significado e contraste. */
-#editais .edit-actions a,#painel-inicio .news-cta{
- --glass-start:#287bca;--glass-end:#105399;
- position:relative!important;isolation:isolate;overflow:hidden;
- display:inline-flex!important;align-items:center;justify-content:center;gap:9px;
- min-height:46px;padding:12px 20px!important;border-radius:16px!important;
- background:linear-gradient(145deg,var(--glass-start) 0%,var(--glass-end) 100%)!important;
- color:#fff!important;text-decoration:none!important;font-weight:760!important;
- border:1px solid rgba(255,255,255,.48)!important;
- box-shadow:inset 0 1.5px 0 rgba(255,255,255,.5),inset 0 -2px 5px rgba(0,0,0,.12),0 8px 18px rgba(27,67,109,.17),0 2px 5px rgba(27,67,109,.09)!important;
- backdrop-filter:blur(14px) saturate(145%);-webkit-backdrop-filter:blur(14px) saturate(145%);
- text-shadow:0 1px 2px rgba(0,0,0,.17);
- transition:transform .2s ease,box-shadow .2s ease,filter .2s ease!important;
+#noticias .news-carousel .news-card.news-current{display:block}
+.news-card{position:relative;overflow:hidden;max-width:860px;margin:0 auto;padding:clamp(26px,5vw,48px)}
+.news-card::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,#1766a4,#16a6a3 28%,#7cb64d 49%,#f0bd55 67%,#df7d9c 84%,#9263c8)}
+.news-card::after{content:"";position:absolute;right:-120px;top:-140px;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(66,157,217,.12),transparent 68%);pointer-events:none}
+.news-card>*{position:relative;z-index:1}
+.news-label{
+  display:inline-flex;align-items:center;gap:8px;border-radius:999px;padding:8px 14px;
+  background:rgba(226,242,253,.82);border:1px solid rgba(33,119,171,.16);color:#135a91;
+  font-size:11px;font-weight:800;letter-spacing:.08em;box-shadow:inset 0 1px 0 rgba(255,255,255,.9);
 }
-#editais .edit-actions a::before,#painel-inicio .news-cta::before{content:"";position:absolute;z-index:-1;pointer-events:none;inset:1px 1px 52% 1px;border-radius:15px 15px 45% 45%;background:linear-gradient(180deg,rgba(255,255,255,.29),rgba(255,255,255,0))}
-#editais .edit-actions a:hover,#painel-inicio .news-cta:hover{transform:translateY(-2px)!important;filter:brightness(1.07);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.58),inset 0 -2px 5px rgba(0,0,0,.1),0 13px 26px rgba(27,67,109,.22)!important}
-#editais .edit-actions a:active,#painel-inicio .news-cta:active{transform:translateY(0)!important;filter:brightness(.97)}
-#editais .edit-actions a[data-edital-link],#editais .edit-actions a:nth-child(1){--glass-start:#3088d8;--glass-end:#13549d}
-#editais .edit-actions a[data-macro-link],#editais .edit-actions a:nth-child(2){--glass-start:#30ad83;--glass-end:#126d52}
-#editais .edit-actions a[data-insc-link],#editais .edit-actions a:nth-child(3){--glass-start:#e66b77;--glass-end:#b52f4a}
-#editais .edit-actions a[data-recurso-link]{--glass-start:#a66cdd;--glass-end:#6e38a7}
-#editais .edital-expand{border-radius:15px!important;border:1px solid rgba(255,255,255,.88)!important;background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(225,239,252,.9))!important;color:#15518c!important;box-shadow:inset 0 1px 0 #fff,0 6px 18px rgba(22,69,111,.12)!important;transition:transform .2s,box-shadow .2s}
-#editais .edital-expand:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 #fff,0 10px 22px rgba(22,69,111,.17)!important}
-#painel-inicio .news-cta{--glass-start:#3088d8;--glass-end:#13549d}
-#painel-inicio #noticias .news-carousel-controls>button{background:linear-gradient(145deg,rgba(255,255,255,.98),rgba(225,240,252,.91))!important;border:1px solid rgba(255,255,255,.96)!important;box-shadow:inset 0 1px 0 #fff,0 6px 20px rgba(20,68,115,.15)!important;color:#155a9c!important}
-#painel-inicio #noticias .news-carousel-controls>button:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 #fff,0 10px 23px rgba(20,68,115,.2)!important}
-#editais .edit-actions a:focus-visible,#painel-inicio .news-cta:focus-visible,#editais .edital-expand:focus-visible{outline:3px solid #f0b34e!important;outline-offset:3px}
-@media(max-width:600px){#painel-inicio #sobre .body-copy{padding:16px}#editais .edit-actions a{width:100%}}
-@media(prefers-reduced-motion:reduce){#editais .edit-actions a,#painel-inicio .news-cta,#painel-inicio #linhas .th{transition:none!important}}
-</style>
-<style id="pandora-motion-mobile-v2">
-/* Transições leves de páginas e notícias */
-@keyframes pandoraPanelEnter{from{opacity:0;transform:translate3d(0,12px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
-.tab-panel.active:not([hidden]){animation:pandoraPanelEnter .46s cubic-bezier(.22,1,.36,1) both}
-#noticias .news-carousel{isolation:isolate}
-#noticias .news-carousel .news-card.news-current{animation:pandoraFade .85s cubic-bezier(.22,1,.36,1) both!important}
-/* Tabelas: rolagem horizontal segura em telas pequenas, sem esmagar colunas */
-@media(max-width:780px){
- .tab-panel .tb{display:block;max-width:100%;overflow-x:auto!important;overflow-y:hidden;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain;border-radius:16px;scrollbar-width:thin;scrollbar-color:#9eb6d0 #eef3f9}
- .tab-panel .tb table{width:max-content!important;min-width:100%!important;table-layout:auto!important}
- #projetos .tb table{min-width:720px!important}
- #demais-pesquisas .tb table{min-width:750px!important}
- #publicacoes-lista table{min-width:850px!important}
- .tab-panel .tb th,.tab-panel .tb td{white-space:normal;min-width:115px;overflow-wrap:anywhere;line-height:1.5}
- .tab-panel .tb th:first-child,.tab-panel .tb td:first-child{min-width:95px}
- .tab-panel .tb th:nth-child(2),.tab-panel .tb td:nth-child(2){min-width:235px;max-width:360px}
- .tab-panel .tb::after{content:'Deslize a tabela para o lado para ver todas as colunas →';display:block;position:sticky;left:0;width:fit-content;max-width:100%;padding:8px 14px;font-size:11px;font-weight:650;color:#54718c;background:rgba(245,249,253,.94);border-radius:0 0 12px 12px}
- .tab-panel .tb thead th:first-child{border-top-left-radius:15px!important}
- .tab-panel .tb thead th:last-child{border-top-right-radius:15px!important}
+.news-label::before{content:"";width:7px;height:7px;border-radius:50%;background:#19a89e;box-shadow:0 0 0 3px rgba(25,168,158,.14)}
+.news-card h3{font-size:clamp(23px,3vw,33px);letter-spacing:-.03em;line-height:1.2;margin:20px 0 12px;color:var(--ink)}
+.news-card p{margin:0;color:var(--mut);line-height:1.8;max-width:740px}
+.news-meta{display:flex;gap:9px;flex-wrap:wrap;margin:22px 0}
+.news-meta span{background:rgba(246,250,254,.92);border:1px solid rgba(151,180,208,.5);border-radius:999px;padding:9px 13px;color:var(--ink2);font-size:12.5px;font-weight:700;box-shadow:inset 0 1px 0 #fff}
+
+/* Controles do carrossel (vidro) */
+.news-carousel-controls{
+  display:flex;align-items:center;justify-content:center;gap:16px;width:max-content;max-width:100%;
+  margin:18px auto 0;padding:9px 14px;border-radius:999px;
+  background:var(--glass-bg);border:1px solid var(--glass-brd);
+  -webkit-backdrop-filter:blur(20px) saturate(165%);backdrop-filter:blur(20px) saturate(165%);
+  box-shadow:var(--sh-md),inset 0 1px 0 rgba(255,255,255,.92);
 }
-@media(max-width:480px){.tab-panel .tb th,.tab-panel .tb td{padding:12px!important;font-size:12.5px}.tab-panel .tb td:nth-child(2){min-width:220px}}
-@media(prefers-reduced-motion:reduce){.tab-panel.active:not([hidden]),#noticias .news-carousel .news-card.news-current{animation:none!important}}
-</style><style id="pandora-unified-tab-motion">
-/* A mesma entrada suave da página Início em todas as abas */
-@keyframes pandoraUnifiedTab{0%{opacity:0;transform:translate3d(0,20px,0);filter:blur(5px)}100%{opacity:1;transform:translate3d(0,0,0);filter:blur(0)}}
-@keyframes pandoraUnifiedSection{0%{opacity:0;transform:translate3d(0,15px,0)}100%{opacity:1;transform:translate3d(0,0,0)}}
-.tab-panel.active:not([hidden]){animation:pandoraUnifiedTab .72s cubic-bezier(.2,.8,.2,1) both!important;will-change:opacity,transform}
-.tab-panel.active:not([hidden])>section{animation:pandoraUnifiedSection .7s cubic-bezier(.2,.8,.2,1) both}
-.tab-panel.active:not([hidden])>section:nth-child(2){animation-delay:.075s}
-.tab-panel.active:not([hidden])>section:nth-child(3){animation-delay:.14s}
-.tab-panel.active:not([hidden])>section:nth-child(4){animation-delay:.2s}
-@media(prefers-reduced-motion:reduce){.tab-panel.active:not([hidden]),.tab-panel.active:not([hidden])>section{animation:none!important;will-change:auto}}
-</style><style id="studio-html-buttons-dark">#studio-dock .studio-html-action{background:linear-gradient(145deg,#173d70,#09284f)!important;color:#fff!important;border:1px solid rgba(145,195,250,.55)!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.24),0 6px 18px rgba(8,37,76,.24)!important;text-shadow:0 1px 2px rgba(0,0,0,.15)}#studio-dock .studio-html-action:hover{background:linear-gradient(145deg,#245b99,#0e3565)!important;transform:translateY(-2px)}#studio-dock .studio-html-action .studio-icon{stroke:#fff!important;fill:none!important}section[id],#contato,#noticias{scroll-margin-top:95px}</style><style id="studio-schedule-designer-css">
-.studio-schedule-builder{grid-column:1/-1;border:1px solid #d5e3f3;border-radius:18px;padding:17px;background:linear-gradient(135deg,#f7fbff,#fff);min-width:0}
-.studio-schedule-builder h3{margin:0 0 6px;font-size:16px;color:#173c6b}
-.studio-schedule-tools{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
-.studio-schedule-tools button{border:1px solid #c8d9ec;background:#fff;border-radius:10px;padding:9px 12px;color:#184d83;font-weight:700;cursor:pointer}
-.studio-schedule-scroll{overflow-x:auto;max-width:100%;border:1px solid #dce6f2;border-radius:13px}
-#studio-schedule-table{width:100%;border-collapse:collapse;min-width:420px;background:white}
-#studio-schedule-table td,#studio-schedule-table th{border:1px solid #dce6f2;padding:6px;min-width:110px}
-#studio-schedule-table input{width:100%;min-width:90px;border:0!important;box-shadow:none!important;background:transparent!important;padding:9px!important;font:inherit}
-#studio-schedule-table th{background:#e8f1fa}
-.studio-schedule-style{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:12px}
-.studio-schedule-style[hidden]{display:none!important}
-.studio-schedule-style label{font-size:12px;display:grid;gap:5px}
-.studio-schedule-style input,.studio-schedule-style select{width:100%;border:1px solid #cfdeeb;border-radius:9px;padding:8px}
-#editais .studio-edital-schedule{margin:12px 0 24px;overflow-x:auto;border-radius:16px;border:1px solid #d9e5f1;background:#fff}
-#editais .studio-edital-schedule table{width:100%;border-collapse:separate;border-spacing:0;min-width:360px}
+.news-carousel-controls>button{
+  width:38px;height:38px;display:grid;place-items:center;border-radius:50%;padding:0;
+  border:1px solid rgba(255,255,255,.92);background:linear-gradient(160deg,rgba(255,255,255,.95),rgba(235,246,253,.8));
+  color:#1c5c94;font-size:22px;line-height:1;cursor:pointer;
+  box-shadow:var(--sh-sm),inset 0 1px 0 #fff;
+  transition:transform .2s var(--spring),box-shadow .2s,background .2s;
+}
+.news-carousel-controls>button:hover{transform:scale(1.08);background:#e8f3fc}
+.news-carousel-controls .news-dots{display:flex;align-items:center;gap:9px}
+.news-dots button{width:8px;height:8px;border-radius:999px;border:0;padding:0;background:#c3d3e2;cursor:pointer;transition:width .25s var(--ease),background .25s}
+.news-dots button[aria-current="true"]{width:24px;background:linear-gradient(90deg,#1977b4,#22b1a2)}
+
+/* ---------- Botões ---------- */
+.news-cta,.edit-button,.studio-add{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  min-height:46px;padding:12px 22px;border-radius:999px;
+  font-size:14px;font-weight:750;line-height:1.2;text-decoration:none;cursor:pointer;white-space:nowrap;
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .22s var(--spring),box-shadow .22s var(--ease),filter .22s;
+}
+.news-cta:active,.edit-button:active,.studio-add:active{transform:translateY(0) scale(.97)}
+.edit-button.primary,.news-cta,.studio-add{
+  --g1:#2f80c2;--g2:#11518f;color:#fff;border:1px solid rgba(255,255,255,.55);
+  background:
+    linear-gradient(165deg,rgba(255,255,255,.34) 0,rgba(255,255,255,.06) 42%,rgba(255,255,255,0) 55%),
+    linear-gradient(145deg,var(--g1),var(--g2));
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.65),inset 0 -2px 5px rgba(6,34,64,.18),0 10px 24px rgba(17,81,143,.28);
+  text-shadow:0 1px 2px rgba(4,24,44,.22);
+}
+.edit-button.secondary{--g1:#1b4a75;--g2:#0c2c4d;color:#fff;border:1px solid rgba(255,255,255,.5);
+  background:linear-gradient(165deg,rgba(255,255,255,.28) 0,rgba(255,255,255,.04) 46%,rgba(255,255,255,0) 58%),linear-gradient(145deg,var(--g1),var(--g2));
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.5),inset 0 -2px 5px rgba(4,22,42,.2),0 10px 24px rgba(12,44,77,.3);
+  text-shadow:0 1px 2px rgba(2,16,32,.24);
+}
+.news-cta:hover,.edit-button:hover,.studio-add:hover{transform:translateY(-2px);filter:brightness(1.06)}
+.news-cta span[aria-hidden]{display:inline-grid;place-items:center;width:24px;height:24px;border-radius:50%;background:rgba(255,255,255,.16)}
+.table-action,.section-shortcuts a,.edital-expand{
+  display:inline-flex;align-items:center;gap:8px;min-height:38px;padding:9px 15px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.92);background:linear-gradient(170deg,rgba(255,255,255,.94),rgba(234,245,253,.75));
+  color:#14568f;font-size:12.5px;font-weight:700;text-decoration:none;cursor:pointer;white-space:nowrap;
+  box-shadow:var(--sh-sm),inset 0 1px 0 #fff;
+  transition:transform .2s var(--spring),box-shadow .2s;
+}
+.table-action:hover,.section-shortcuts a:hover,.edital-expand:hover{transform:translateY(-2px);box-shadow:var(--sh-md),inset 0 1px 0 #fff}
+.table-action:disabled{opacity:.55;cursor:not-allowed;transform:none}
+.section-shortcuts{display:flex;flex-wrap:wrap;gap:9px;margin:0 0 20px}
+
+/* ---------- Editais ---------- */
+#editais .call-edit{max-width:950px;margin:0 auto 26px;padding:clamp(22px,4.5vw,44px)}
+.edit-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.edit-badge{
+  display:inline-flex;align-items:center;background:linear-gradient(145deg,#1d6db1,#12508c);color:#fff;
+  font-size:11px;font-weight:800;letter-spacing:.06em;padding:8px 13px;border-radius:999px;
+  border:1px solid rgba(255,255,255,.4);box-shadow:0 4px 12px rgba(20,87,164,.22);
+}
+.edit-status{display:inline-flex;align-items:center;gap:7px;font-size:12px;font-weight:750;color:#16724c;background:#e9f7f0;border:1px solid #cdebdc;padding:7px 12px;border-radius:999px}
+.edit-status i{width:7px;height:7px;background:#2e9a5f;border-radius:50%}
+.studio-ended .edit-status,.edital-closed-head .edit-status{background:#f0f3f7;color:#64758b;border-color:#e0e7ed}
+.studio-ended .edit-status i{background:#8995a6}
+.edit-kicker{margin:18px 0 4px;color:var(--blue);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.call-edit>h3{font-size:clamp(24px,3.4vw,34px);letter-spacing:-.03em;line-height:1.2;color:var(--ink);margin:8px 0 12px}
+.edit-intro{font-size:15.5px;color:var(--mut);max-width:730px;margin:0 0 6px}
+.call-edit h4{margin:26px 0 12px;font-size:16px}
+.vacancy-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:14px 0 8px}
+.vacancy-list p{margin:0;color:var(--mut)}
+.vacancy-list>div{
+  display:flex;align-items:center;gap:12px;min-width:0;padding:15px 16px;margin:0;
+  border:1px solid rgba(255,255,255,.92);border-radius:18px;
+  background:linear-gradient(160deg,rgba(255,255,255,.95),rgba(238,247,255,.82));
+  box-shadow:var(--sh-sm),inset 0 1px 0 #fff;
+}
+.vacancy-list>div>span:nth-child(2){display:flex;flex-direction:column;gap:3px;flex:1;min-width:0}
+.vacancy-list b{font-size:14.5px;color:var(--ink)}
+.vacancy-list small{display:block;font-size:12px;color:var(--mut)}
+.vacancy-list strong{font-size:13px;font-weight:800;white-space:nowrap;color:#144e86}
+.vacancy-dot{width:10px;height:40px;border-radius:8px;flex:0 0 10px}
+.vacancy-dot.ted{background:var(--ted)}.vacancy-dot.gio{background:var(--gio)}.vacancy-dot.cts{background:var(--cts)}.vacancy-dot.ext{background:var(--ext)}
+.timeline{display:grid;margin:8px 0 24px}
+.timeline>div{display:flex;gap:13px;align-items:flex-start;padding:10px 0}
+.timeline-icon{display:grid;place-items:center;flex:0 0 34px;height:34px;border-radius:11px;background:rgba(228,241,252,.9);border:1px solid rgba(255,255,255,.9);color:var(--blue);font-size:12px;font-weight:800;box-shadow:inset 0 1px 0 #fff}
+.timeline>div>div{display:flex;flex-direction:column;gap:3px;padding-top:1px}
+.timeline b{font-size:14px;color:var(--ink)}
+.timeline span:not(.timeline-icon){font-size:13px;line-height:1.5;color:var(--mut)}
+.edit-notice{background:rgba(243,248,253,.92);border:1px solid rgba(151,180,208,.5);border-radius:18px;padding:18px 20px;margin:20px 0;color:var(--ink2)}
+.edit-notice>b{color:var(--ink);font-size:15px}
+.edit-notice p{font-size:13px;line-height:1.65;margin:10px 0 0}
+.edit-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.edit-actions .edit-button{min-width:200px}
+#editais .edit-actions a{
+  --g1:#2f80c2;--g2:#11518f;color:#fff;font-weight:750;text-decoration:none;border-radius:999px;
+  border:1px solid rgba(255,255,255,.5);
+  background:linear-gradient(165deg,rgba(255,255,255,.3) 0,rgba(255,255,255,.05) 44%,rgba(255,255,255,0) 56%),linear-gradient(145deg,var(--g1),var(--g2));
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.6),inset 0 -2px 5px rgba(6,34,64,.16),0 9px 22px rgba(17,81,143,.26);
+  text-shadow:0 1px 2px rgba(4,24,44,.2);
+  transition:transform .2s var(--spring),box-shadow .2s var(--ease),filter .2s;
+}
+#editais .edit-actions a:hover{transform:translateY(-2px);filter:brightness(1.07);box-shadow:inset 0 1.5px 0 rgba(255,255,255,.7),0 13px 26px rgba(17,81,143,.3)}
+#editais .edit-actions a:nth-child(1){--g1:#3088d8;--g2:#13549d}
+#editais .edit-actions a:nth-child(2){--g1:#2ba97f;--g2:#12704f}
+#editais .edit-actions a:nth-child(3){--g1:#e66b77;--g2:#b52f4a}
+#editais .edit-actions a[data-edital-link]{--g1:#3088d8;--g2:#13549d}
+#editais .edit-actions a[data-macro-link]{--g1:#2ba97f;--g2:#12704f}
+#editais .edit-actions a[data-insc-link]{--g1:#e66b77;--g2:#b52f4a}
+#editais .edit-actions a[data-recurso-link]{--g1:#a66cdd;--g2:#6e38a7}
+.edit-footnote{border-top:1px solid rgba(151,180,208,.5);padding-top:14px;margin:24px 0 0;color:#6a788b;font-size:11.5px;line-height:1.6}
+/* Edital encerrado (recolhido) */
+#editais article.call-edit[data-status="Encerrado"]{padding:0;overflow:hidden}
+.edital-closed-head{padding:22px clamp(20px,4vw,36px);display:flex;align-items:center;justify-content:space-between;gap:14px;flex-wrap:wrap}
+.edital-closed-head h3{font-size:19px;margin:8px 0 0}
+.edital-closed-body{padding:6px clamp(20px,4vw,36px) 26px;border-top:1px solid rgba(151,180,208,.45)}
+.studio-ended{opacity:.88}
+/* Recursos */
+.studio-appeal-slot:not(:empty){margin-top:22px;padding:18px;border-radius:16px;background:rgba(240,247,255,.85);border:1px solid rgba(203,223,243,.9)}
+.studio-appeal-button{
+  display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px 20px;border-radius:999px;
+  background:linear-gradient(145deg,#347dd6 0%,#145d9b 72%,#0b467b 100%);color:#fff;font-weight:800;text-decoration:none;
+  border:1px solid rgba(255,255,255,.55);box-shadow:inset 0 1px 0 rgba(255,255,255,.55),0 8px 22px rgba(13,71,130,.22);
+  transition:transform .2s var(--spring),box-shadow .2s;
+}
+.studio-appeal-button:hover{transform:translateY(-2px);box-shadow:inset 0 1px 0 rgba(255,255,255,.65),0 12px 26px rgba(13,71,130,.28)}
+.studio-appeal-hint{font-size:12px;color:var(--mut);margin:10px 0 0}
+
+/* ---------- Publicações ---------- */
+.pub-intro{text-align:center;color:var(--mut);max-width:700px;margin:0 auto 22px}
+#pub-count{margin:2px 0 16px;color:var(--mut);font-weight:650;text-align:center}
+.pub-filters{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:20px 0 16px;
+  padding:clamp(16px,2.6vw,24px);border-radius:24px;
+  background:var(--glass-bg);border:1px solid var(--glass-brd);
+  -webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);
+  box-shadow:var(--sh-md),inset 0 1px 0 rgba(255,255,255,.92);
+}
+.pub-filters label{display:flex;flex-direction:column;gap:7px;font-weight:750;font-size:12px;color:#2c4a68}
+.pub-filters input,.pub-filters select{
+  width:100%;min-width:0;min-height:46px;border:1px solid #c9d9e9;border-radius:14px;padding:11px 14px;
+  background:linear-gradient(180deg,#fff,#f7fbff);color:#1c3b5c;font-size:14px;
+  box-shadow:inset 0 1px 0 #fff,0 2px 5px rgba(22,62,104,.05);
+  transition:border-color .2s,box-shadow .2s;
+}
+.pub-filters select{
+  appearance:none;-webkit-appearance:none;padding-right:38px;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%234b7195' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E"),linear-gradient(180deg,#fff,#f7fbff);
+  background-repeat:no-repeat;background-position:right 14px center,center;
+}
+.pub-filters input:hover,.pub-filters select:hover{border-color:#a6c8e7}
+.pub-filters input:focus-visible,.pub-filters select:focus-visible{outline:none;border-color:#529cda;box-shadow:0 0 0 4px rgba(46,138,211,.14),inset 0 1px 0 #fff}
+
+/* ---------- Tabelas ---------- */
+.tb{
+  overflow-x:auto;border:1px solid rgba(255,255,255,.88);border-radius:20px;
+  background:rgba(255,255,255,.84);box-shadow:var(--sh-md),inset 0 1px 0 rgba(255,255,255,.92);
+}
+table{border-collapse:separate;border-spacing:0;width:100%;font-size:14px}
+.data-list{min-width:720px}
+#publicacoes-lista table{min-width:820px}
+thead th{
+  background:linear-gradient(105deg,#134a76,#1c65a2);color:#fff;font-weight:750;letter-spacing:.02em;
+  padding:15px 18px;text-align:left;vertical-align:middle;border-right:1px solid rgba(255,255,255,.14);
+}
+thead th:first-child{border-top-left-radius:19px}
+thead th:last-child{border-top-right-radius:19px;border-right:0}
+tbody td{padding:14px 18px;border-bottom:1px solid #e6eef6;color:var(--ink2);vertical-align:middle;text-align:left}
+tbody tr:nth-child(even){background:rgba(240,248,253,.6)}
+tbody tr:hover{background:rgba(228,242,252,.75)}
+tbody tr:last-child td{border-bottom:0}
+td .tag{margin:0}
+/* Cronograma dos editais */
+#editais .studio-edital-schedule{margin:14px 0 24px;overflow-x:auto;border:1px solid rgba(151,180,208,.55);border-radius:16px;background:rgba(255,255,255,.94)}
+#editais .studio-edital-schedule table{min-width:360px}
 #editais .studio-edital-schedule th,#editais .studio-edital-schedule td{padding:13px 16px;text-align:left;border-right:1px solid #e5edf5;border-bottom:1px solid #e5edf5;white-space:pre-wrap}
 #editais .studio-edital-schedule th{background:#eaf2fa;color:#173c6b;font-weight:800}
 #editais .studio-edital-schedule tr:last-child>*{border-bottom:0}
 #editais .studio-edital-schedule tr>*:last-child{border-right:0}
 #editais .studio-edital-schedule tbody tr:nth-child(even){background:#f7fafd}
 #editais .studio-edital-schedule[data-custom-style] th,#editais .studio-edital-schedule[data-custom-style] td{padding:var(--sched-padding,13px);color:var(--sched-color,#233b55);font-size:var(--sched-font,14px)}
-</style><style id="pandora-liquid-glass-unified">
-/* PANDORA · Liquid Glass unificado nos botões + tabelas em cartões no celular */
-html:not(#_a):not(#_b):not(#_c) .tab,html:not(#_a):not(#_b):not(#_c) .edit-button.secondary,html:not(#_a):not(#_b):not(#_c) .edital-expand,html:not(#_a):not(#_b):not(#_c) .edital-closed-head button,html:not(#_a):not(#_b):not(#_c) .table-action,html:not(#_a):not(#_b):not(#_c) .section-shortcuts a,html:not(#_a):not(#_b):not(#_c) .news-carousel-controls>button,html:not(#_a):not(#_b):not(#_c) #studio-dock button,html:not(#_a):not(#_b):not(#_c) .studio-actions button,html:not(#_a):not(#_b):not(#_c) .studio-row-actions button,html:not(#_a):not(#_b):not(#_c) .studio-tools button,html:not(#_a):not(#_b):not(#_c) .studio-schedule-tools button,html:not(#_a):not(#_b):not(#_c) .studio-x,html:not(#_a):not(#_b):not(#_c) #studio-copy-overlay button,html:not(#_a):not(#_b):not(#_c) .news-cta,html:not(#_a):not(#_b):not(#_c) .edit-button.primary,html:not(#_a):not(#_b):not(#_c) .edit-actions a.edit-button,html:not(#_a):not(#_b):not(#_c) .studio-actions .primary,html:not(#_a):not(#_b):not(#_c) #studio-dock .main-action,html:not(#_a):not(#_b):not(#_c) #studio-dock .studio-html-action,html:not(#_a):not(#_b):not(#_c) .studio-add,html:not(#_a):not(#_b):not(#_c) .studio-appeal-button,html:not(#_a):not(#_b):not(#_c) #studio-copy-overlay button:first-child,html:not(#_a):not(#_b):not(#_c) .tab.active,html:not(#_a):not(#_b):not(#_c) .tab[aria-selected=true],html:not(#_a):not(#_b):not(#_c) .studio-actions .danger{position:relative!important;display:inline-flex!important;align-items:center!important;justify-content:center!important;gap:8px!important;min-height:44px!important;padding:11px 20px!important;border-radius:999px!important;font-family:inherit!important;font-weight:700!important;font-size:14px!important;line-height:1.2!important;text-decoration:none!important;white-space:nowrap!important;cursor:pointer!important;-webkit-backdrop-filter:blur(14px) saturate(180%)!important;backdrop-filter:blur(14px) saturate(180%)!important;transition:transform .25s cubic-bezier(.3,1.4,.5,1),box-shadow .25s ease,filter .25s ease!important;-webkit-tap-highlight-color:transparent!important}
-html:not(#_a):not(#_b):not(#_c) .tab,html:not(#_a):not(#_b):not(#_c) .edit-button.secondary,html:not(#_a):not(#_b):not(#_c) .edital-expand,html:not(#_a):not(#_b):not(#_c) .edital-closed-head button,html:not(#_a):not(#_b):not(#_c) .table-action,html:not(#_a):not(#_b):not(#_c) .section-shortcuts a,html:not(#_a):not(#_b):not(#_c) .news-carousel-controls>button,html:not(#_a):not(#_b):not(#_c) #studio-dock button,html:not(#_a):not(#_b):not(#_c) .studio-actions button,html:not(#_a):not(#_b):not(#_c) .studio-row-actions button,html:not(#_a):not(#_b):not(#_c) .studio-tools button,html:not(#_a):not(#_b):not(#_c) .studio-schedule-tools button,html:not(#_a):not(#_b):not(#_c) .studio-x,html:not(#_a):not(#_b):not(#_c) #studio-copy-overlay button{color:#14518c!important;text-shadow:none!important;border:1px solid rgba(255,255,255,.9)!important;background:linear-gradient(180deg,rgba(255,255,255,.96),rgba(255,255,255,.5)),linear-gradient(145deg,rgba(214,232,251,.85),rgba(236,245,254,.6))!important;box-shadow:inset 0 1.5px 0 #fff,inset 0 -2px 4px rgba(40,100,160,.12),0 0 0 1px rgba(23,100,160,.15),0 6px 16px rgba(25,70,115,.12)!important}
-html:not(#_a):not(#_b):not(#_c) .tab:hover,html:not(#_a):not(#_b):not(#_c) .edit-button.secondary:hover,html:not(#_a):not(#_b):not(#_c) .edital-expand:hover,html:not(#_a):not(#_b):not(#_c) .edital-closed-head button:hover,html:not(#_a):not(#_b):not(#_c) .table-action:hover,html:not(#_a):not(#_b):not(#_c) .section-shortcuts a:hover,html:not(#_a):not(#_b):not(#_c) .news-carousel-controls>button:hover,html:not(#_a):not(#_b):not(#_c) #studio-dock button:hover,html:not(#_a):not(#_b):not(#_c) .studio-actions button:hover,html:not(#_a):not(#_b):not(#_c) .studio-row-actions button:hover,html:not(#_a):not(#_b):not(#_c) .studio-tools button:hover,html:not(#_a):not(#_b):not(#_c) .studio-schedule-tools button:hover,html:not(#_a):not(#_b):not(#_c) .studio-x:hover,html:not(#_a):not(#_b):not(#_c) #studio-copy-overlay button:hover{transform:translateY(-2px)!important;filter:brightness(1.03)!important;box-shadow:inset 0 1.5px 0 #fff,inset 0 -2px 4px rgba(40,100,160,.14),0 0 0 1px rgba(23,100,160,.24),0 12px 24px rgba(25,70,115,.18)!important}
-html:not(#_a):not(#_b):not(#_c) .news-cta,html:not(#_a):not(#_b):not(#_c) .edit-button.primary,html:not(#_a):not(#_b):not(#_c) .edit-actions a.edit-button,html:not(#_a):not(#_b):not(#_c) .studio-actions .primary,html:not(#_a):not(#_b):not(#_c) #studio-dock .main-action,html:not(#_a):not(#_b):not(#_c) #studio-dock .studio-html-action,html:not(#_a):not(#_b):not(#_c) .studio-add,html:not(#_a):not(#_b):not(#_c) .studio-appeal-button,html:not(#_a):not(#_b):not(#_c) #studio-copy-overlay button:first-child,html:not(#_a):not(#_b):not(#_c) .tab.active,html:not(#_a):not(#_b):not(#_c) .tab[aria-selected=true],html:not(#_a):not(#_b):not(#_c) .studio-actions .danger{--g1:var(--glass-start,#3a8fe0)!important;--g2:var(--glass-end,#1259a3)!important;color:#fff!important;text-shadow:0 1px 2px rgba(0,0,0,.2)!important;border:1px solid rgba(255,255,255,.5)!important;background:linear-gradient(180deg,rgba(255,255,255,.42) 0,rgba(255,255,255,.08) 46%,rgba(255,255,255,0) 50%),linear-gradient(145deg,color-mix(in srgb,var(--g1) 92%,transparent),color-mix(in srgb,var(--g2) 95%,transparent))!important;box-shadow:inset 0 1.5px 0 rgba(255,255,255,.75),inset 0 -2px 4px rgba(0,0,0,.16),0 10px 22px color-mix(in srgb,var(--g2) 30%,transparent),0 2px 5px rgba(20,50,90,.12)!important}
-html:not(#_a):not(#_b):not(#_c) #studio-dock .main-action,html:not(#_a):not(#_b):not(#_c) #studio-dock .studio-html-action{--g1:#2b66a8!important;--g2:#0a2a55!important}
-html:not(#_a):not(#_b):not(#_c) .studio-actions .danger{--g1:#e66b77!important;--g2:#b52f4a!important}
-html:not(#_a):not(#_b):not(#_c) .news-cta:hover,html:not(#_a):not(#_b):not(#_c) .edit-button.primary:hover,html:not(#_a):not(#_b):not(#_c) .edit-actions a.edit-button:hover,html:not(#_a):not(#_b):not(#_c) .studio-actions .primary:hover,html:not(#_a):not(#_b):not(#_c) #studio-dock .main-action:hover,html:not(#_a):not(#_b):not(#_c) #studio-dock .studio-html-action:hover,html:not(#_a):not(#_b):not(#_c) .studio-add:hover,html:not(#_a):not(#_b):not(#_c) .studio-appeal-button:hover,html:not(#_a):not(#_b):not(#_c) #studio-copy-overlay button:first-child:hover,html:not(#_a):not(#_b):not(#_c) .tab.active:hover,html:not(#_a):not(#_b):not(#_c) .tab[aria-selected=true]:hover,html:not(#_a):not(#_b):not(#_c) .studio-actions .danger:hover{transform:translateY(-2px)!important;filter:brightness(1.08) saturate(1.05)!important;box-shadow:inset 0 1.5px 0 rgba(255,255,255,.85),inset 0 -2px 4px rgba(0,0,0,.14),0 15px 28px color-mix(in srgb,var(--g2) 38%,transparent),0 3px 7px rgba(20,50,90,.14)!important}
-html:not(#_a):not(#_b):not(#_c) .tab:active,html:not(#_a):not(#_b):not(#_c) .edit-button.secondary:active,html:not(#_a):not(#_b):not(#_c) .edital-expand:active,html:not(#_a):not(#_b):not(#_c) .edital-closed-head button:active,html:not(#_a):not(#_b):not(#_c) .table-action:active,html:not(#_a):not(#_b):not(#_c) .section-shortcuts a:active,html:not(#_a):not(#_b):not(#_c) .news-carousel-controls>button:active,html:not(#_a):not(#_b):not(#_c) #studio-dock button:active,html:not(#_a):not(#_b):not(#_c) .studio-actions button:active,html:not(#_a):not(#_b):not(#_c) .studio-row-actions button:active,html:not(#_a):not(#_b):not(#_c) .studio-tools button:active,html:not(#_a):not(#_b):not(#_c) .studio-schedule-tools button:active,html:not(#_a):not(#_b):not(#_c) .studio-x:active,html:not(#_a):not(#_b):not(#_c) #studio-copy-overlay button:active,html:not(#_a):not(#_b):not(#_c) .news-cta:active,html:not(#_a):not(#_b):not(#_c) .edit-button.primary:active,html:not(#_a):not(#_b):not(#_c) .edit-actions a.edit-button:active,html:not(#_a):not(#_b):not(#_c) .studio-actions .primary:active,html:not(#_a):not(#_b):not(#_c) #studio-dock .main-action:active,html:not(#_a):not(#_b):not(#_c) #studio-dock .studio-html-action:active,html:not(#_a):not(#_b):not(#_c) .studio-add:active,html:not(#_a):not(#_b):not(#_c) .studio-appeal-button:active,html:not(#_a):not(#_b):not(#_c) #studio-copy-overlay button:first-child:active,html:not(#_a):not(#_b):not(#_c) .tab.active:active,html:not(#_a):not(#_b):not(#_c) .tab[aria-selected=true]:active,html:not(#_a):not(#_b):not(#_c) .studio-actions .danger:active{transform:scale(.96)!important;filter:brightness(.97)!important}
-html:not(#_a):not(#_b):not(#_c) .tab:focus-visible,html:not(#_a):not(#_b):not(#_c) .edit-button.secondary:focus-visible,html:not(#_a):not(#_b):not(#_c) .edital-expand:focus-visible,html:not(#_a):not(#_b):not(#_c) .edital-closed-head button:focus-visible,html:not(#_a):not(#_b):not(#_c) .table-action:focus-visible,html:not(#_a):not(#_b):not(#_c) .section-shortcuts a:focus-visible,html:not(#_a):not(#_b):not(#_c) .news-carousel-controls>button:focus-visible,html:not(#_a):not(#_b):not(#_c) #studio-dock button:focus-visible,html:not(#_a):not(#_b):not(#_c) .studio-actions button:focus-visible,html:not(#_a):not(#_b):not(#_c) .studio-row-actions button:focus-visible,html:not(#_a):not(#_b):not(#_c) .studio-tools button:focus-visible,html:not(#_a):not(#_b):not(#_c) .studio-schedule-tools button:focus-visible,html:not(#_a):not(#_b):not(#_c) .studio-x:focus-visible,html:not(#_a):not(#_b):not(#_c) #studio-copy-overlay button:focus-visible,html:not(#_a):not(#_b):not(#_c) .news-cta:focus-visible,html:not(#_a):not(#_b):not(#_c) .edit-button.primary:focus-visible,html:not(#_a):not(#_b):not(#_c) .edit-actions a.edit-button:focus-visible,html:not(#_a):not(#_b):not(#_c) .studio-actions .primary:focus-visible,html:not(#_a):not(#_b):not(#_c) #studio-dock .main-action:focus-visible,html:not(#_a):not(#_b):not(#_c) #studio-dock .studio-html-action:focus-visible,html:not(#_a):not(#_b):not(#_c) .studio-add:focus-visible,html:not(#_a):not(#_b):not(#_c) .studio-appeal-button:focus-visible,html:not(#_a):not(#_b):not(#_c) #studio-copy-overlay button:first-child:focus-visible,html:not(#_a):not(#_b):not(#_c) .tab.active:focus-visible,html:not(#_a):not(#_b):not(#_c) .tab[aria-selected=true]:focus-visible,html:not(#_a):not(#_b):not(#_c) .studio-actions .danger:focus-visible{outline:3px solid #e9ac41!important;outline-offset:3px!important}
-html:not(#_a):not(#_b):not(#_c) .tab:disabled,html:not(#_a):not(#_b):not(#_c) .edit-button.secondary:disabled,html:not(#_a):not(#_b):not(#_c) .edital-expand:disabled,html:not(#_a):not(#_b):not(#_c) .edital-closed-head button:disabled,html:not(#_a):not(#_b):not(#_c) .table-action:disabled,html:not(#_a):not(#_b):not(#_c) .section-shortcuts a:disabled,html:not(#_a):not(#_b):not(#_c) .news-carousel-controls>button:disabled,html:not(#_a):not(#_b):not(#_c) #studio-dock button:disabled,html:not(#_a):not(#_b):not(#_c) .studio-actions button:disabled,html:not(#_a):not(#_b):not(#_c) .studio-row-actions button:disabled,html:not(#_a):not(#_b):not(#_c) .studio-tools button:disabled,html:not(#_a):not(#_b):not(#_c) .studio-schedule-tools button:disabled,html:not(#_a):not(#_b):not(#_c) .studio-x:disabled,html:not(#_a):not(#_b):not(#_c) #studio-copy-overlay button:disabled,html:not(#_a):not(#_b):not(#_c) .news-cta:disabled,html:not(#_a):not(#_b):not(#_c) .edit-button.primary:disabled,html:not(#_a):not(#_b):not(#_c) .edit-actions a.edit-button:disabled,html:not(#_a):not(#_b):not(#_c) .studio-actions .primary:disabled,html:not(#_a):not(#_b):not(#_c) #studio-dock .main-action:disabled,html:not(#_a):not(#_b):not(#_c) #studio-dock .studio-html-action:disabled,html:not(#_a):not(#_b):not(#_c) .studio-add:disabled,html:not(#_a):not(#_b):not(#_c) .studio-appeal-button:disabled,html:not(#_a):not(#_b):not(#_c) #studio-copy-overlay button:first-child:disabled,html:not(#_a):not(#_b):not(#_c) .tab.active:disabled,html:not(#_a):not(#_b):not(#_c) .tab[aria-selected=true]:disabled,html:not(#_a):not(#_b):not(#_c) .studio-actions .danger:disabled{opacity:.55!important;cursor:not-allowed!important;transform:none!important}
-html:not(#_a):not(#_b):not(#_c) #studio-dock button,html:not(#_a):not(#_b):not(#_c) .studio-actions button,html:not(#_a):not(#_b):not(#_c) .studio-row-actions button,html:not(#_a):not(#_b):not(#_c) .studio-tools button,html:not(#_a):not(#_b):not(#_c) .studio-schedule-tools button,html:not(#_a):not(#_b):not(#_c) .studio-add,html:not(#_a):not(#_b):not(#_c) #studio-copy-overlay button{min-height:38px!important;padding:8px 15px!important;font-size:12px!important}
-html:not(#_a):not(#_b):not(#_c) .table-action,html:not(#_a):not(#_b):not(#_c) .section-shortcuts a{min-height:36px!important;padding:8px 15px!important;font-size:12px!important}
-html:not(#_a):not(#_b):not(#_c) .news-carousel-controls>button,html:not(#_a):not(#_b):not(#_c) .studio-x{width:42px!important;min-height:42px!important;height:42px!important;padding:0!important;border-radius:50%!important;font-size:20px!important}
-html:not(#_a):not(#_b):not(#_c) .edital-expand,html:not(#_a):not(#_b):not(#_c) .edital-closed-head button{white-space:normal!important}
-@media(max-width:650px){html:not(#_a):not(#_b):not(#_c) .tab{min-height:40px!important;padding:9px 14px!important;font-size:13px!important}}
-@media(prefers-reduced-motion:reduce){html:not(#_a):not(#_b):not(#_c) .tab,html:not(#_a):not(#_b):not(#_c) .edit-button.secondary,html:not(#_a):not(#_b):not(#_c) .edital-expand,html:not(#_a):not(#_b):not(#_c) .edital-closed-head button,html:not(#_a):not(#_b):not(#_c) .table-action,html:not(#_a):not(#_b):not(#_c) .section-shortcuts a,html:not(#_a):not(#_b):not(#_c) .news-carousel-controls>button,html:not(#_a):not(#_b):not(#_c) #studio-dock button,html:not(#_a):not(#_b):not(#_c) .studio-actions button,html:not(#_a):not(#_b):not(#_c) .studio-row-actions button,html:not(#_a):not(#_b):not(#_c) .studio-tools button,html:not(#_a):not(#_b):not(#_c) .studio-schedule-tools button,html:not(#_a):not(#_b):not(#_c) .studio-x,html:not(#_a):not(#_b):not(#_c) #studio-copy-overlay button,html:not(#_a):not(#_b):not(#_c) .news-cta,html:not(#_a):not(#_b):not(#_c) .edit-button.primary,html:not(#_a):not(#_b):not(#_c) .edit-actions a.edit-button,html:not(#_a):not(#_b):not(#_c) .studio-actions .primary,html:not(#_a):not(#_b):not(#_c) #studio-dock .main-action,html:not(#_a):not(#_b):not(#_c) #studio-dock .studio-html-action,html:not(#_a):not(#_b):not(#_c) .studio-add,html:not(#_a):not(#_b):not(#_c) .studio-appeal-button,html:not(#_a):not(#_b):not(#_c) #studio-copy-overlay button:first-child,html:not(#_a):not(#_b):not(#_c) .tab.active,html:not(#_a):not(#_b):not(#_c) .tab[aria-selected=true],html:not(#_a):not(#_b):not(#_c) .studio-actions .danger{transition:none!important}}
-@media(prefers-reduced-transparency:reduce){html:not(#_a):not(#_b):not(#_c) .tab,html:not(#_a):not(#_b):not(#_c) .edit-button.secondary,html:not(#_a):not(#_b):not(#_c) .edital-expand,html:not(#_a):not(#_b):not(#_c) .edital-closed-head button,html:not(#_a):not(#_b):not(#_c) .table-action,html:not(#_a):not(#_b):not(#_c) .section-shortcuts a,html:not(#_a):not(#_b):not(#_c) .news-carousel-controls>button,html:not(#_a):not(#_b):not(#_c) #studio-dock button,html:not(#_a):not(#_b):not(#_c) .studio-actions button,html:not(#_a):not(#_b):not(#_c) .studio-row-actions button,html:not(#_a):not(#_b):not(#_c) .studio-tools button,html:not(#_a):not(#_b):not(#_c) .studio-schedule-tools button,html:not(#_a):not(#_b):not(#_c) .studio-x,html:not(#_a):not(#_b):not(#_c) #studio-copy-overlay button,html:not(#_a):not(#_b):not(#_c) .news-cta,html:not(#_a):not(#_b):not(#_c) .edit-button.primary,html:not(#_a):not(#_b):not(#_c) .edit-actions a.edit-button,html:not(#_a):not(#_b):not(#_c) .studio-actions .primary,html:not(#_a):not(#_b):not(#_c) #studio-dock .main-action,html:not(#_a):not(#_b):not(#_c) #studio-dock .studio-html-action,html:not(#_a):not(#_b):not(#_c) .studio-add,html:not(#_a):not(#_b):not(#_c) .studio-appeal-button,html:not(#_a):not(#_b):not(#_c) #studio-copy-overlay button:first-child,html:not(#_a):not(#_b):not(#_c) .tab.active,html:not(#_a):not(#_b):not(#_c) .tab[aria-selected=true],html:not(#_a):not(#_b):not(#_c) .studio-actions .danger{-webkit-backdrop-filter:none!important;backdrop-filter:none!important}}
+
+/* ---------- Contato e rodapé ---------- */
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+.contact-item{padding:24px;transition:transform .25s var(--spring),box-shadow .25s var(--ease)}
+.contact-item:hover{transform:translateY(-3px);box-shadow:var(--sh-lg),inset 0 1px 0 rgba(255,255,255,.95)}
+.contact-item b{color:var(--ink)}
+.contact-item a{color:var(--blue);font-weight:750;text-decoration:none}
+.contact-item a:hover{text-decoration:underline}
+.contact-icon{
+  display:inline-grid;place-items:center;width:38px;height:38px;border-radius:13px;margin-bottom:8px;
+  background:linear-gradient(140deg,rgba(255,255,255,.95),rgba(224,240,252,.85));
+  border:1px solid rgba(255,255,255,.95);color:var(--blue);font-size:19px;
+  box-shadow:0 5px 18px rgba(30,83,135,.14),inset 0 1px 0 #fff;
+}
+.site-footer{
+  text-align:center;padding:26px 20px calc(32px + env(safe-area-inset-bottom,0px));
+  font-size:13px;color:var(--mut);
+  background:linear-gradient(180deg,rgba(255,255,255,.5),rgba(255,255,255,.16));
+  border-top:1px solid rgba(255,255,255,.7);
+}
+.site-footer .rb{height:4px;max-width:1000px;margin:0 auto 18px}
+
+/* ============================================================
+   PANDORA STUDIO — chrome do editor
+   ============================================================ */
+#studio-dock{
+  position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom,0px));
+  z-index:99990;display:flex;align-items:center;gap:6px;max-width:calc(100vw - 20px);
+  overflow-x:auto;padding:9px 11px;border-radius:22px;scrollbar-width:none;
+  background:var(--glass-bg);border:1px solid var(--glass-brd);
+  -webkit-backdrop-filter:blur(26px) saturate(175%);backdrop-filter:blur(26px) saturate(175%);
+  box-shadow:var(--sh-lg),inset 0 1px 0 rgba(255,255,255,.95);
+}
+#studio-dock::-webkit-scrollbar{display:none}
+#studio-dock button{
+  display:inline-flex;align-items:center;gap:7px;white-space:nowrap;
+  border:1px solid rgba(255,255,255,.88);border-radius:13px;padding:9px 13px;min-height:38px;
+  background:linear-gradient(170deg,rgba(255,255,255,.92),rgba(232,243,252,.74));color:#123c66;
+  font-size:12px;font-weight:700;cursor:pointer;
+  box-shadow:var(--sh-sm),inset 0 1px 0 #fff;
+  transition:transform .2s var(--spring),box-shadow .2s,filter .2s;
+}
+#studio-dock button:hover{transform:translateY(-2px);filter:brightness(1.03)}
+#studio-dock .main-action{--g1:#2f80c2;--g2:#0d3c73;color:#fff;border:1px solid rgba(255,255,255,.45);
+  background:linear-gradient(165deg,rgba(255,255,255,.3) 0,rgba(255,255,255,.05) 45%,rgba(255,255,255,0) 56%),linear-gradient(145deg,var(--g1),var(--g2));
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.55),0 8px 20px rgba(13,60,115,.32);text-shadow:0 1px 2px rgba(4,24,44,.22)}
+#studio-dock .studio-html-action{--g1:#173d70;--g2:#08234a;color:#fff;border:1px solid rgba(145,195,250,.45);
+  background:linear-gradient(165deg,rgba(255,255,255,.22) 0,rgba(255,255,255,.04) 45%,rgba(255,255,255,0) 56%),linear-gradient(145deg,var(--g1),var(--g2));
+  box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 8px 20px rgba(8,35,74,.35);text-shadow:0 1px 2px rgba(0,10,26,.3)}
+#studio-dock .studio-logo{font-size:11.5px;font-weight:900;letter-spacing:.14em;color:var(--blue);padding:0 8px;white-space:nowrap}
+.studio-icon{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+
+#studio-modal{
+  position:fixed;inset:0;z-index:100001;display:none;align-items:center;justify-content:center;padding:16px;
+  background:rgba(9,26,54,.44);
+  -webkit-backdrop-filter:blur(7px);backdrop-filter:blur(7px);
+}
+#studio-modal.open{display:flex}
+.studio-dialog{
+  width:min(800px,100%);max-height:min(90vh,950px);overflow:auto;position:relative;
+  border-radius:26px;color:#132a48;font-size:14px;line-height:1.55;
+  background:linear-gradient(170deg,rgba(255,255,255,.97),rgba(243,249,255,.93));
+  border:1px solid rgba(255,255,255,.96);
+  -webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
+  box-shadow:var(--sh-lg),inset 0 1px 0 #fff;
+  animation:dialogIn .32s var(--ease);
+}
+@keyframes dialogIn{from{opacity:0;transform:translate3d(0,14px,0) scale(.98)}}
+.studio-dialog-head{
+  position:sticky;top:0;z-index:2;display:flex;justify-content:space-between;align-items:center;gap:14px;
+  padding:20px 24px;border-bottom:1px solid rgba(151,180,208,.45);
+  background:linear-gradient(170deg,rgba(255,255,255,.98),rgba(247,251,255,.95));
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);
+}
+.studio-dialog-head h2{margin:0;font-size:20px;font-weight:800;letter-spacing:-.02em;text-align:left;text-transform:none}
+.studio-x{border:1px solid rgba(151,180,208,.5);background:rgba(255,255,255,.88);border-radius:10px;padding:8px 12px;cursor:pointer;font-size:18px;line-height:1}
+.studio-dialog-body{padding:22px 24px 26px}
+.studio-dialog-body p{color:var(--mut)}
+.studio-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.studio-field{display:flex;flex-direction:column;gap:6px;min-width:0}
+.studio-field.full{grid-column:1/-1}
+.studio-field label{font-weight:750;font-size:12px;color:#33506e}
+.studio-field input,.studio-field textarea,.studio-field select{
+  width:100%;font-size:14px;border:1px solid #c9d8e8;border-radius:12px;padding:11px 12px;
+  background:#fff;color:#122c4b;
+}
+.studio-field input:focus-visible,.studio-field textarea:focus-visible,.studio-field select:focus-visible{outline:3px solid rgba(47,128,194,.3);outline-offset:1px}
+.studio-field textarea{min-height:105px;resize:vertical}
+.studio-actions{display:flex;gap:9px;flex-wrap:wrap;margin-top:20px}
+.studio-actions button,.studio-row-actions button{
+  display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(255,255,255,.92);border-radius:999px;
+  padding:10px 16px;min-height:40px;background:linear-gradient(170deg,rgba(255,255,255,.94),rgba(234,245,253,.78));
+  color:#1a4169;font-size:13px;font-weight:750;cursor:pointer;
+  box-shadow:var(--sh-sm),inset 0 1px 0 #fff;transition:transform .2s var(--spring),filter .2s;
+}
+.studio-actions button:hover,.studio-row-actions button:hover{transform:translateY(-2px);filter:brightness(1.03)}
+.studio-actions .primary{--g1:#2f80c2;--g2:#11518f;color:#fff;border:1px solid rgba(255,255,255,.5);
+  background:linear-gradient(165deg,rgba(255,255,255,.3) 0,rgba(255,255,255,.05) 45%,rgba(255,255,255,0) 56%),linear-gradient(145deg,var(--g1),var(--g2));
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.6),0 8px 20px rgba(17,81,143,.3);text-shadow:0 1px 2px rgba(4,24,44,.2)}
+.studio-actions .danger{--g1:#e66b77;--g2:#b52f4a;color:#fff;border:1px solid rgba(255,255,255,.5);
+  background:linear-gradient(165deg,rgba(255,255,255,.3) 0,rgba(255,255,255,.05) 45%,rgba(255,255,255,0) 56%),linear-gradient(145deg,var(--g1),var(--g2));
+  box-shadow:inset 0 1.5px 0 rgba(255,255,255,.55),0 8px 20px rgba(181,47,74,.28);text-shadow:0 1px 2px rgba(60,8,20,.2)}
+.studio-tip{padding:12px 15px;border-radius:13px;background:rgba(234,244,255,.9);border:1px solid rgba(203,223,243,.9);color:#2d547a;font-size:12px;margin-bottom:18px}
+.studio-manager-list{display:grid;gap:10px;margin:16px 0}
+.studio-manager-item{
+  border:1px solid rgba(151,180,208,.5);border-radius:14px;padding:14px;
+  display:flex;gap:12px;align-items:center;justify-content:space-between;
+  background:rgba(255,255,255,.85);box-shadow:var(--sh-sm);
+}
+.studio-manager-item strong{display:block;font-size:14px;color:var(--ink)}
+.studio-manager-item small{display:block;color:var(--mut);margin-top:4px}
+.studio-row-actions{display:flex;gap:5px;flex-wrap:wrap}
+.studio-row-actions button{padding:8px 11px;min-height:34px;font-size:12px}
+.studio-pill{font-size:11px;background:#e8f2ff;color:#185c9a;border-radius:999px;padding:4px 9px;font-weight:750}
+.studio-add{min-height:40px;padding:10px 16px;font-size:13px}
+.studio-toast{
+  position:fixed;bottom:calc(88px + env(safe-area-inset-bottom,0px));left:50%;transform:translateX(-50%);
+  z-index:100003;max-width:calc(100vw - 32px);text-align:center;
+  background:rgba(13,42,79,.92);color:#fff;border:1px solid rgba(255,255,255,.25);border-radius:14px;
+  padding:12px 18px;font-size:13px;font-weight:700;
+  -webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  box-shadow:var(--sh-lg);animation:toastIn .3s var(--ease);
+}
+@keyframes toastIn{from{opacity:0;transform:translate3d(0,8px,0)}}
+body.studio-editing{padding-bottom:96px}
+body.studio-editing [data-studio-editable]:hover{outline:2px dashed #1a83bf;outline-offset:3px;cursor:text}
+body.studio-editing [contenteditable=true]:focus{outline:3px solid #f6bb37!important;outline-offset:3px;background:#fffdf2}
+.studio-hidden{display:none!important}
+
+/* Copiar HTML (fallback) */
+#studio-copy-overlay{position:fixed;inset:0;z-index:999999;background:rgba(16,28,54,.72);display:grid;place-items:center;padding:18px;-webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px)}
+#studio-copy-overlay .studio-copy-dialog{width:min(850px,100%);max-height:90vh;display:flex;flex-direction:column;gap:12px;background:#fff;color:#182b45;border-radius:20px;padding:24px;box-shadow:var(--sh-lg)}
+#studio-copy-overlay h2{margin:0;font-size:22px;text-align:left}
+#studio-copy-overlay p{margin:0;color:var(--mut)}
+#studio-copy-overlay textarea{min-height:280px;height:52vh;width:100%;resize:vertical;padding:14px;border:1px solid #cbd5e1;border-radius:10px;font:12px/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
+#studio-copy-overlay .studio-copy-actions{display:flex;justify-content:flex-end;gap:10px}
+#studio-copy-overlay button{border:1px solid #cbd5e1;border-radius:999px;padding:10px 15px;background:#f7f9fc;cursor:pointer;font-weight:700}
+#studio-copy-overlay button:first-child{background:linear-gradient(145deg,#2f80c2,#11518f);color:#fff;border-color:rgba(255,255,255,.5)}
+
+/* Construtor de cronograma */
+.studio-schedule-builder{grid-column:1/-1;border:1px solid rgba(151,180,208,.55);border-radius:18px;padding:16px;background:linear-gradient(160deg,rgba(255,255,255,.96),rgba(243,249,255,.88));min-width:0}
+.studio-schedule-builder h3{margin:0 0 6px;font-size:16px;color:#173c6b}
+.studio-schedule-tools{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.studio-schedule-tools button{border:1px solid rgba(151,180,208,.6);background:#fff;border-radius:10px;padding:9px 12px;color:#184d83;font-size:12px;font-weight:750;cursor:pointer}
+.studio-schedule-scroll{overflow-x:auto;max-width:100%;border:1px solid rgba(151,180,208,.5);border-radius:13px}
+#studio-schedule-table{width:100%;border-collapse:collapse;min-width:420px;background:#fff}
+#studio-schedule-table td,#studio-schedule-table th{border:1px solid #dce6f2;padding:6px;min-width:110px}
+#studio-schedule-table input{width:100%;min-width:90px;border:0!important;box-shadow:none!important;background:transparent!important;padding:9px!important;font:inherit}
+#studio-schedule-table th{background:#e8f1fa}
+.studio-schedule-style{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:12px;margin-top:12px}
+.studio-schedule-style label{font-size:12px;display:grid;gap:5px}
+.studio-schedule-style input,.studio-schedule-style select{width:100%;border:1px solid #cfdeeb;border-radius:9px;padding:8px}
+
+/* ============================================================
+   Movimento — só transform/opacity (composição de GPU)
+   ============================================================ */
+@keyframes panelIn{from{opacity:0;transform:translate3d(0,14px,0)}}
+.tab-panel.active:not([hidden]){animation:panelIn .42s var(--ease) both}
+@keyframes sectionIn{from{opacity:0;transform:translate3d(0,16px,0)}}
+.tab-panel.active:not([hidden])>section{animation:sectionIn .55s var(--ease) both}
+.tab-panel.active:not([hidden])>section:nth-child(2){animation-delay:.06s}
+.tab-panel.active:not([hidden])>section:nth-child(3){animation-delay:.12s}
+.tab-panel.active:not([hidden])>section:nth-child(4){animation-delay:.18s}
+@keyframes newsIn{from{opacity:0;transform:translate3d(0,12px,0) scale(.985)}}
+#noticias .news-card.news-current{animation:newsIn .5s var(--ease) both}
+/* Reveal ao rolar (classe .rv aplicada via JS; sem JS, tudo visível) */
+html.rv-on .rv{opacity:0;transform:translate3d(0,18px,0);transition:opacity .65s var(--ease),transform .65s var(--ease)}
+html.rv-on .rv.in{opacity:1;transform:translate3d(0,0,0)}
+
+/* ---------- Responsivo ---------- */
 @media(max-width:780px){
-html:not(#_a):not(#_b):not(#_c) .tab-panel .tb,html:not(#_a):not(#_b):not(#_c) .tab-panel .studio-edital-schedule{display:block!important;overflow:visible!important;background:transparent!important;border:0!important;box-shadow:none!important;border-radius:0!important;padding:0!important}
-html:not(#_a):not(#_b):not(#_c) .tab-panel .tb::after{display:none!important}
-html:not(#_a):not(#_b):not(#_c) .tab-panel table,html:not(#_a):not(#_b):not(#_c) .tab-panel tbody,html:not(#_a):not(#_b):not(#_c) .tab-panel tr,html:not(#_a):not(#_b):not(#_c) .tab-panel td{display:block!important;width:100%!important;min-width:0!important;max-width:none!important}
-html:not(#_a):not(#_b):not(#_c) .tab-panel thead{position:absolute!important;width:1px!important;height:1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important}
-html:not(#_a):not(#_b):not(#_c) .tab-panel tbody tr{margin:0 0 14px!important;padding:4px 0!important;overflow:hidden!important;background:#fff!important;border:1px solid rgba(167,191,216,.6)!important;border-radius:18px!important;box-shadow:0 10px 26px rgba(23,57,95,.08)!important}
-html:not(#_a):not(#_b):not(#_c) .tab-panel tbody tr:hover,html:not(#_a):not(#_b):not(#_c) .tab-panel tbody tr:nth-child(even){background:#fff!important}
-html:not(#_a):not(#_b):not(#_c) .tab-panel tbody td{display:grid!important;grid-template-columns:92px minmax(0,1fr)!important;gap:10px!important;align-items:start!important;padding:10px 16px!important;font-size:14px!important;line-height:1.5!important;text-align:left!important;white-space:normal!important;overflow-wrap:anywhere!important;border:0!important;border-bottom:1px dashed #dde7f1!important}
-html:not(#_a):not(#_b):not(#_c) .tab-panel tbody td:last-child{border-bottom:0!important}
-html:not(#_a):not(#_b):not(#_c) .tab-panel tbody td:not([data-label]){display:block!important}
-html:not(#_a):not(#_b):not(#_c) .tab-panel tbody td:empty{display:none!important}
-html:not(#_a):not(#_b):not(#_c) .tab-panel tbody td[data-label]::before{content:attr(data-label)!important;font-size:12px!important;font-weight:750!important;color:#5a7690!important;line-height:1.7!important}
+  .pub-filters{grid-template-columns:repeat(2,minmax(0,1fr))}
+  section{padding:46px 0}
+  /* Tabelas viram cartões empilhados */
+  .tab-panel .tb,.tab-panel .studio-edital-schedule{display:block;overflow:visible;background:transparent;border:0;box-shadow:none;border-radius:0;padding:0}
+  .tab-panel table,.tab-panel tbody,.tab-panel tr,.tab-panel td{display:block;width:100%;min-width:0!important;max-width:none}
+  .tab-panel thead{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+  .tab-panel tbody tr{margin:0 0 14px;padding:6px 2px;overflow:hidden;background:rgba(255,255,255,.94);border:1px solid rgba(255,255,255,.92);border-radius:18px;box-shadow:var(--sh-sm)}
+  .tab-panel tbody tr:hover,.tab-panel tbody tr:nth-child(even){background:rgba(255,255,255,.94)}
+  .tab-panel tbody td{display:grid;grid-template-columns:96px minmax(0,1fr);gap:10px;align-items:start;padding:10px 14px;font-size:14px;line-height:1.5;text-align:left;overflow-wrap:anywhere;border:0;border-bottom:1px dashed rgba(151,180,208,.5)}
+  .tab-panel tbody td:last-child{border-bottom:0}
+  .tab-panel tbody td:not([data-label]){display:block}
+  .tab-panel tbody td[data-label]::before{content:attr(data-label);font-size:11.5px;font-weight:750;color:#5a7690;line-height:1.6}
+  .tab-panel tbody td:empty{display:none}
 }
-/* Barra de abas em uma única linha no celular */
 @media(max-width:650px){
-html:not(#_a):not(#_b):not(#_c) .tabs{flex-wrap:nowrap!important;justify-content:flex-start!important;gap:4px!important;padding:8px 6px!important;overflow-x:auto!important;overflow-y:hidden!important;-webkit-overflow-scrolling:touch!important;scrollbar-width:none!important}
-html:not(#_a):not(#_b):not(#_c) .tabs::-webkit-scrollbar{display:none!important}
-html:not(#_a):not(#_b):not(#_c) .tabs .tab{flex:1 1 auto!important;min-height:38px!important;padding:8px 10px!important;font-size:12.5px!important;white-space:nowrap!important}
+  .tabs{flex-wrap:nowrap;justify-content:flex-start;gap:6px;padding:10px 10px;overflow-x:auto;scrollbar-width:none}
+  .tabs::-webkit-scrollbar{display:none}
+  .tab{flex:0 0 auto;padding:9px 14px;font-size:13px}
+  .w{padding:0 16px}
+  section{padding:42px 0}
+  .cover img{height:clamp(170px,44vw,300px)}
+  .th h3{font-size:38px}
+  .th .theme-pic{width:112px;height:112px}
+  .news-card{border-radius:22px;min-height:300px;padding:25px}
+  .news-card h3{font-size:25px}
+  .edit-actions a,.edit-actions .edit-button{width:100%;min-width:0}
+  .studio-grid{grid-template-columns:1fr}
+  .studio-dialog-head,.studio-dialog-body{padding:16px}
+  #studio-dock{left:8px;right:8px;transform:none;max-width:none;bottom:calc(8px + env(safe-area-inset-bottom,0px));padding:8px;border-radius:18px}
+  #studio-dock .studio-logo{display:none}
 }
-@media(max-width:400px){
-html:not(#_a):not(#_b):not(#_c) .tabs .tab{padding:8px 7px!important;font-size:11.5px!important}
-html:not(#_a):not(#_b):not(#_c) .tabs{gap:3px!important;padding:7px 4px!important}
+@media(max-width:480px){
+  .pub-filters{grid-template-columns:1fr}
+  .contact-grid{grid-template-columns:1fr}
+  #sobre .definition{grid-template-columns:1fr;padding:18px}
+  #sobre .definition-art{border-right:0;border-bottom:1px solid rgba(151,180,208,.55);padding:0 0 14px}
+  #sobre .definition-art img{max-width:210px}
+  #sobre .acronym{padding:16px 0 0}
+  #sobre .acronym-row{grid-template-columns:26px 23px 1fr;gap:6px}
+  #sobre .acronym-row b{font-size:22px}
+  #sobre .acronym-row span{font-size:15px}
+  #sobre .body-copy{font-size:15px;padding:16px}
 }
-</style></head>
-<body>
+
+/* ---------- Acessibilidade e impressão ---------- */
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  html.rv-on .rv{opacity:1;transform:none}
+}
+@media(prefers-reduced-transparency:reduce){
+  .tabs,#studio-dock,.pub-filters,.news-carousel-controls,.studio-dialog,.studio-toast,.news-card,.c,.call-edit,.contact-item,.th{
+    background:#fbfdff!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;
+  }
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  .tabs,#studio-dock,.pub-filters,.news-carousel-controls,.studio-dialog{background:rgba(250,253,255,.97)}
+}
+@media print{
+  .tabs,#studio-dock,#studio-modal,.studio-toast,#studio-copy-overlay,.aurora{display:none!important}
+  .tab-panel,.tab-panel[hidden]{display:block!important}
+  body{background:#fff}
+  .c,.news-card,.call-edit,.contact-item,.th{box-shadow:none;border:1px solid #ddd}
+  section,.c,.note{break-inside:avoid}
+  .cover img{height:280px}
+}
+
+</style>
+</head>
+<body class="">
+<div class="aurora" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i></div>
 <nav aria-label="Navegação principal" class="tabs" role="tablist">
 <button aria-controls="painel-inicio" aria-selected="true" class="tab active" data-tab="inicio" id="tab-inicio" role="tab" type="button" tabindex="0">Início</button>
 <button aria-controls="painel-producao" aria-selected="false" class="tab" data-tab="producao" id="tab-producao" role="tab" type="button" tabindex="-1">Pesquisa e extensão</button><button aria-controls="painel-publicacoes" aria-selected="false" class="tab" data-tab="publicacoes" id="tab-publicacoes" role="tab" type="button" tabindex="-1">Publicações</button>
@@ -589,31 +612,31 @@ html:not(#_a):not(#_b):not(#_c) .tabs{gap:3px!important;padding:7px 4px!importan
 <div aria-labelledby="tab-inicio" class="tab-panel active" id="painel-inicio" role="tabpanel" style="">
 <section id="noticias"><div class="w"><h2>Notícias e eventos</h2><div class="u rb"></div><div class="news-carousel" data-index="0"><article class="news-card news-current"><span class="news-label">NOVO EDITAL · INSCRIÇÕES EM 01/11</span><h3>Seleção de participantes para o Grupo de Pesquisa PANDORA</h3><p>O PANDORA divulga seu processo seletivo para novos participantes do Grupo de Pesquisa. São 7 vagas, sendo 6 para discentes, distribuídas entre as linhas TED, GIO e CTS, e 1 para pesquisador(a) externo(a).</p><div class="news-meta"><span>Inscrições: 30/10 a 10/11/2026 Entrevistas: 13/11/2026</span></div><a class="news-cta" href="#pandora:editais">Ver edital e formas de inscrição ↗</a></article></div><div class="news-carousel-controls" hidden=""><button type="button" data-news-prev="" aria-label="Notícia anterior">‹</button><div class="news-dots"><button type="button" data-dot="0" aria-label="Ir para notícia 1" aria-current="true"></button></div><button type="button" data-news-next="" aria-label="Próxima notícia">›</button></div>
 
-</div></section><section id="sobre"><div class="w"><div class="sheet"><h2 class="heading">O que é o PANDORA?</h2><div class="rainbow-rule"></div><div class="definition"><div class="definition-art"><img alt="Caixa aberta com circuitos coloridos, símbolo do PANDORA" decoding="async" loading="lazy" src="https://i.ibb.co/MkbrsbYx/Caixa-de-ideias-tecnol-gicas-arco-ris.png"></div><div aria-label="Significado da sigla PANDORA" class="acronym"><div class="acronym-row" style="--c:#1263a0"><b>P</b><i></i><span>Práticas</span></div><div class="acronym-row" style="--c:#17a5a5"><b>A</b><i></i><span>Analíticas e</span></div><div class="acronym-row" style="--c:#6da941"><b>N</b><i></i><span>Narrativas de</span></div><div class="acronym-row" style="--c:#e7b11d"><b>D</b><i></i><span>Democratização</span></div><div class="acronym-row" style="--c:#ee6b26"><b>O</b><i></i><span>Ontologia e</span></div><div class="acronym-row" style="--c:#d62950"><b>R</b><i></i><span>Resistência</span></div><div class="acronym-row" style="--c:#8b2a9e"><b>A</b><i></i><span>Ativa</span></div></div></div><div class="body-copy"><p>O PANDORA é um macroprojeto e grupo de pesquisa voltado ao Ensino de Ciências e Tecnologias. Inspirado no gesto de abrir caixas-pretas da ciência e da tecnologia, propõe uma reestruturação teórico-metodológica da iniciação à pesquisa, articulando formação investigativa, criticidade e compromisso social.</p><p>Suas ações valorizam narrativas historicamente silenciadas, problematizam as relações entre ciência, tecnologia, sociedade e ambiente, e promovem práticas de democratização do conhecimento, resistência ativa e formação de professoras(es)-pesquisadoras(es).</p></div></div></div></section><section class="alt" id="linhas"><div class="w"><h2>Linhas temáticas</h2><div class="u rb"></div><div class="g">
-<div class="c th" style="--c:#1764a0"><div class="theme-pic"><img alt="Símbolo da linha GIO" decoding="async" loading="lazy" src="https://i.ibb.co/ynd8gDgF/Logotipo-Mulher-Ci-ncia-e-Educa-o.png"></div><h3>GIO</h3><div class="theme-bar"></div><small>Gênero, Interseccionalidade e Ontologia</small><p>Investiga desigualdades, silenciamentos, sujeitos da ciência e saberes situados, em diálogo com Haraway, Schiebinger e Crenshaw.</p></div>
-<div class="c th" style="--c:#138d50"><div class="theme-pic"><img alt="Símbolo da linha TED" decoding="async" loading="lazy" src="https://i.ibb.co/S7Bxn3dW/Engrenagem-da-inova-o-e-tecnologia.png"></div><h3>TED</h3><div class="theme-bar"></div><small>Tecnologias Emergentes e Democratização</small><p>Analisa IA, tecnologias emergentes, letramento ético-digital e democratização do acesso à educação científica.</p></div>
-<div class="c th" style="--c:#ed7128"><div class="theme-pic"><img alt="Símbolo da linha CTS" decoding="async" loading="lazy" src="https://i.ibb.co/kVLDyMQv/Emblema-Circular-de-Ci-ncia-e-Sustentabilidade.png"></div><h3>CTS</h3><div class="theme-bar"></div><small>Ciência, Tecnologia, Sociedade e Ambiente</small><p>Problematiza relações CTSA, divulgação científica, materiais didáticos e letramento científico crítico.</p></div></div></div></section><section id="contato"><div class="w"><h2>Contato</h2><div class="u rb"></div>
+</div></section><section id="sobre"><div class="w"><div class="sheet"><h2 class="heading">O que é o PANDORA?</h2><div class="rainbow-rule"></div><div class="definition rv in"><div class="definition-art"><img alt="Caixa aberta com circuitos coloridos, símbolo do PANDORA" decoding="async" loading="lazy" src="https://i.ibb.co/MkbrsbYx/Caixa-de-ideias-tecnol-gicas-arco-ris.png"></div><div aria-label="Significado da sigla PANDORA" class="acronym"><div class="acronym-row" style="--c:#1263a0"><b>P</b><i></i><span>Práticas</span></div><div class="acronym-row" style="--c:#17a5a5"><b>A</b><i></i><span>Analíticas e</span></div><div class="acronym-row" style="--c:#6da941"><b>N</b><i></i><span>Narrativas de</span></div><div class="acronym-row" style="--c:#e7b11d"><b>D</b><i></i><span>Democratização</span></div><div class="acronym-row" style="--c:#ee6b26"><b>O</b><i></i><span>Ontologia e</span></div><div class="acronym-row" style="--c:#d62950"><b>R</b><i></i><span>Resistência</span></div><div class="acronym-row" style="--c:#8b2a9e"><b>A</b><i></i><span>Ativa</span></div></div></div><div class="body-copy rv in"><p>O PANDORA é um macroprojeto e grupo de pesquisa voltado ao Ensino de Ciências e Tecnologias. Inspirado no gesto de abrir caixas-pretas da ciência e da tecnologia, propõe uma reestruturação teórico-metodológica da iniciação à pesquisa, articulando formação investigativa, criticidade e compromisso social.</p><p>Suas ações valorizam narrativas historicamente silenciadas, problematizam as relações entre ciência, tecnologia, sociedade e ambiente, e promovem práticas de democratização do conhecimento, resistência ativa e formação de professoras(es)-pesquisadoras(es).</p></div></div></div></section><section class="alt" id="linhas"><div class="w"><h2>Linhas temáticas</h2><div class="u rb"></div><div class="g">
+<div class="c th rv in" style="--c:#1764a0"><div class="theme-pic"><img alt="Símbolo da linha GIO" decoding="async" loading="lazy" src="https://i.ibb.co/ynd8gDgF/Logotipo-Mulher-Ci-ncia-e-Educa-o.png"></div><h3>GIO</h3><div class="theme-bar"></div><small>Gênero, Interseccionalidade e Ontologia</small><p>Investiga desigualdades, silenciamentos, sujeitos da ciência e saberes situados, em diálogo com Haraway, Schiebinger e Crenshaw.</p></div>
+<div class="c th rv in" style="--c:#138d50"><div class="theme-pic"><img alt="Símbolo da linha TED" decoding="async" loading="lazy" src="https://i.ibb.co/S7Bxn3dW/Engrenagem-da-inova-o-e-tecnologia.png"></div><h3>TED</h3><div class="theme-bar"></div><small>Tecnologias Emergentes e Democratização</small><p>Analisa IA, tecnologias emergentes, letramento ético-digital e democratização do acesso à educação científica.</p></div>
+<div class="c th rv in" style="--c:#ed7128"><div class="theme-pic"><img alt="Símbolo da linha CTS" decoding="async" loading="lazy" src="https://i.ibb.co/kVLDyMQv/Emblema-Circular-de-Ci-ncia-e-Sustentabilidade.png"></div><h3>CTS</h3><div class="theme-bar"></div><small>Ciência, Tecnologia, Sociedade e Ambiente</small><p>Problematiza relações CTSA, divulgação científica, materiais didáticos e letramento científico crítico.</p></div></div></div></section><section id="contato"><div class="w"><h2>Contato</h2><div class="u rb"></div>
 <div class="contact-grid">
-<div class="contact-item"><span aria-hidden="true" class="contact-icon"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24" width="22"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" fill="currentColor" r="1" stroke="none"></circle></svg></span><br><b>Instagram</b><br><a href="https://www.instagram.com/pandora.grupodepesquisa/" rel="noopener noreferrer" target="_blank">@pandora.grupodepesquisa</a></div>
-<div class="contact-item"><span aria-hidden="true" class="contact-icon"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24" width="22"><rect height="14" rx="2" width="18" x="3" y="5"></rect><path d="m3 7 9 6 9-6"></path></svg></span><br><b>E-mail</b><br><a href="mailto:pandora.ufcg@gmail.com">pandora.ufcg@gmail.com</a></div>
+<div class="contact-item rv in"><span aria-hidden="true" class="contact-icon"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24" width="22"><rect height="18" rx="5" width="18" x="3" y="3"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" fill="currentColor" r="1" stroke="none"></circle></svg></span><br><b>Instagram</b><br><a href="https://www.instagram.com/pandora.grupodepesquisa/" rel="noopener noreferrer" target="_blank">@pandora.grupodepesquisa</a></div>
+<div class="contact-item rv in"><span aria-hidden="true" class="contact-icon"><svg fill="none" height="22" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" viewBox="0 0 24 24" width="22"><rect height="14" rx="2" width="18" x="3" y="5"></rect><path d="m3 7 9 6 9-6"></path></svg></span><br><b>E-mail</b><br><a href="mailto:pandora.ufcg@gmail.com">pandora.ufcg@gmail.com</a></div>
 </div></div></section>
 <div class="site-footer"><div class="rb"></div>© 2026 Grupo de Pesquisa PANDORA</div>
 </div>
 <div aria-labelledby="tab-producao" class="tab-panel" id="painel-producao" role="tabpanel" style="" hidden="">
-<section id="projetos"><div class="w"><h2>Pesquisa com bolsa e extensão</h2><div class="u rb"></div><p class="pub-intro">Projetos com bolsas de iniciação científica e extensão.</p><div class="tb"><table class="data-list"><thead><tr><th>Linha</th><th>Projeto</th><th>Bolsista</th><th>Modalidade</th></tr></thead><tbody><tr><td data-label="Linha"><span class="tag" style="--c:#138d50">TED</span></td><td data-label="Projeto">Letramento ético-digital no ensino superior: uso de ferramentas de IAG por licenciandos em ciências biológicas</td><td data-label="Bolsista">José Anselmo Filho Barbosa Moura</td><td data-label="Modalidade">PIBIC</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#1764a0">GIO</span></td><td data-label="Projeto">Mulheres e meninas na ciência no sertão paraibano: mentoria e divulgação científica como estratégias de equidade em STEM</td><td data-label="Bolsista">Maria Eduarda Carreiro dos Santos</td><td data-label="Modalidade">PROBEX</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#ed7128">CTS</span></td><td data-label="Projeto">Arte e Educação Cientifica como Tecnologia Leve em Saúde</td><td data-label="Bolsista">Maria Raphaelly Marcelino</td><td data-label="Modalidade">PROBEX</td></tr></tbody></table></div></div></section><section class="alt" id="demais-pesquisas"><div class="w"><h2>Demais projetos de pesquisa</h2><div class="u rb"></div><p class="pub-intro">Relação de projetos no formato da lista anterior.</p><div class="tb"><table><thead><tr><th>Linha</th><th>Projeto</th><th>Discente(s)</th><th>Defesa</th></tr></thead><tbody id="proj"><tr><td data-label="Linha"><span class="tag" style="--c:#138d50">TED</span></td><td data-label="Projeto">Inteligência artificial na formação de professores: o que licenciandos precisam saber a partir do referencial do MEC (2026)</td><td data-label="Discente(s)">Ana Celina Lucena</td><td data-label="Defesa">2026.1</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#138d50">TED</span></td><td data-label="Projeto">Letramento ético-digital no ensino superior: uso de ferramentas de IAG por licenciandos em ciências biológicas</td><td data-label="Discente(s)">José Anselmo Filho; Luciene Marques (egressa)</td><td data-label="Defesa">2026.2 / defendido em 2025.2</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#138d50">TED</span></td><td data-label="Projeto">O impacto da exposição contínua às telas na motivação para a leitura científica em universitários</td><td data-label="Discente(s)">Penélope Paiva</td><td data-label="Defesa">2026.1</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#138d50">TED</span></td><td data-label="Projeto">Projeto a definir</td><td data-label="Discente(s)">Mayra Roque</td><td data-label="Defesa">2027.1</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#1764a0">GIO</span></td><td data-label="Projeto">Análise das desigualdades de gênero entre docentes dos cursos de ciências biológicas da UFCG</td><td data-label="Discente(s)">Adriana Alves</td><td data-label="Defesa">2027.1</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#1764a0">GIO</span></td><td data-label="Projeto">Trajetórias acadêmicas e produção científica de mulheres em STEM: docentes de IES públicas de Patos-PB via Lattes</td><td data-label="Discente(s)">Maria Eduarda Galdino</td><td data-label="Defesa">2026.1</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#1764a0">GIO</span></td><td data-label="Projeto">Mulheres e meninas na ciência no sertão paraibano: mentoria e divulgação científica como estratégias de equidade em STEM</td><td data-label="Discente(s)">Maria Eduarda Carreiro</td><td data-label="Defesa">2026.2</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#ed7128">CTS</span></td><td data-label="Projeto">O Brasil explicado pela biologia: conceitos científicos e dimensões CTSA em vídeos de divulgação científica no Instagram</td><td data-label="Discente(s)">Hugo Gabriel Melo; Vitor Adauto</td><td data-label="Defesa">2027.1</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#ed7128">CTS</span></td><td data-label="Projeto">Arte e educação científica como tecnologia leve em saúde</td><td data-label="Discente(s)">Maria Raphaelly Marcelino</td><td data-label="Defesa">2026.2</td></tr></tbody></table></div></div></section><section class="alt" id="membros"><div class="w"><h2>Membros</h2><div class="u rb"></div>
-<h3 class="sub">Coordenação</h3><div class="g" id="coord"><div class="c"><h3>Profa. Dra. Maria Kamylla e Silva Xavier</h3><div class="r">Coordenadora e proponente · Vice-líder do GEPECMAT · UACB/CSTR/UFCG</div></div></div>
-<h3 class="sub">Discentes</h3><div class="g" id="disc"><div class="c"><h3>Ana Celina Lucena Medeiros de Azevêdo</h3><div class="r">Discente</div><span class="tag" style="--c:#138d50">TED</span></div><div class="c"><h3>José Anselmo Filho Barbosa Moura</h3><div class="r">Coordenador da linha TED</div><span class="tag" style="--c:#138d50">TED</span></div><div class="c"><h3>Mayra Roque Cabral</h3><div class="r">Discente</div><span class="tag" style="--c:#138d50">TED</span></div><div class="c"><h3>Penélope Paiva da Silva</h3><div class="r">Discente</div><span class="tag" style="--c:#138d50">TED</span></div><div class="c"><h3>Adriana Alves Caetano</h3><div class="r">Discente</div><span class="tag" style="--c:#1764a0">GIO</span></div><div class="c"><h3>Maria Eduarda Galdino Nunes</h3><div class="r">Discente</div><span class="tag" style="--c:#1764a0">GIO</span></div><div class="c"><h3>Maria Eduarda Carreiro dos Santos</h3><div class="r">Coordenadora da linha GIO</div><span class="tag" style="--c:#1764a0">GIO</span></div><div class="c"><h3>Hugo Gabriel Melo</h3><div class="r">Coordenador da linha CTS</div><span class="tag" style="--c:#ed7128">CTS</span></div><div class="c"><h3>Vitor Adauto Gonçalves de Oliveira</h3><div class="r">Vice-líder</div><span class="tag" style="--c:#ed7128">CTS</span></div><div class="c"><h3>Maria Raphaelly de Lucena Marcelino</h3><div class="r">Discente</div><span class="tag" style="--c:#ed7128">CTS</span></div></div>
-<h3 class="sub">Pesquisadores externos e egressa</h3><div class="g" id="ext"><div class="c"><h3>Profa. Dra. Eliângela Paulino Bento</h3><div class="r">UAF/UFCG · Coorientadora</div><span class="tag" style="--c:#1764a0">GIO</span></div><div class="c"><h3>Profa. Dra. Karla Danieli de Souza Vieira</h3><div class="r">Centro Educacional Millennium · Colaboradora externa</div><span class="tag" style="--c:#1764a0">GIO</span></div><div class="c"><h3>Prof. Dr. Filipe Lucena Medeiros de Andrade</h3><div class="r">IFPB – Campus Patos · Coorientador</div><span class="tag" style="--c:#138d50">TED</span></div><div class="c"><h3>Profa. Msa. Laycia Cristina de Almeida Silva</h3><div class="r">SEE-PB / 9ª GRE · Coorientadora</div><span class="tag" style="--c:#ed7128">CTS</span></div><div class="c"><h3>Luciene Thaynara Melo Marques</h3><div class="r">Egressa · defesa em 2025.2</div><span class="tag" style="--c:#138d50">TED</span></div></div></div></section>
+<section id="projetos"><div class="w"><h2>Pesquisa com bolsa e extensão</h2><div class="u rb"></div><p class="pub-intro">Projetos com bolsas de iniciação científica e extensão.</p><div class="tb rv in"><table class="data-list"><thead><tr><th>Linha</th><th>Projeto</th><th>Bolsista</th><th>Modalidade</th></tr></thead><tbody><tr><td data-label="Linha"><span class="tag" style="--c:#138d50">TED</span></td><td data-label="Projeto">Letramento ético-digital no ensino superior: uso de ferramentas de IAG por licenciandos em ciências biológicas</td><td data-label="Bolsista">José Anselmo Filho Barbosa Moura</td><td data-label="Modalidade">PIBIC</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#1764a0">GIO</span></td><td data-label="Projeto">Mulheres e meninas na ciência no sertão paraibano: mentoria e divulgação científica como estratégias de equidade em STEM</td><td data-label="Bolsista">Maria Eduarda Carreiro dos Santos</td><td data-label="Modalidade">PROBEX</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#ed7128">CTS</span></td><td data-label="Projeto">Arte e Educação Cientifica como Tecnologia Leve em Saúde</td><td data-label="Bolsista">Maria Raphaelly Marcelino</td><td data-label="Modalidade">PROBEX</td></tr></tbody></table></div></div></section><section class="alt" id="demais-pesquisas"><div class="w"><h2>Demais projetos de pesquisa</h2><div class="u rb"></div><p class="pub-intro">Relação de projetos no formato da lista anterior.</p><div class="tb rv in"><table><thead><tr><th>Linha</th><th>Projeto</th><th>Discente(s)</th><th>Defesa</th></tr></thead><tbody id="proj"><tr><td data-label="Linha"><span class="tag" style="--c:#138d50">TED</span></td><td data-label="Projeto">Inteligência artificial na formação de professores: o que licenciandos precisam saber a partir do referencial do MEC (2026)</td><td data-label="Discente(s)">Ana Celina Lucena</td><td data-label="Defesa">2026.1</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#138d50">TED</span></td><td data-label="Projeto">Letramento ético-digital no ensino superior: uso de ferramentas de IAG por licenciandos em ciências biológicas</td><td data-label="Discente(s)">José Anselmo Filho; Luciene Marques (egressa)</td><td data-label="Defesa">2026.2 / defendido em 2025.2</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#138d50">TED</span></td><td data-label="Projeto">O impacto da exposição contínua às telas na motivação para a leitura científica em universitários</td><td data-label="Discente(s)">Penélope Paiva</td><td data-label="Defesa">2026.1</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#138d50">TED</span></td><td data-label="Projeto">Projeto a definir</td><td data-label="Discente(s)">Mayra Roque</td><td data-label="Defesa">2027.1</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#1764a0">GIO</span></td><td data-label="Projeto">Análise das desigualdades de gênero entre docentes dos cursos de ciências biológicas da UFCG</td><td data-label="Discente(s)">Adriana Alves</td><td data-label="Defesa">2027.1</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#1764a0">GIO</span></td><td data-label="Projeto">Trajetórias acadêmicas e produção científica de mulheres em STEM: docentes de IES públicas de Patos-PB via Lattes</td><td data-label="Discente(s)">Maria Eduarda Galdino</td><td data-label="Defesa">2026.1</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#1764a0">GIO</span></td><td data-label="Projeto">Mulheres e meninas na ciência no sertão paraibano: mentoria e divulgação científica como estratégias de equidade em STEM</td><td data-label="Discente(s)">Maria Eduarda Carreiro</td><td data-label="Defesa">2026.2</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#ed7128">CTS</span></td><td data-label="Projeto">O Brasil explicado pela biologia: conceitos científicos e dimensões CTSA em vídeos de divulgação científica no Instagram</td><td data-label="Discente(s)">Hugo Gabriel Melo; Vitor Adauto</td><td data-label="Defesa">2027.1</td></tr><tr><td data-label="Linha"><span class="tag" style="--c:#ed7128">CTS</span></td><td data-label="Projeto">Arte e educação científica como tecnologia leve em saúde</td><td data-label="Discente(s)">Maria Raphaelly Marcelino</td><td data-label="Defesa">2026.2</td></tr></tbody></table></div></div></section><section class="alt" id="membros"><div class="w"><h2>Membros</h2><div class="u rb"></div>
+<h3 class="sub">Coordenação</h3><div class="g" id="coord"><div class="c rv in"><h3>Profa. Dra. Maria Kamylla e Silva Xavier</h3><div class="r">Coordenadora e proponente · Vice-líder do GEPECMAT · UACB/CSTR/UFCG</div></div></div>
+<h3 class="sub">Discentes</h3><div class="g" id="disc"><div class="c rv in"><h3>Ana Celina Lucena Medeiros de Azevêdo</h3><div class="r">Discente</div><span class="tag" style="--c:#138d50">TED</span></div><div class="c rv in"><h3>José Anselmo Filho Barbosa Moura</h3><div class="r">Coordenador da linha TED</div><span class="tag" style="--c:#138d50">TED</span></div><div class="c rv in"><h3>Mayra Roque Cabral</h3><div class="r">Discente</div><span class="tag" style="--c:#138d50">TED</span></div><div class="c rv in"><h3>Penélope Paiva da Silva</h3><div class="r">Discente</div><span class="tag" style="--c:#138d50">TED</span></div><div class="c rv in"><h3>Adriana Alves Caetano</h3><div class="r">Discente</div><span class="tag" style="--c:#1764a0">GIO</span></div><div class="c rv in"><h3>Maria Eduarda Galdino Nunes</h3><div class="r">Discente</div><span class="tag" style="--c:#1764a0">GIO</span></div><div class="c rv in"><h3>Maria Eduarda Carreiro dos Santos</h3><div class="r">Coordenadora da linha GIO</div><span class="tag" style="--c:#1764a0">GIO</span></div><div class="c rv in"><h3>Hugo Gabriel Melo</h3><div class="r">Coordenador da linha CTS</div><span class="tag" style="--c:#ed7128">CTS</span></div><div class="c rv in"><h3>Vitor Adauto Gonçalves de Oliveira</h3><div class="r">Vice-líder</div><span class="tag" style="--c:#ed7128">CTS</span></div><div class="c rv in"><h3>Maria Raphaelly de Lucena Marcelino</h3><div class="r">Discente</div><span class="tag" style="--c:#ed7128">CTS</span></div></div>
+<h3 class="sub">Pesquisadores externos e egressa</h3><div class="g" id="ext"><div class="c rv in"><h3>Profa. Dra. Eliângela Paulino Bento</h3><div class="r">UAF/UFCG · Coorientadora</div><span class="tag" style="--c:#1764a0">GIO</span></div><div class="c rv in"><h3>Profa. Dra. Karla Danieli de Souza Vieira</h3><div class="r">Centro Educacional Millennium · Colaboradora externa</div><span class="tag" style="--c:#1764a0">GIO</span></div><div class="c rv in"><h3>Prof. Dr. Filipe Lucena Medeiros de Andrade</h3><div class="r">IFPB – Campus Patos · Coorientador</div><span class="tag" style="--c:#138d50">TED</span></div><div class="c rv in"><h3>Profa. Msa. Laycia Cristina de Almeida Silva</h3><div class="r">SEE-PB / 9ª GRE · Coorientadora</div><span class="tag" style="--c:#ed7128">CTS</span></div><div class="c rv in"><h3>Luciene Thaynara Melo Marques</h3><div class="r">Egressa · defesa em 2025.2</div><span class="tag" style="--c:#138d50">TED</span></div></div></div></section>
 </div><div aria-labelledby="tab-publicacoes" class="tab-panel" id="painel-publicacoes" role="tabpanel" style="" hidden=""><section class="alt" id="publicacoes"><div class="w"><h2>Publicações</h2><div class="u rb"></div><p class="pub-intro"><br></p><div aria-label="Filtros de publicações" class="pub-filters">
 <label>Pesquisar título ou autor<input id="pub-search" placeholder="Buscar publicações..." type="search"></label>
 <label>Ano<select id="pub-year"><option value="">Todos os anos</option><option value="2025">2025</option></select></label>
 <label>Participante / autor<select id="pub-author"><option value="">Todos os participantes</option><option value="Adriana Alves Caetano">Adriana Alves Caetano</option><option value="Ana Celina Lucena Medeiros de Azevêdo">Ana Celina Lucena Medeiros de Azevêdo</option><option value="Hugo Gabriel Melo">Hugo Gabriel Melo</option><option value="José Anselmo Filho Barbosa Moura">José Anselmo Filho Barbosa Moura</option><option value="Luciene Thaynara Melo Marques">Luciene Thaynara Melo Marques</option><option value="Maria Eduarda Carreiro dos Santos">Maria Eduarda Carreiro dos Santos</option><option value="Maria Eduarda Galdino Nunes">Maria Eduarda Galdino Nunes</option><option value="Maria Raphaelly de Lucena Marcelino">Maria Raphaelly de Lucena Marcelino</option><option value="Mayra Roque Cabral">Mayra Roque Cabral</option><option value="Penélope Paiva da Silva">Penélope Paiva da Silva</option><option value="Prof. Dr. Filipe Lucena Medeiros de Andrade">Prof. Dr. Filipe Lucena Medeiros de Andrade</option><option value="Profa. Dra. Eliângela Paulino Bento">Profa. Dra. Eliângela Paulino Bento</option><option value="Profa. Dra. Karla Danieli de Souza Vieira">Profa. Dra. Karla Danieli de Souza Vieira</option><option value="Profa. Dra. Maria Kamylla e Silva Xavier">Profa. Dra. Maria Kamylla e Silva Xavier</option><option value="Profa. Msa. Laycia Cristina de Almeida Silva">Profa. Msa. Laycia Cristina de Almeida Silva</option><option value="Vitor Adauto Gonçalves de Oliveira">Vitor Adauto Gonçalves de Oliveira</option></select></label>
 <label>Linha<select id="pub-line"><option value="">Todas as linhas</option><option>TED</option><option>GIO</option><option>CTS</option><option value="Outras">Outras publicações</option></select></label>
-</div><p aria-live="polite" class="pub-intro" id="pub-count">1 publicações encontradas</p><div class="tb" id="publicacoes-lista"><table class="data-list"><thead><tr><th>Ano</th><th>Publicação</th><th>Autoria</th><th>Linha</th><th>Tipo</th><th>Acesso</th></tr></thead><tbody id="pub-grid"><tr><td data-label="Ano">2025</td><td data-label="Publicação">ANÁLISES DE SEQUÊNCIAS DIDÁTICAS PRODUZIDAS POR DISCENTES DA LICENCIATURA EM CIÊNCIAS BIOLÓGICAS (UACB/CSTR/UFCG).</td><td data-label="Autoria">José Anselmo Filho Barbosa Moura; Vinícius Lins Martins; Luiz Eduardo Medeiros da Cruz Silva; Maria Kamylla e Silva Xavier</td><td data-label="Linha"><span class="tag" style="--c:#7955aa">Outras</span></td><td data-label="Tipo">Resumo</td><td data-label="Acesso"><a class="table-action" href="https://dspace.sti.ufcg.edu.br/handle/riufcg/44924" target="_blank" rel="noopener noreferrer">Acessar</a></td></tr></tbody></table></div></div></section></div>
+</div><p aria-live="polite" class="pub-intro" id="pub-count">1 publicações encontradas</p><div class="tb rv in" id="publicacoes-lista"><table class="data-list"><thead><tr><th>Ano</th><th>Publicação</th><th>Autoria</th><th>Linha</th><th>Tipo</th><th>Acesso</th></tr></thead><tbody id="pub-grid"><tr><td data-label="Ano">2025</td><td data-label="Publicação">ANÁLISES DE SEQUÊNCIAS DIDÁTICAS PRODUZIDAS POR DISCENTES DA LICENCIATURA EM CIÊNCIAS BIOLÓGICAS (UACB/CSTR/UFCG).</td><td data-label="Autoria">José Anselmo Filho Barbosa Moura; Vinícius Lins Martins; Luiz Eduardo Medeiros da Cruz Silva; Maria Kamylla e Silva Xavier</td><td data-label="Linha"><span class="tag" style="--c:#7955aa">Outras</span></td><td data-label="Tipo">Resumo</td><td data-label="Acesso"><a class="table-action" href="https://dspace.sti.ufcg.edu.br/handle/riufcg/44924" target="_blank" rel="noopener noreferrer">Acessar</a></td></tr></tbody></table></div></div></section></div>
 <div aria-labelledby="tab-editais" class="tab-panel" id="painel-editais" role="tabpanel" style="" hidden="">
 <section class="alt" id="editais"><div class="w"><h2>Editais e seleção</h2><div class="u rb"></div>
-<article class="call-edit" data-status="Aberto" data-insc-url="https://docs.google.com/forms/d/e/1FAIpQLSeomd2uojuiSblv8KsFhv-D_0-rhE2c8qvYsXdvbzys71TMyg/viewform?usp=dialog" data-appeal-date="2026-11-15" data-appeal-end="2026-11-15" data-appeal-url=""><div class="edit-top"><span class="edit-badge">EDITAL Nº 2026.01</span><span class="edit-status"><i></i> Aberto</span></div><p class="edit-kicker">UACB · CSTR · UFCG · Campus Patos</p><h3>Seleção de participantes para o Grupo de Pesquisa PANDORA</h3><p class="edit-intro">Seleção de novos participantes para o grupo de pesquisa.</p><h4>Distribuição das vagas</h4><div class="studio-edital-vacancies vacancy-list"><div data-vacancy="TED" data-count="2"><span class="vacancy-dot ted"></span><span><b>TED</b><small>Tecnologias Emergentes e Democratização</small></span><strong>2 vagas</strong></div><div data-vacancy="GIO" data-count="2"><span class="vacancy-dot gio"></span><span><b>GIO</b><small>Gênero, Interseccionalidade e Ontologia</small></span><strong>2 vagas</strong></div><div data-vacancy="CTS" data-count="2"><span class="vacancy-dot cts"></span><span><b>CTS</b><small>Ciência, Tecnologia, Sociedade e Ambiente</small></span><strong>2 vagas</strong></div><div data-vacancy="Externo" data-count="1"><span class="vacancy-dot ext"></span><span><b>Pesquisador(a) externo(a)</b><small>Pesquisador(a) externo(a)</small></span><strong>1 vaga</strong></div></div><h4>Datas importantes</h4><div class="studio-edital-schedule" data-font-size="14" data-text-color="#233b55" data-cell-space="13"><table><thead><tr><th>Etapa</th><th>Data / informações</th></tr></thead><tbody><tr><td data-label="Etapa">Abertura das inscrições</td><td data-label="Data / informações">1 de novembro de 2026</td></tr><tr><td data-label="Etapa">Encerramento das inscrições</td><td data-label="Data / informações">10 de novembro de 2026</td></tr><tr><td data-label="Etapa">Divulgação do horário das entrevistas</td><td data-label="Data / informações">até 12 de novembro de 2026</td></tr><tr><td data-label="Etapa">Entrevistas</td><td data-label="Data / informações">13 de novembro de 2026</td></tr><tr><td data-label="Etapa">Resultado preliminar</td><td data-label="Data / informações">14 de novembro de 2026</td></tr><tr><td data-label="Etapa">Prazo para recursos</td><td data-label="Data / informações">15 de novembro de 2026</td></tr><tr><td data-label="Etapa">Resultado final</td><td data-label="Data / informações">16 de novembro de 2026</td></tr></tbody></table></div><h4>Quem pode se inscrever?</h4><div class="edit-notice studio-edital-requirements" style="white-space:pre-line"><b>Critérios de participação</b><p><b>Discentes: </b>estudantes regularmente matriculados(as), com disponibilidade para reuniões semanais de orientação.
-<b>Pesquisador(a) externo(a): </b>deve manter o Currículo Lattes atualizado e ter disponibilidade para colaborar com o grupo.
+<article class="call-edit rv in" data-status="Aberto" data-insc-url="https://docs.google.com/forms/d/e/1FAIpQLSeomd2uojuiSblv8KsFhv-D_0-rhE2c8qvYsXdvbzys71TMyg/viewform?usp=dialog" data-appeal-date="2026-11-15" data-appeal-end="2026-11-15" data-appeal-url=""><div class="edit-top"><span class="edit-badge">EDITAL Nº 2026.01</span><span class="edit-status"><i></i> Aberto</span></div><p class="edit-kicker">UACB · CSTR · UFCG · Campus Patos</p><h3>Seleção de participantes para o Grupo de Pesquisa PANDORA</h3><p class="edit-intro">Seleção de novos participantes para o grupo de pesquisa.</p><h4>Distribuição das vagas</h4><div class="studio-edital-vacancies vacancy-list"><div data-vacancy="TED" data-count="2"><span class="vacancy-dot ted"></span><span><b>TED</b><small>Tecnologias Emergentes e Democratização</small></span><strong>2 vagas</strong></div><div data-vacancy="GIO" data-count="2"><span class="vacancy-dot gio"></span><span><b>GIO</b><small>Gênero, Interseccionalidade e Ontologia</small></span><strong>2 vagas</strong></div><div data-vacancy="CTS" data-count="2"><span class="vacancy-dot cts"></span><span><b>CTS</b><small>Ciência, Tecnologia, Sociedade e Ambiente</small></span><strong>2 vagas</strong></div><div data-vacancy="Externo" data-count="1"><span class="vacancy-dot ext"></span><span><b>Pesquisador(a) externo(a)</b><small>Pesquisador(a) externo(a)</small></span><strong>1 vaga</strong></div></div><h4>Datas importantes</h4><div class="studio-edital-schedule rv in" data-font-size="14" data-text-color="#233b55" data-cell-space="13"><table><thead><tr><th>Etapa</th><th>Data / informações</th></tr></thead><tbody><tr><td data-label="Etapa">Abertura das inscrições</td><td data-label="Data / informações">1 de novembro de 2026</td></tr><tr><td data-label="Etapa">Encerramento das inscrições</td><td data-label="Data / informações">10 de novembro de 2026</td></tr><tr><td data-label="Etapa">Divulgação do horário das entrevistas</td><td data-label="Data / informações">até 12 de novembro de 2026</td></tr><tr><td data-label="Etapa">Entrevistas</td><td data-label="Data / informações">13 de novembro de 2026</td></tr><tr><td data-label="Etapa">Resultado preliminar</td><td data-label="Data / informações">14 de novembro de 2026</td></tr><tr><td data-label="Etapa">Prazo para recursos</td><td data-label="Data / informações">15 de novembro de 2026</td></tr><tr><td data-label="Etapa">Resultado final</td><td data-label="Data / informações">16 de novembro de 2026</td></tr></tbody></table></div><h4>Quem pode se inscrever?</h4><div class="edit-notice studio-edital-requirements rv in" style="white-space:pre-line"><b>Critérios de participação</b><p><b>Discentes:</b> estudantes regularmente matriculados(as), com disponibilidade para reuniões semanais de orientação.
+<b>Pesquisador(a) externo(a):</b> deve manter o Currículo Lattes atualizado e ter disponibilidade para colaborar com o grupo.
 A seleção será realizada por entrevista, considerando conhecimento do Macroprojeto PANDORA, afinidade com a linha temática, disponibilidade e compromisso, comunicação e argumentação. A leitura integral do Macroprojeto é obrigatória e será cobrada na entrevista.</p></div><div class="edit-actions"><a class="edit-button primary" data-edital-link="" href="https://docs.google.com/document/d/124YEexRi38JIZHE5FhY4saXb6Bz5C2DB/export?format=pdf" target="_blank" rel="noopener noreferrer">Ler edital completo ↗</a><a class="edit-button secondary" data-macro-link="" href="https://drive.google.com/uc?export=download&amp;id=1INhkXfREca4hVlvobzIwYXNz7f2KZi-n" target="_blank" rel="noopener noreferrer">Acessar macroprojeto ↗</a><a class="edit-button primary" data-insc-link="" href="https://docs.google.com/forms/d/e/1FAIpQLSeomd2uojuiSblv8KsFhv-D_0-rhE2c8qvYsXdvbzys71TMyg/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">Fazer inscrição ↗</a></div><div class="studio-appeal-slot"></div></article></div></section>
 </div>
 </main>
@@ -622,7 +645,7 @@ A seleção será realizada por entrevista, considerando conhecimento do Macropr
 
 
 
-<script>(function(){const tabs=[...document.querySelectorAll('.tab[data-tab]')];function activate(name){tabs.forEach(t=>{let on=t.dataset.tab===name;t.classList.toggle('active',on);t.setAttribute('aria-selected',String(on))});document.querySelectorAll('.tab-panel').forEach(p=>{let on=p.id==='painel-'+name;p.classList.toggle('active',on);p.hidden=!on});window.scrollTo(0,0)}tabs.forEach(t=>t.onclick=()=>activate(t.dataset.tab));document.querySelectorAll('[onclick]').forEach(b=>{if(b.getAttribute('onclick')?.includes('tab-editais')){b.removeAttribute('onclick');b.onclick=()=>activate('editais')}});const body=document.querySelector('#pub-grid');if(body){let rows=[...body.rows],year=document.querySelector('#pub-year'),author=document.querySelector('#pub-author'),line=document.querySelector('#pub-line'),search=document.querySelector('#pub-search'),count=document.querySelector('#pub-count');let years=[...new Set(rows.map(r=>r.cells[0]?.textContent.trim()))].filter(Boolean).sort().reverse();if(year)year.innerHTML='<option value="">Todos os anos</option>'+years.map(y=>'<option>'+y+'</option>').join('');let names=[...new Set([...document.querySelectorAll('#coord .c h3,#disc .c h3,#ext .c h3')].map(x=>x.textContent.trim()))].sort();if(author)author.innerHTML='<option value="">Todos os participantes</option>'+names.map(n=>'<option>'+n+'</option>').join('');function filter(){let n=0;rows.forEach(r=>{let text=r.textContent.toLowerCase(),ok=!r.classList.contains('studio-hidden')&&(!search?.value||text.includes(search.value.toLowerCase()))&&(!year?.value||r.cells[0]?.textContent.trim()===year.value)&&(!author?.value||text.includes(author.value.toLowerCase()))&&(!line?.value||text.includes(line.value.toLowerCase()));r.hidden=!ok;if(ok)n++});if(count)count.textContent=n+' publicações encontradas'}[year,author,line,search].forEach(e=>e?.addEventListener('input',filter));filter()}})();(function(){function convertEnded(n){
+<script>(function(){const tabs=[...document.querySelectorAll('.tab[data-tab]')];function activate(name){tabs.forEach(t=>{let on=t.dataset.tab===name;t.classList.toggle('active',on);t.setAttribute('aria-selected',String(on))});document.querySelectorAll('.tab-panel').forEach(p=>{let on=p.id==='painel-'+name;p.classList.toggle('active',on);p.hidden=!on});window.scrollTo(0,0)}tabs.forEach(t=>t.onclick=()=>activate(t.dataset.tab));document.querySelectorAll('[onclick]').forEach(b=>{if(b.getAttribute('onclick')?.includes('tab-editais')){b.removeAttribute('onclick');b.onclick=()=>activate('editais')}});const body=document.querySelector('#pub-grid');if(body){let rows=[...body.rows],year=document.querySelector('#pub-year'),author=document.querySelector('#pub-author'),line=document.querySelector('#pub-line'),search=document.querySelector('#pub-search'),count=document.querySelector('#pub-count');let years=[...new Set(rows.map(r=>r.cells[0]?.textContent.trim()))].filter(Boolean).sort().reverse();if(year)year.innerHTML='<option value="">Todos os anos</option>'+years.map(y=>'<option>'+y+'</option>').join('');let names=[...new Set([...document.querySelectorAll('#coord .c h3,#disc .c h3,#ext .c h3')].map(x=>x.textContent.trim()))].sort();if(author)author.innerHTML='<option value="">Todos os participantes</option>'+names.map(n=>'<option>'+n+'</option>').join('');function filter(){let n=0;rows.forEach(r=>{let text=r.textContent.toLowerCase(),ok=!r.classList.contains('studio-hidden')&&(!search?.value||text.includes(search.value.toLowerCase()))&&(!year?.value||r.cells[0]?.textContent.trim()===year.value)&&(!author?.value||text.includes(author.value.toLowerCase()))&&(!line?.value||text.includes(line.value.toLowerCase()));r.hidden=!ok;if(ok)n++});if(count)count.textContent=n+' publicações encontradas'}[year,author,line,search].forEach(e=>e?.addEventListener('input',filter));filter()}})();(function(){function ambientRuntime(){try{if(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;document.documentElement.classList.add('rv-on');const sel='main .g > *,main article.call-edit,main .tb,main .contact-item,#sobre .definition,#sobre .body-copy,main .studio-edital-schedule,main .edit-notice';const io=('IntersectionObserver' in window)?new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target)}})},{threshold:.12,rootMargin:'0px 0px -6% 0px'}):null;const wire=()=>{document.querySelectorAll(sel).forEach(n=>{if(!n.classList.contains('rv')){n.classList.add('rv');if(io)io.observe(n);else n.classList.add('in')}})};wire();if(window.MutationObserver)new MutationObserver(()=>requestAnimationFrame(wire)).observe(document.body,{childList:true,subtree:true});document.addEventListener('visibilitychange',()=>document.body.classList.toggle('aurora-paused',document.hidden))}catch(e){}};function convertEnded(n){
  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  if(n.querySelector('.edital-closed-head'))return;
  const title=n.querySelector('h3')?.textContent||'Edital encerrado',number=n.querySelector('.edit-badge')?.textContent||'Edital';
@@ -650,8 +673,11 @@ A seleção será realizada por entrevista, considerando conhecimento do Macropr
  function show(i){if(!slides.length){carousel.querySelectorAll('article.news-card').forEach(n=>n.classList.remove('news-current'));controls.hidden=true;return}controls.hidden=slides.length<2;index=(i+slides.length)%slides.length;carousel.dataset.index=String(index);carousel.querySelectorAll('article.news-card').forEach(n=>n.classList.remove('news-current'));slides[index].classList.add('news-current');controls.querySelector('.news-dots').innerHTML=slides.map((_,j)=>'<button type="button" data-dot="'+j+'" aria-label="Ir para notícia '+(j+1)+'" aria-current="'+(j===index)+'"></button>').join('')}
  controls.onclick=e=>{if(e.target.closest('[data-news-prev]'))show(index-1);else if(e.target.closest('[data-news-next]'))show(index+1);else if(e.target.closest('[data-dot]'))show(Number(e.target.dataset.dot))};
  show(index);
+ let swipeX=null;
+ carousel.addEventListener('touchstart',e=>{swipeX=e.touches[0].clientX},{passive:true});
+ carousel.addEventListener('touchend',e=>{if(swipeX===null)return;const dx=e.changedTouches[0].clientX-swipeX;if(Math.abs(dx)>46&&slides.length>1)show(index+(dx<0?1:-1));swipeX=null},{passive:true});
  if(window.__pandoraNewsTimer)clearInterval(window.__pandoraNewsTimer);
- window.__pandoraNewsTimer=setInterval(()=>{if(!document.hidden&&slides.length>1)show(index+1)},10000);
+ window.__pandoraNewsTimer=setInterval(()=>{if(document.hidden)return;const pi=document.getElementById('painel-inicio');if(pi&&!pi.classList.contains('active'))return;if(slides.length>1)show(index+1)},10000);
 };function updateAppeals(){
  const now=new Date(),today=[now.getFullYear(),String(now.getMonth()+1).padStart(2,'0'),String(now.getDate()).padStart(2,'0')].join('-');
  document.querySelectorAll('#editais article.call-edit').forEach(n=>{
@@ -665,7 +691,7 @@ A seleção será realizada por entrevista, considerando conhecimento do Macropr
   if(!valid){slot.replaceChildren();return}
   slot.innerHTML='<a class="studio-appeal-button" data-recurso-link target="_blank" rel="noopener noreferrer" href="'+url.replaceAll('&','&amp;').replaceAll('"','&quot;').replaceAll('<','&lt;')+'">Solicitar recurso pelo formulário ↗</a><p class="studio-appeal-hint">Formulário disponível durante o prazo de recurso do edital.</p>';
  });
-};enhancePublic();setInterval(updateAppeals,60000)})();(function(){document.addEventListener('click',function(e){const a=e.target.closest('a.news-cta[href^="#pandora:"]');if(!a)return;e.preventDefault();const target=a.getAttribute('href').slice(9);const tabs={inicio:'inicio',noticias:'inicio',sobre:'inicio',linhas:'inicio',contato:'inicio',pesquisa:'pesquisa',projetos:'pesquisa','demais-pesquisas':'pesquisa',membros:'pesquisa',publicacoes:'publicacoes',editais:'editais'};const tab=tabs[target];if(!tab)return;document.querySelector('.tab[data-tab="'+tab+'"]')?.click();if(target!==tab)setTimeout(()=>document.getElementById(target)?.scrollIntoView({behavior:'smooth',block:'start'}),120)},true)})();</script><script>(function(){function label(t){var hr=(t.tHead&&t.tHead.rows[0])||t.rows[0];if(!hr)return;var n=[];[].forEach.call(hr.cells,function(c){var s=(c.textContent||'').trim();for(var i=0;i<(c.colSpan||1);i++)n.push(s)});[].forEach.call(t.tBodies,function(b){[].forEach.call(b.rows,function(r){var i=0;[].forEach.call(r.cells,function(c){var s=n[i];if(s&&c.getAttribute('data-label')!==s)c.setAttribute('data-label',s);i+=c.colSpan||1})})})}
+};ambientRuntime();enhancePublic();setInterval(updateAppeals,60000)})();(function(){document.addEventListener('click',function(e){const a=e.target.closest('a.news-cta[href^="#pandora:"]');if(!a)return;e.preventDefault();const target=a.getAttribute('href').slice(9);const tabs={inicio:'inicio',noticias:'inicio',sobre:'inicio',linhas:'inicio',contato:'inicio',pesquisa:'pesquisa',projetos:'pesquisa','demais-pesquisas':'pesquisa',membros:'pesquisa',publicacoes:'publicacoes',editais:'editais'};const tab=tabs[target];if(!tab)return;document.querySelector('.tab[data-tab="'+tab+'"]')?.click();if(target!==tab)setTimeout(()=>document.getElementById(target)?.scrollIntoView({behavior:'smooth',block:'start'}),120)},true)})();</script><script>(function(){function label(t){var hr=(t.tHead&&t.tHead.rows[0])||t.rows[0];if(!hr)return;var n=[];[].forEach.call(hr.cells,function(c){var s=(c.textContent||'').trim();for(var i=0;i<(c.colSpan||1);i++)n.push(s)});[].forEach.call(t.tBodies,function(b){[].forEach.call(b.rows,function(r){var i=0;[].forEach.call(r.cells,function(c){var s=n[i];if(s&&c.getAttribute('data-label')!==s)c.setAttribute('data-label',s);i+=c.colSpan||1})})})}
 function run(){[].forEach.call(document.querySelectorAll('.tab-panel table'),label)}
 var q=0;function sched(){if(q)return;q=requestAnimationFrame(function(){q=0;run()})}
 run();if(window.MutationObserver)new MutationObserver(sched).observe(document.body,{childList:true,subtree:true,characterData:true})})();</script></body></html>
