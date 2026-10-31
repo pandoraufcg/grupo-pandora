@@ -582,10 +582,189 @@ html.rv-on .rv.in{opacity:1;transform:translate3d(0,0,0)}
   html{scroll-behavior:auto}
   html.rv-on .rv{opacity:1;transform:none}
 }
+
+/* ============================================================
+   PANDORA · Vidro líquido nas BARRAS e BOTÕES (estilo "switcher")
+   Só barras e botões recebem o vidro; cards e fundos seguem opacos.
+   Refração (url(#glass-bar)) funciona no Chrome/Edge; em Safari/Firefox
+   cai automaticamente para blur + brilho de borda, sem quebrar nada.
+   ============================================================ */
+:root{
+  --c-glass:#bbbbbc;--c-light:#fff;--c-dark:#000;
+  --glass-reflex-light:1;--glass-reflex-dark:1;--saturation:150%;
+  /* Barra (cápsula grande) */
+  --glass-bar-shadow:
+    inset 0 0 0 1px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*10%),transparent),
+    inset 1.8px 3px 0 -2px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*90%),transparent),
+    inset -2px -2px 0 -2px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*80%),transparent),
+    inset -3px -8px 1px -6px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*60%),transparent),
+    inset -.3px -1px 4px 0 color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*12%),transparent),
+    inset -1.5px 2.5px 0 -2px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*20%),transparent),
+    inset 0 3px 4px -2px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*20%),transparent),
+    inset 2px -6.5px 1px -4px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*10%),transparent),
+    0 1px 5px 0 color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*10%),transparent),
+    0 6px 16px 0 color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*8%),transparent);
+  /* Botão / seleção (pílula menor) */
+  --glass-chip-shadow:
+    inset 0 0 0 1px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*10%),transparent),
+    inset 2px 1px 0 -1px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*90%),transparent),
+    inset -1.5px -1px 0 -1px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*80%),transparent),
+    inset -2px -6px 1px -5px color-mix(in srgb,var(--c-light) calc(var(--glass-reflex-light)*60%),transparent),
+    inset -1px 2px 3px -1px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*20%),transparent),
+    inset 0 -4px 1px -2px color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*10%),transparent),
+    0 3px 6px 0 color-mix(in srgb,var(--c-dark) calc(var(--glass-reflex-dark)*8%),transparent);
+  --glass-ease:cubic-bezier(1,0,.4,1);
+}
+
+/* ---------- BARRAS ---------- */
+.tabs,#studio-dock,.news-carousel-controls{
+  border:none;border-radius:999px;
+  background:color-mix(in srgb,var(--c-glass) 12%,transparent);
+  -webkit-backdrop-filter:blur(8px) saturate(var(--saturation));
+  backdrop-filter:blur(8px) url(#glass-bar) saturate(var(--saturation));
+  box-shadow:var(--glass-bar-shadow);
+  transition:background-color 400ms var(--glass-ease),box-shadow 400ms var(--glass-ease);
+}
+/* Barra de navegação: cápsula flutuante, centralizada */
+.tabs{
+  top:calc(12px + env(safe-area-inset-top,0px));
+  width:max-content;max-width:calc(100% - 24px);
+  margin:12px auto 0;padding:8px 10px 9px;gap:4px;
+  flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;scrollbar-width:none;
+}
+.tabs::-webkit-scrollbar{display:none}
+@media(max-width:650px){
+  .tabs{
+    display:flex;flex-wrap:nowrap;justify-content:space-between;gap:1px;
+    width:calc(100% - 16px);max-width:none;margin:8px auto 0;padding:6px 5px;
+    top:calc(8px + env(safe-area-inset-top,0px));overflow-x:auto;border-radius:999px;
+  }
+  .tabs .tab{
+    flex:1 1 auto;display:flex;align-items:center;justify-content:center;text-align:center;
+    min-height:40px;padding:8px 4px;white-space:nowrap;
+    font-size:var(--tab-fs,clamp(9px,calc((100vw - 74px)/30),13.5px));line-height:1.1;letter-spacing:-.01em;
+  }
+}
+/* Dock do editor */
+#studio-dock{padding:8px 10px 9px;gap:4px}
+@media(max-width:780px){#studio-dock{border-radius:999px;padding:7px 9px 8px}}
+/* Controles do carrossel */
+.news-carousel-controls{padding:7px 12px 8px;gap:12px}
+
+/* ---------- BOTÕES dentro de barras (vidro "chip") ---------- */
+.tab{
+  color:var(--ink2);border:none;background:transparent;box-shadow:none;
+  padding:11px 20px;position:relative;
+  transition:color 160ms,background-color 400ms var(--glass-ease),box-shadow 400ms var(--glass-ease),transform .25s var(--spring);
+}
+.tab:hover{background:transparent;box-shadow:none;color:var(--blue)}
+.tab.active{
+  color:var(--navy);border:none;
+  background:color-mix(in srgb,var(--c-glass) 36%,transparent);
+  box-shadow:var(--glass-chip-shadow);
+}
+.tab.active:hover{color:var(--navy)}
+
+#studio-dock button:not(.main-action):not(.studio-html-action),
+.news-carousel-controls>button{
+  border:none;border-radius:999px;color:#123c66;
+  background:color-mix(in srgb,var(--c-glass) 26%,transparent);
+  box-shadow:var(--glass-chip-shadow);
+  transition:transform .2s var(--spring),background-color 300ms var(--glass-ease),box-shadow 300ms var(--glass-ease),color .16s;
+}
+#studio-dock button:not(.main-action):not(.studio-html-action):hover,
+.news-carousel-controls>button:hover{
+  background:color-mix(in srgb,var(--c-glass) 40%,transparent);color:var(--blue);filter:none;
+}
+/* Botões de destaque do dock: mantêm a cor, ganham forma/brilho de vidro */
+#studio-dock .main-action,#studio-dock .studio-html-action{border-radius:999px}
+#studio-dock .studio-logo{padding:0 10px}
+
+/* ---------- BOTÕES soltos na página (vidro com blur próprio) ---------- */
+.table-action,.section-shortcuts a,.edital-expand{
+  border:none;color:#14568f;
+  background:color-mix(in srgb,var(--c-glass) 22%,rgba(255,255,255,.25));
+  -webkit-backdrop-filter:blur(8px) saturate(var(--saturation));
+  backdrop-filter:blur(8px) saturate(var(--saturation));
+  box-shadow:var(--glass-chip-shadow);
+  transition:transform .2s var(--spring),background-color 300ms var(--glass-ease),box-shadow 300ms var(--glass-ease),color .16s;
+}
+.table-action:hover,.section-shortcuts a:hover,.edital-expand:hover{
+  background:color-mix(in srgb,var(--c-glass) 36%,rgba(255,255,255,.25));color:var(--blue);
+  box-shadow:var(--glass-chip-shadow);
+}
+
+/* ---------- BOTÕES: estilo vidro "start-btn" (aplicado a todos os botões de ação) ---------- */
+.table-action,.section-shortcuts a,.edital-expand,
+.news-cta,.edit-button,.studio-add,
+.news-carousel-controls>button,
+#studio-dock button{
+  position:relative;isolation:isolate;
+  border-radius:999px;border:1px double rgba(51,51,51,.08);
+  box-shadow:
+    inset 2px -2px 1px -1px rgba(255,255,255,.9),
+    inset -2px 2px 1px -1px rgba(255,255,255,.9),
+    inset 6px -6px 1px -6px rgba(255,255,255,.55),
+    inset -6px 6px 1px -6px rgba(255,255,255,.55),
+    inset 0 0 2px rgba(0,0,0,.8),
+    0 4px 8px rgba(0,0,0,.2);
+  -webkit-tap-highlight-color:transparent;
+  transition:transform .25s,background .25s,box-shadow .25s,color .2s;
+}
+/* anel escuro desfocado (profundidade interna) + brilho diagonal nas pontas */
+.table-action::before,.section-shortcuts a::before,.edital-expand::before,
+.news-carousel-controls>button::before,
+#studio-dock button:not(.main-action):not(.studio-html-action)::before{
+  content:"";position:absolute;z-index:1;pointer-events:none;
+  top:35%;left:8px;right:8px;height:calc(100% - 16px);
+  border-radius:inherit;border:1px solid rgba(0,0,0,.9);filter:blur(8px);
+}
+.table-action::after,.section-shortcuts a::after,.edital-expand::after,
+.news-cta::after,.edit-button::after,.studio-add::after,
+.news-carousel-controls>button::after,
+#studio-dock button::after{
+  content:"";position:absolute;z-index:3;pointer-events:none;inset:0;
+  border-radius:inherit;filter:blur(7px);
+  background:linear-gradient(45deg,rgba(255,255,255,.8) 0%,transparent 15%,transparent 85%,rgba(255,255,255,.8) 100%);
+}
+/* neutros: vidro transparente, texto escuro */
+.table-action,.section-shortcuts a,.edital-expand,
+.news-carousel-controls>button,
+#studio-dock button:not(.main-action):not(.studio-html-action){
+  background:rgba(0,0,0,.02);color:#1f2b3a;
+  -webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px);
+}
+.table-action:hover,.section-shortcuts a:hover,.edital-expand:hover,
+.news-carousel-controls>button:hover,
+#studio-dock button:not(.main-action):not(.studio-html-action):hover{
+  background:rgba(0,0,0,0);color:#1f2b3a;transform:translateY(-3px);filter:none;
+}
+/* destaque (azul): mantém a cor, ganha o relevo de vidro */
+.news-cta,.edit-button,.studio-add,#studio-dock .main-action,#studio-dock .studio-html-action{
+  border:1px double rgba(255,255,255,.35);
+  box-shadow:
+    inset 2px -2px 1px -1px rgba(255,255,255,.7),
+    inset -2px 2px 1px -1px rgba(255,255,255,.7),
+    inset 6px -6px 1px -6px rgba(255,255,255,.45),
+    inset -6px 6px 1px -6px rgba(255,255,255,.45),
+    inset 0 0 2px rgba(0,0,0,.35),
+    0 8px 18px rgba(17,81,143,.30);
+}
+.news-cta:hover,.edit-button:hover,.studio-add:hover,
+#studio-dock .main-action:hover,#studio-dock .studio-html-action:hover{transform:translateY(-3px);filter:brightness(1.06)}
+/* pressionar */
+.table-action:active,.section-shortcuts a:active,.edital-expand:active,
+.news-cta:active,.edit-button:active,.studio-add:active,
+.news-carousel-controls>button:active,#studio-dock button:active{transform:scale(.94)}
+.table-action:disabled{transform:none;opacity:.55}
+
 @media(prefers-reduced-transparency:reduce){
   .tabs,#studio-dock,.pub-filters,.news-carousel-controls,.studio-dialog,.studio-toast,.news-card,.c,.call-edit,.contact-item,.th{
     background:#fbfdff!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important;
   }
+}
+@media(prefers-reduced-transparency:reduce){
+  .tab.active,.table-action,.section-shortcuts a,.edital-expand,.news-carousel-controls>button,#studio-dock button:not(.main-action):not(.studio-html-action){background:#eef5fb!important;-webkit-backdrop-filter:none!important;backdrop-filter:none!important}
 }
 @supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
   .tabs,#studio-dock,.pub-filters,.news-carousel-controls,.studio-dialog{background:rgba(250,253,255,.97)}
@@ -602,15 +781,22 @@ html.rv-on .rv.in{opacity:1;transform:translate3d(0,0,0)}
 </style>
 </head>
 <body class="">
+<svg aria-hidden="true" focusable="false" width="0" height="0" style="position:absolute;width:0;height:0;pointer-events:none">
+<filter id="glass-bar" primitiveUnits="objectBoundingBox" color-interpolation-filters="sRGB">
+<feImage result="map" width="100%" height="100%" x="0" y="0" preserveAspectRatio="none" href="data:image/png;base64,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"></feImage>
+<feDisplacementMap in="SourceGraphic" in2="map" scale="0.3" xChannelSelector="R" yChannelSelector="G"></feDisplacementMap>
+</filter>
+</svg>
+
 <div class="aurora" aria-hidden="true"><i class="b1"></i><i class="b2"></i><i class="b3"></i><i class="b4"></i></div>
-<nav aria-label="Navegação principal" class="tabs" role="tablist">
+<nav aria-label="Navegação principal" class="tabs" role="tablist" style="">
 <button aria-controls="painel-inicio" aria-selected="true" class="tab active" data-tab="inicio" id="tab-inicio" role="tab" type="button" tabindex="0">Início</button>
 <button aria-controls="painel-producao" aria-selected="false" class="tab" data-tab="producao" id="tab-producao" role="tab" type="button" tabindex="-1">Pesquisa e extensão</button><button aria-controls="painel-publicacoes" aria-selected="false" class="tab" data-tab="publicacoes" id="tab-publicacoes" role="tab" type="button" tabindex="-1">Publicações</button>
 <button aria-controls="painel-editais" aria-selected="false" class="tab" data-tab="editais" id="tab-editais" role="tab" type="button" tabindex="-1">Editais</button>
 </nav><header class="cover"><img alt="Capa do site PANDORA" src="https://i.ibb.co/3mPgscp1/Design-sem-nome-5.png"></header>
 <main>
 <div aria-labelledby="tab-inicio" class="tab-panel active" id="painel-inicio" role="tabpanel" style="">
-<section id="noticias"><div class="w"><h2>Notícias e eventos</h2><div class="u rb"></div><div class="news-carousel" data-index="0"><article class="news-card news-current"><span class="news-label">NOVO EDITAL · INSCRIÇÕES EM 01/11</span><h3>Seleção de participantes para o Grupo de Pesquisa PANDORA</h3><p>O PANDORA divulga seu processo seletivo para novos participantes do Grupo de Pesquisa. São 7 vagas, sendo 6 para discentes, distribuídas entre as linhas TED, GIO e CTS, e 1 para pesquisador(a) externo(a).</p><div class="news-meta"><span>Inscrições: 30/10 a 10/11/2026 Entrevistas: 13/11/2026</span></div><a class="news-cta" href="#pandora:editais">Ver edital e formas de inscrição ↗</a></article></div><div class="news-carousel-controls" hidden=""><button type="button" data-news-prev="" aria-label="Notícia anterior">‹</button><div class="news-dots"><button type="button" data-dot="0" aria-label="Ir para notícia 1" aria-current="true"></button></div><button type="button" data-news-next="" aria-label="Próxima notícia">›</button></div>
+<section id="noticias"><div class="w"><h2>Notícias e eventos</h2><div class="u rb"></div><div class="news-carousel" data-index="0"><article class="news-card news-current"><span class="news-label">NOVO EDITAL · INSCRIÇÕES EM 3/11</span><h3>Seleção de participantes para o Grupo de Pesquisa PANDORA</h3><p>O PANDORA divulga seu processo seletivo para novos participantes do Grupo de Pesquisa. São 7 vagas, sendo 6 para discentes, distribuídas entre as linhas TED, GIO e CTS, e 1 para pesquisador(a) externo(a).</p><div class="news-meta"><span>Inscrições: 3/11 a 10/11/2026 Entrevistas: 13/11/2026</span></div><a class="news-cta" href="#pandora:editais">Ver edital e formas de inscrição ↗</a></article></div><div class="news-carousel-controls" hidden=""><button type="button" data-news-prev="" aria-label="Notícia anterior">‹</button><div class="news-dots"><button type="button" data-dot="0" aria-label="Ir para notícia 1" aria-current="true"></button></div><button type="button" data-news-next="" aria-label="Próxima notícia">›</button></div>
 
 </div></section><section id="sobre"><div class="w"><div class="sheet"><h2 class="heading">O que é o PANDORA?</h2><div class="rainbow-rule"></div><div class="definition rv in"><div class="definition-art"><img alt="Caixa aberta com circuitos coloridos, símbolo do PANDORA" decoding="async" loading="lazy" src="https://i.ibb.co/MkbrsbYx/Caixa-de-ideias-tecnol-gicas-arco-ris.png"></div><div aria-label="Significado da sigla PANDORA" class="acronym"><div class="acronym-row" style="--c:#1263a0"><b>P</b><i></i><span>Práticas</span></div><div class="acronym-row" style="--c:#17a5a5"><b>A</b><i></i><span>Analíticas e</span></div><div class="acronym-row" style="--c:#6da941"><b>N</b><i></i><span>Narrativas de</span></div><div class="acronym-row" style="--c:#e7b11d"><b>D</b><i></i><span>Democratização</span></div><div class="acronym-row" style="--c:#ee6b26"><b>O</b><i></i><span>Ontologia e</span></div><div class="acronym-row" style="--c:#d62950"><b>R</b><i></i><span>Resistência</span></div><div class="acronym-row" style="--c:#8b2a9e"><b>A</b><i></i><span>Ativa</span></div></div></div><div class="body-copy rv in"><p>O PANDORA é um macroprojeto e grupo de pesquisa voltado ao Ensino de Ciências e Tecnologias. Inspirado no gesto de abrir caixas-pretas da ciência e da tecnologia, propõe uma reestruturação teórico-metodológica da iniciação à pesquisa, articulando formação investigativa, criticidade e compromisso social.</p><p>Suas ações valorizam narrativas historicamente silenciadas, problematizam as relações entre ciência, tecnologia, sociedade e ambiente, e promovem práticas de democratização do conhecimento, resistência ativa e formação de professoras(es)-pesquisadoras(es).</p></div></div></div></section><section class="alt" id="linhas"><div class="w"><h2>Linhas temáticas</h2><div class="u rb"></div><div class="g">
 <div class="c th rv in" style="--c:#1764a0"><div class="theme-pic"><img alt="Símbolo da linha GIO" decoding="async" loading="lazy" src="https://i.ibb.co/ynd8gDgF/Logotipo-Mulher-Ci-ncia-e-Educa-o.png"></div><h3>GIO</h3><div class="theme-bar"></div><small>Gênero, Interseccionalidade e Ontologia</small><p>Investiga desigualdades, silenciamentos, sujeitos da ciência e saberes situados, em diálogo com Haraway, Schiebinger e Crenshaw.</p></div>
@@ -635,11 +821,12 @@ html.rv-on .rv.in{opacity:1;transform:translate3d(0,0,0)}
 </div><p aria-live="polite" class="pub-intro" id="pub-count">1 publicações encontradas</p><div class="tb rv in" id="publicacoes-lista"><table class="data-list"><thead><tr><th>Ano</th><th>Publicação</th><th>Autoria</th><th>Linha</th><th>Tipo</th><th>Acesso</th></tr></thead><tbody id="pub-grid"><tr><td data-label="Ano">2025</td><td data-label="Publicação">ANÁLISES DE SEQUÊNCIAS DIDÁTICAS PRODUZIDAS POR DISCENTES DA LICENCIATURA EM CIÊNCIAS BIOLÓGICAS (UACB/CSTR/UFCG).</td><td data-label="Autoria">José Anselmo Filho Barbosa Moura; Vinícius Lins Martins; Luiz Eduardo Medeiros da Cruz Silva; Maria Kamylla e Silva Xavier</td><td data-label="Linha"><span class="tag" style="--c:#7955aa">Outras</span></td><td data-label="Tipo">Resumo</td><td data-label="Acesso"><a class="table-action" href="https://dspace.sti.ufcg.edu.br/handle/riufcg/44924" target="_blank" rel="noopener noreferrer">Acessar</a></td></tr></tbody></table></div></div></section></div>
 <div aria-labelledby="tab-editais" class="tab-panel" id="painel-editais" role="tabpanel" style="" hidden="">
 <section class="alt" id="editais"><div class="w"><h2>Editais e seleção</h2><div class="u rb"></div>
-<article class="call-edit rv in" data-status="Aberto" data-insc-url="https://docs.google.com/forms/d/e/1FAIpQLSeomd2uojuiSblv8KsFhv-D_0-rhE2c8qvYsXdvbzys71TMyg/viewform?usp=dialog" data-appeal-date="2026-11-15" data-appeal-end="2026-11-15" data-appeal-url=""><div class="edit-top"><span class="edit-badge">EDITAL Nº 2026.01</span><span class="edit-status"><i></i> Aberto</span></div><p class="edit-kicker">UACB · CSTR · UFCG · Campus Patos</p><h3>Seleção de participantes para o Grupo de Pesquisa PANDORA</h3><p class="edit-intro">Seleção de novos participantes para o grupo de pesquisa.</p><h4>Distribuição das vagas</h4><div class="studio-edital-vacancies vacancy-list"><div data-vacancy="TED" data-count="2"><span class="vacancy-dot ted"></span><span><b>TED</b><small>Tecnologias Emergentes e Democratização</small></span><strong>2 vagas</strong></div><div data-vacancy="GIO" data-count="2"><span class="vacancy-dot gio"></span><span><b>GIO</b><small>Gênero, Interseccionalidade e Ontologia</small></span><strong>2 vagas</strong></div><div data-vacancy="CTS" data-count="2"><span class="vacancy-dot cts"></span><span><b>CTS</b><small>Ciência, Tecnologia, Sociedade e Ambiente</small></span><strong>2 vagas</strong></div><div data-vacancy="Externo" data-count="1"><span class="vacancy-dot ext"></span><span><b>Pesquisador(a) externo(a)</b><small>Pesquisador(a) externo(a)</small></span><strong>1 vaga</strong></div></div><h4>Datas importantes</h4><div class="studio-edital-schedule rv in" data-font-size="14" data-text-color="#233b55" data-cell-space="13"><table><thead><tr><th>Etapa</th><th>Data / informações</th></tr></thead><tbody><tr><td data-label="Etapa">Abertura das inscrições</td><td data-label="Data / informações">1 de novembro de 2026</td></tr><tr><td data-label="Etapa">Encerramento das inscrições</td><td data-label="Data / informações">10 de novembro de 2026</td></tr><tr><td data-label="Etapa">Divulgação do horário das entrevistas</td><td data-label="Data / informações">até 12 de novembro de 2026</td></tr><tr><td data-label="Etapa">Entrevistas</td><td data-label="Data / informações">13 de novembro de 2026</td></tr><tr><td data-label="Etapa">Resultado preliminar</td><td data-label="Data / informações">14 de novembro de 2026</td></tr><tr><td data-label="Etapa">Prazo para recursos</td><td data-label="Data / informações">15 de novembro de 2026</td></tr><tr><td data-label="Etapa">Resultado final</td><td data-label="Data / informações">16 de novembro de 2026</td></tr></tbody></table></div><h4>Quem pode se inscrever?</h4><div class="edit-notice studio-edital-requirements rv in" style="white-space:pre-line"><b>Critérios de participação</b><p><b>Discentes:</b> estudantes regularmente matriculados(as), com disponibilidade para reuniões semanais de orientação.
-<b>Pesquisador(a) externo(a):</b> deve manter o Currículo Lattes atualizado e ter disponibilidade para colaborar com o grupo.
-A seleção será realizada por entrevista, considerando conhecimento do Macroprojeto PANDORA, afinidade com a linha temática, disponibilidade e compromisso, comunicação e argumentação. A leitura integral do Macroprojeto é obrigatória e será cobrada na entrevista.</p></div><div class="edit-actions"><a class="edit-button primary" data-edital-link="" href="https://docs.google.com/document/d/124YEexRi38JIZHE5FhY4saXb6Bz5C2DB/export?format=pdf" target="_blank" rel="noopener noreferrer">Ler edital completo ↗</a><a class="edit-button secondary" data-macro-link="" href="https://drive.google.com/uc?export=download&amp;id=1INhkXfREca4hVlvobzIwYXNz7f2KZi-n" target="_blank" rel="noopener noreferrer">Acessar macroprojeto ↗</a><a class="edit-button primary" data-insc-link="" href="https://docs.google.com/forms/d/e/1FAIpQLSeomd2uojuiSblv8KsFhv-D_0-rhE2c8qvYsXdvbzys71TMyg/viewform?usp=dialog" target="_blank" rel="noopener noreferrer">Fazer inscrição ↗</a></div><div class="studio-appeal-slot"></div></article></div></section>
+<article class="call-edit rv in" data-status="Em breve" data-insc-url="https://docs.google.com/forms/d/e/1FAIpQLSeomd2uojuiSblv8KsFhv-D_0-rhE2c8qvYsXdvbzys71TMyg/viewform?usp=dialog" data-appeal-date="2026-11-15" data-appeal-end="2026-11-15" data-appeal-url=""><div class="edit-top"><span class="edit-badge">EDITAL Nº 2026.01</span><span class="edit-status"><i></i> Em breve</span></div><p class="edit-kicker">UACB · CSTR · UFCG · Campus Patos</p><h3>Seleção de participantes para o Grupo de Pesquisa PANDORA</h3><p class="edit-intro">Seleção de novos participantes para o grupo de pesquisa.</p><h4>Distribuição das vagas</h4><div class="studio-edital-vacancies vacancy-list"><div data-vacancy="TED" data-count="2"><span class="vacancy-dot ted"></span><span><b>TED</b><small>Tecnologias Emergentes e Democratização</small></span><strong>2 vagas</strong></div><div data-vacancy="GIO" data-count="2"><span class="vacancy-dot gio"></span><span><b>GIO</b><small>Gênero, Interseccionalidade e Ontologia</small></span><strong>2 vagas</strong></div><div data-vacancy="CTS" data-count="2"><span class="vacancy-dot cts"></span><span><b>CTS</b><small>Ciência, Tecnologia, Sociedade e Ambiente</small></span><strong>2 vagas</strong></div><div data-vacancy="Externo" data-count="1"><span class="vacancy-dot ext"></span><span><b>Pesquisador(a) externo(a)</b><small>Pesquisador(a) externo(a)</small></span><strong>1 vaga</strong></div></div><h4>Datas importantes</h4><div class="studio-edital-schedule rv in" data-font-size="14" data-text-color="#233b55" data-cell-space="13"><table><thead><tr><th>Etapa</th><th>Data / informações</th></tr></thead><tbody><tr><td data-label="Etapa">Abertura das inscrições</td><td data-label="Data / informações">3 de novembro de 2026</td></tr><tr><td data-label="Etapa">Encerramento das inscrições</td><td data-label="Data / informações">10 de novembro de 2026</td></tr><tr><td data-label="Etapa">Divulgação do horário das entrevistas</td><td data-label="Data / informações">até 12 de novembro de 2026</td></tr><tr><td data-label="Etapa">Entrevistas</td><td data-label="Data / informações">13 de novembro de 2026</td></tr><tr><td data-label="Etapa">Resultado preliminar</td><td data-label="Data / informações">14 de novembro de 2026</td></tr><tr><td data-label="Etapa">Prazo para recursos</td><td data-label="Data / informações">15 de novembro de 2026</td></tr><tr><td data-label="Etapa">Resultado final</td><td data-label="Data / informações">16 de novembro de 2026</td></tr></tbody></table></div><h4>Quem pode se inscrever?</h4><div class="edit-notice studio-edital-requirements rv in" style="white-space:pre-line"><b>Critérios de participação</b><p>Critérios de participaçãoDiscentes: estudantes regularmente matriculados(as), com disponibilidade para reuniões semanais de orientação.
+Pesquisador(a) externo(a): deve manter o Currículo Lattes atualizado e ter disponibilidade para colaborar com o grupo.
+A seleção será realizada por entrevista, considerando conhecimento do Macroprojeto PANDORA, afinidade com a linha temática, disponibilidade e compromisso, comunicação e argumentação. A leitura integral do Macroprojeto é obrigatória e será cobrada na entrevista.</p></div><div class="edit-actions"><a class="edit-button primary" data-edital-link="" href="https://docs.google.com/document/d/124YEexRi38JIZHE5FhY4saXb6Bz5C2DB/export?format=pdf" target="_blank" rel="noopener noreferrer">Ler edital completo ↗</a><a class="edit-button secondary" data-macro-link="" href="https://drive.google.com/uc?export=download&amp;id=1INhkXfREca4hVlvobzIwYXNz7f2KZi-n" target="_blank" rel="noopener noreferrer">Acessar macroprojeto ↗</a></div><div class="studio-appeal-slot"></div></article></div></section>
 </div>
 </main>
+
 
 
 
@@ -695,3 +882,4 @@ A seleção será realizada por entrevista, considerando conhecimento do Macropr
 function run(){[].forEach.call(document.querySelectorAll('.tab-panel table'),label)}
 var q=0;function sched(){if(q)return;q=requestAnimationFrame(function(){q=0;run()})}
 run();if(window.MutationObserver)new MutationObserver(sched).observe(document.body,{childList:true,subtree:true,characterData:true})})();</script></body></html>
+
