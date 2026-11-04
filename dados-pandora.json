@@ -32,19 +32,19 @@
       "gio": {
         "key": "gio",
         "label": "Imagem da linha GIO",
-        "url": "assets/1.png",
+        "url": "assets/GIO.png",
         "alt": "Logotipo Mulher, Ciência e Educação, da linha GIO"
       },
       "ted": {
         "key": "ted",
         "label": "Imagem da linha TED",
-        "url": "assets/2.png",
+        "url": "assets/TED.png",
         "alt": "Ilustração de uma engrenagem da inovação e tecnologia, da linha TED"
       },
       "cts": {
         "key": "cts",
         "label": "Imagem da linha CTS",
-        "url": "assets/3.png",
+        "url": "assets/CTS.png",
         "alt": "Emblema circular de ciência e sustentabilidade, da linha CTS"
       }
     },
