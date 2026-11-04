@@ -38,13 +38,13 @@
       "ted": {
         "key": "ted",
         "label": "Imagem da linha TED",
-        "url": "https://i.ibb.co/S7Bxn3dW/Engrenagem-da-inova-o-e-tecnologia.png",
+        "url": "assets/2.png",
         "alt": "Ilustração de uma engrenagem da inovação e tecnologia, da linha TED"
       },
       "cts": {
         "key": "cts",
         "label": "Imagem da linha CTS",
-        "url": "https://i.ibb.co/kVLDyMQv/Emblema-Circular-de-Ci-ncia-e-Sustentabilidade.png",
+        "url": "assets/3.png",
         "alt": "Emblema circular de ciência e sustentabilidade, da linha CTS"
       }
     },
