@@ -14,19 +14,19 @@
       "logo": {
         "key": "logo",
         "label": "Logotipo do PANDORA",
-        "url": "https://i.ibb.co/1YKm3Z3t/Logotipo-PANDORA-com-Anel-Arco-ris.png",
+        "url": "assets/PANDORA.png",
         "alt": "Logotipo do PANDORA: anel arco-íris com o nome do grupo de pesquisa"
       },
       "cover": {
         "key": "cover",
         "label": "Imagem de capa",
-        "url": "https://i.ibb.co/1tLDhmHQ/capa-site.png",
+        "url": "assets/CAPA.png",
         "alt": "Capa institucional do PANDORA — Macroprojeto e Grupo de Pesquisa em Ensino de Ciências e Tecnologias"
       },
       "about": {
         "key": "about",
         "label": "Imagem da seção O que é o PANDORA?",
-        "url": "https://i.ibb.co/MkbrsbYx/Caixa-de-ideias-tecnol-gicas-arco-ris.png",
+        "url": "assets/CAIXA.png",
         "alt": "Ilustração de uma caixa de ideias tecnológicas com um anel arco-íris"
       },
       "gio": {
