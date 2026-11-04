@@ -1,0 +1,7 @@
+PANDORA — Projeto React/Vite SEM EDITOR, com todas as edições exportadas.
+
+Este ZIP tem a mesma estrutura do projeto-fonte de referência.
+Conteúdo editado: src/exportedContent.json (carregado automaticamente por src/store.tsx).
+Para publicar no GitHub Pages: envie os arquivos extraídos à raiz do repositório e ative Settings > Pages > Source: GitHub Actions.
+Para reimportar as alterações no editor: use o botão Importar ZIP.
+O GitHub Actions compila o projeto automaticamente, sem comandos npm no seu computador.
