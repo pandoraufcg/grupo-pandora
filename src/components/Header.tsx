@@ -54,6 +54,7 @@ export function Header() {
               imgClassName="h-9 w-auto max-w-[168px] object-contain sm:h-11 sm:max-w-[210px]"
               className="h-9 w-[150px] sm:h-11 sm:w-[200px]"
             />
+  {/*
             <span className="hidden h-9 w-px bg-[#d5e5f2] xl:block" aria-hidden="true" />
             <span className="hidden flex-col leading-tight xl:flex">
               <span className="font-display text-[11px] font-bold uppercase tracking-[0.14em] text-brand-deep">
@@ -61,6 +62,7 @@ export function Header() {
               </span>
               <span className="text-[10.5px] font-medium text-[#5c7c98]">Ensino de Ciências e Tecnologias · UFCG</span>
             </span>
+          */}
           </button>
 
           <div className="order-2 ml-auto hidden items-center gap-2 lg:flex xl:ml-0">
