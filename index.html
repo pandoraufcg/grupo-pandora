@@ -1080,13 +1080,24 @@ function renderMemberCard(card){
  var profile=card.querySelector('a.studio-profile');
  var oldP=card.querySelector('.member-photo');if(oldP)oldP.remove();
  var oldL=card.querySelector('.member-links');
+ // Remove links Lattes antigos que ficaram fora do contêiner correto.
+ [].forEach.call(card.querySelectorAll('a.member-lattes-pill,a.member-lattes'),function(a){
+  if(!a.closest('.member-links'))a.remove();
+ });
  if(profile&&profile.parentNode)profile.parentNode.removeChild(profile);
  if(oldL)oldL.remove();
  // Foto (ou avatar de iniciais)
  var img=document.createElement('img');img.className='member-photo';img.loading='lazy';img.decoding='async';img.width=96;img.height=96;
  var photo=(d.photo||'').trim();
- if(photo){img.alt=(d.photoAlt||'').trim()||('Foto de '+name);img.src=photo}
- else{img.alt='Avatar com as iniciais de '+name;img.setAttribute('data-fallback','1');img.src=initialsAvatar(name,color)}
+ if(photo){
+  img.alt=(d.photoAlt||'').trim()||('Foto de '+name);
+  img.removeAttribute('data-fallback');
+  img.src=photo;
+ }else{
+  img.alt='Avatar com as iniciais de '+name;
+  img.setAttribute('data-fallback','1');
+  img.src=initialsAvatar(name,color);
+ }
  card.insertBefore(img,card.firstChild);
  // Rodapé: perfil + Lattes
  var links=document.createElement('div');links.className='member-links';
